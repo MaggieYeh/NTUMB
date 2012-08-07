@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 gem 'activeadmin', git: "https://github.com/gregbell/active_admin.git"
+gem "awesome_nested_set", git: "https://github.com/collectiveidea/awesome_nested_set.git"
+gem "pry-rails", git: "https://github.com/rweng/pry-rails.git", group: :development
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

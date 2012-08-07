@@ -1,0 +1,25 @@
+ActiveAdmin.register Page do
+  index do
+    column :title
+    column :menu_title
+    column :content
+    column :delegated
+    default_actions
+  end
+  form do |f|                         
+    f.inputs "Page" do
+      f.input :title
+      f.input :menu_title
+      f.input :content
+      f.input :delegated
+      f.input :parent_id, as: :select, collection: page_tree_selection(f.object)
+    end
+    f.buttons                         
+  end                                 
+  filter :title
+  filter :menu_title
+  filter :content
+  filter :delegate
+  filter :delegate
+  filter :updated_at
+end

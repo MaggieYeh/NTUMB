@@ -1,0 +1,15 @@
+.sortable_item span.handle{
+  cursor: move;
+}
+
+.item_actions{
+  display: inline-block;
+  float: right;
+  /*li{*/
+    /*display: inline-block;*/
+  /*}*/
+}
+
+.sortable_placeholder{
+  background-color: #FFE467;
+}
