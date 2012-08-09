@@ -6,6 +6,7 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'rails-i18n'
 
 
 # Gems used only for assets and not required
@@ -24,6 +25,9 @@ gem 'jquery-rails'
 gem 'activeadmin', git: "https://github.com/gregbell/active_admin.git"
 gem "awesome_nested_set", git: "https://github.com/collectiveidea/awesome_nested_set.git"
 gem "pry-rails", git: "https://github.com/rweng/pry-rails.git", group: :development
+gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

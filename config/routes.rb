@@ -1,7 +1,16 @@
 NTUMB::Application.routes.draw do
+  #get "pages/view"
+
+  mount Ckeditor::Engine => '/ckeditor'
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  #Department.pluck("name").each do |dname|
+    #match ""
+  #end
+  match ":dname/*path(.:format)" => 'pages#view'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -7,6 +7,12 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "NTUMB"
 
+  def set_admin_locale
+    I18n.locale = :"zh-TW"
+  end
+
+  config.before_filter :set_admin_locale
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -34,15 +40,18 @@ ActiveAdmin.setup do |config|
   #   config.default_namespace = false
   #
   # Default:
-  # config.default_namespace = :admin
+  config.default_namespace = :admin
   #
   # You can customize the settings for each namespace by using
   # a namespace block. For example, to change the site title
   # within a namespace:
   #
-  #   config.namespace :admin do |admin|
-  #     admin.site_title = "Custom Admin Title"
-  #   end
+  config.namespace :admin do |admin|
+  end
+  config.namespace :MBA_admin do |admin|
+  end
+  config.namespace :EMBA_admin do |admin|
+  end
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
@@ -100,7 +109,7 @@ ActiveAdmin.setup do |config|
   # Admin comments are enabled by default.
   #
   # Default:
-  # config.allow_comments = true
+  config.allow_comments = false
   #
   # You can turn them on and off for any given namespace by using a
   # namespace config block.
@@ -139,6 +148,7 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
+    config.register_javascript 'ckeditor/init.js'
     config.register_javascript 'jquery.mjs.nestedSortable.js'
     config.register_javascript 'page_tree.js'
 end

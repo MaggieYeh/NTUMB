@@ -6,7 +6,7 @@ $(document).ready(function(){
     toleranceElement: '> div',
     tolerance: 'pointer',
     update: function(event, ui){
-      $.post('pages/sort',$(this).nestedSortable('serialize'));
+      $.post($(this).data("update-url"),$(this).nestedSortable('serialize'));
     },
     placeholder: 'sortable_placeholder'
   });
