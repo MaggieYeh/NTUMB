@@ -39,7 +39,8 @@ Department.pluck("name").each_with_index do |dname,index|
         {id: p.first})
       end
       # in order to trigger before_save callbacks
-      Page.send(dname).each{|p| p.save}
+      #Page.send(dname).each{|p| p.save}
+      Page.send(dname).rebuild!
       render :nothing => true
     end
 
@@ -84,7 +85,8 @@ Department.pluck("name").each_with_index do |dname,index|
         f.input :content, :as => :ckeditor #:input_html => { :class => "ckeditor" }
         f.input :delegated
         f.input :parent_id, as: :select, collection: page_tree_selection(f.object,dname), 
-                 selected: params[:parent_id]
+                 selected: f.object.parent_id || params[:parent_id]
+        #binding.pry
         #f.input :dname, as: :hidden, :input_html => { value: "#{dname}" }
       end
       f.buttons                         

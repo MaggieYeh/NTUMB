@@ -1,4 +1,5 @@
 "zh-TW":
+  ltest: "中文!"
   active_admin:
     dashboard: "主控版"
     dashboard_welcome:

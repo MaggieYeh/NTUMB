@@ -6,4 +6,7 @@ module ApplicationHelper
       "#{d*i.level} #{i.menu_title}"
     end
   end
+  def relax_sanitize(input)
+    Sanitize.clean(input, Sanitize::Config::RELAXED)
+  end
 end

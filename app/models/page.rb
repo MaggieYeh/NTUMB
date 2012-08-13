@@ -1,6 +1,8 @@
 #!/bin/env ruby
 # encoding: utf-8
 class Page < ActiveRecord::Base
+#TODO check reserved word
+# like: url, page, admin, etc
   attr_accessible :menu_title, :page_part_ids, :title, :content, :delegated #, :department_id
 # For acts_as_nested_set
   attr_accessible :parent_id

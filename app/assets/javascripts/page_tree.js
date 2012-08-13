@@ -8,6 +8,7 @@ $(document).ready(function(){
     update: function(event, ui){
       $.post($(this).data("update-url"),$(this).nestedSortable('serialize'));
     },
+    //maxlevels: 3
     placeholder: 'sortable_placeholder'
   });
 

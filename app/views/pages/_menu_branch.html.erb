@@ -1,0 +1,8 @@
+<ol>
+  <% menu_branch.each do |menu_name,path_and_children| %>
+    <li><%= link_to menu_name.to_s, path_and_children[:path] %></li>
+    <% unless path_and_children[:children].empty? %>
+      <%= render :partial => "menu_branch", :object => path_and_children[:children]%>
+    <% end %>
+  <% end %>
+</ol>

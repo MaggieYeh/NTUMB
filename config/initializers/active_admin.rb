@@ -7,11 +7,6 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "NTUMB"
 
-  def set_admin_locale
-    I18n.locale = :"zh-TW"
-  end
-
-  config.before_filter :set_admin_locale
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -47,10 +42,6 @@ ActiveAdmin.setup do |config|
   # within a namespace:
   #
   config.namespace :admin do |admin|
-  end
-  config.namespace :MBA_admin do |admin|
-  end
-  config.namespace :EMBA_admin do |admin|
   end
   #
   # This will ONLY change the title for the admin section. Other
@@ -133,6 +124,19 @@ ActiveAdmin.setup do |config|
   # Active Admin resources from here.
   #
   # config.before_filter :do_something_awesome
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
+  def set_admin_locale
+    I18n.locale = :"zh-TW"
+  end
+
+  config.before_filter :set_admin_locale
+  config.before_filter :set_cache_buster
 
 
   # == Register Stylesheets & Javascripts
