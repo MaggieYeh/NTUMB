@@ -1,7 +1,19 @@
 Backend
+2. home page && home page routing <- let's do this!
 1. english-content admin interface
-2. home page && home page routing
 3. events, news engines
+4. level 3 limit
+
+5. database schema requirements ( null => false etc )
+6. better interface detail
+  a. better sorting tree
+  b. some english detail should be translated
+  c. modify show page
+    i some html content should use raw method to represent
+
+Bug!! TODO
+1. if you seach page in page filter, the whole scope will break
+
 Frontend....
 whole lot!
 1. title bar with department homepage link

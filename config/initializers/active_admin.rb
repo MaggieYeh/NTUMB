@@ -147,12 +147,14 @@ ActiveAdmin.setup do |config|
   #
   # To load a stylesheet:
     config.register_stylesheet 'page_tree.css.scss'
+    #config.register_stylesheet 'announcement.css.scss'
   
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
     config.register_javascript 'ckeditor/init.js'
+    config.register_javascript 'ckeditor/config.js'
     config.register_javascript 'jquery.mjs.nestedSortable.js'
     config.register_javascript 'page_tree.js'
 end

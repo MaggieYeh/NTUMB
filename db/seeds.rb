@@ -10,11 +10,21 @@
 
 #mba,ba,acc,fin,ib,im,emba,gmba?
 #college of management,bussiness administration,accounting,finance,international bussiness,information management,mba , Executive mba(master of bussiness adminstration)
+#Department.create([{ name: "管院"},{ name: "工管"},
+                  #{ name: "會計"},{ name: "財金"},
+                  #{ name: "國企"},{ name: "資管"},
+                  #{ name: "MBA"}, { name: "EMBA"}])
+if Department.count == 0
   Department.create([{ name: 'Management'},{ name: 'BA'},
                     { name: 'Acc'},{ name: 'Fin'},
                     { name: 'IB'},{ name: 'IM'},
                     { name: 'MBA'}, { name: 'EMBA'}])
-  #Department.create([{ name: "管院"},{ name: "工管"},
-                    #{ name: "會計"},{ name: "財金"},
-                    #{ name: "國企"},{ name: "資管"},
-                    #{ name: "MBA"}, { name: "EMBA"}])
+end
+if AnnounceCategory.count == 0
+  AnnounceCategory.create([{ name: "administrative"},
+                           { name: "events"}, 
+                           { name: "intern_opportunities"}, 
+                           { name: "scholarship_and_exchange_student"},
+                           { name: "news"},
+                           { name: "enrollments"}])
+end

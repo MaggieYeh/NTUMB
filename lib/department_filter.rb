@@ -32,7 +32,11 @@ module RoutingFilter
     def around_recognize(path, env, &block)
       department = extract_segment!(self.class.departments_pattern, path) # remove the department from the beginning of the path
       yield.tap do |params|                                       # invoke the given block (calls more filters and finally routing)
-        params[:department] = department if department                        # set recognized department to the resulting params hash
+        if department 
+          params[:department] = department  # set recognized department to the resulting params hash
+        else
+          params[:department] = "management"
+        end
       end
     end
 

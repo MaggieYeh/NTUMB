@@ -8,20 +8,13 @@ NTUMB::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   #Department.pluck("name").each do |dname|
-    #match "#{dname}/*path" => "#{dname.downcase}_pages#view"
-    #match "#{dname.upcase}/*path" => "#{dname.downcase}_pages#view"
-    #match "#{dname.downcase}/*path" => "#{dname.downcase}_pages#view"
+    #match "/#{dname}" => "pages#home"
+    #match "/#{dname.upcase}" => "#pages#home"
+    #match "/#{dname.downcase}" => "pages#home"
   #end
-  #match "/*path" => "management_pages#view"
-  #match ":dname/*path" => 'pages#view'
+  match "/" => "pages#home"
   match "/*path" => 'pages#view'#, :as => :page
 
-  #NTUMB::Application.routes.named_routes.module.module_eval do
-    #def page_path(page, options = {})
-      ##binding.pry
-      #page.path
-    #end
-  #end
   filter :department, :exclude => %r(^/admin/)
   filter :locale, :exclude => %r(^/admin/)
 
