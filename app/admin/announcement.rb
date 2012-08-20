@@ -18,11 +18,13 @@ ActiveAdmin.register Announcement do
               input_html: {value:f.object.due_date || Date.today.next_month.strftime }
     end
     f.inputs "公告內容" do
-      f.input :content, :as => :ckeditor #:input_html => { :class => "ckeditor" }
+      f.input :content, :as => :ckeditor ,:input_html => { :height => 300 }
     end
     f.inputs "公告至" do
-      f.input :departments, as: :check_boxes, 
-              :collection => Hash[Department.all.map{|d|[" "+I18n.t("scopes.#{d.name}"),d.id]}]
+      f.input :departments, as: :check_boxes,
+              :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
+              #:collection => Hash[Department.all.map{|d|[" "+I18n.t("scopes.#{d.name}"),d.id]}]
+              #input_html: { size: Department.count }
     end
     f.buttons                         
   end 

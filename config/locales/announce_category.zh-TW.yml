@@ -1,0 +1,20 @@
+"zh-TW":
+  ltest: "中文!"
+  administrative:
+    name: "行政公告" 
+    hint: "如：施工、人員招聘、法規頒佈更動等等..."
+  events:
+    name: "活動" 
+    hint: "如：演講訊息、系所活動、系學會學生活動等"
+  intern_opportunities:
+    name: "實習機會" 
+    hint: "如：企業實習機會"
+  scholarship_and_exchange_student:
+    name: "獎學金與交換生資訊"
+    hint: ""
+  enrollments:
+    name: "招生資訊"
+    hint: "研究所、博士班招生"
+  news:
+    name: "新聞" 
+    hint: "如：論文發表、頒獎、大事等等.."

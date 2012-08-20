@@ -38,8 +38,10 @@ module ActiveAdmin
                         link_to I18n.t("active_admin.new_child_page"),
                                 "/admin/#{pages_path}/new?parent_id=#{child.id}"
                       end
-                      span do
-                        link_to I18n.t("active_admin.delete"),"/admin/#{page_path}", method: :delete, data: {confirm: I18n.t("active_admin.delete_confirmation") }
+                      unless child.delegated
+                        span do
+                          link_to I18n.t("active_admin.delete"),"/admin/#{page_path}", method: :delete, data: {confirm: I18n.t("active_admin.delete_confirmation") }
+                        end
                       end
                     end
                   end

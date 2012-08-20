@@ -12,11 +12,12 @@ NTUMB::Application.routes.draw do
     #match "/#{dname.upcase}" => "#pages#home"
     #match "/#{dname.downcase}" => "pages#home"
   #end
-  match "/" => "pages#home"
-  match "/*path" => 'pages#view'#, :as => :page
-
   filter :department, :exclude => %r(^/admin/)
   filter :locale, :exclude => %r(^/admin/)
+
+  match "/*path" => 'pages#view'#, :as => :page
+  match "/" => "pages#home"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

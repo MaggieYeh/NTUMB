@@ -12,6 +12,7 @@ CKEDITOR.editorConfig = function( config )
   
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
+  // get request
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
 
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Flash dialog.
@@ -21,12 +22,15 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserFlashUploadUrl = "/ckeditor/attachment_files";
   
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Link tab of Image dialog.
+  // get request
   config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
 
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Image dialog.
+  // get request
   config.filebrowserImageBrowseUrl = "/ckeditor/pictures";
 
   // The location of a script that handles file uploads in the Image dialog.
+  // post request
   config.filebrowserImageUploadUrl = "/ckeditor/pictures";
   
   // The location of a script that handles file uploads.
@@ -67,7 +71,7 @@ CKEDITOR.editorConfig = function( config )
     var dialogDefinition = ev.data.definition;
     var content, upload;
     
-    if (jQuery.inArray(dialogName, ['link', 'image']) > -1) {
+    if (jQuery.inArray(dialogName, ['link', 'image', 'attachment']) > -1) {
       content = (dialogDefinition.getContents('Upload') || dialogDefinition.getContents('upload'));
       upload = (content == null ? null : content.get('upload'));
       
@@ -80,7 +84,7 @@ CKEDITOR.editorConfig = function( config )
   
   /* Extra plugins */
   // works only with en, ru, uk locales
-  config.extraPlugins = "embed";//,attachment";
+  config.extraPlugins = "embed";
   
   /* Toolbars */
   config.toolbar = 'Easy';

@@ -12,11 +12,11 @@ class Page < ActiveRecord::Base
 
   #scope :EMBA, where(:department_id => 8)
   Department.all.each do |department|
-    self.send( :scope, department.name, 
+    self.send( :scope, department.name.intern, 
               where(:department_id => department.id) )
-    self.send( :scope, department.name.downcase, 
+    self.send( :scope, department.name.downcase.intern, 
               where(:department_id => department.id) )
-    self.send( :scope, department.name.upcase, 
+    self.send( :scope, department.name.upcase.intern, 
               where(:department_id => department.id) )
   end
   #default_scope Page.Management

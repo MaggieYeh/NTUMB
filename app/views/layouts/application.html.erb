@@ -7,8 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1><%= link_to @department, @department.match(/management/i) ? "/": "/#{@department}" %></h1>
+<%= render :partial => "pages/menu", :object => @menu %>
 
 <%= yield %>
-
+<div class="footer">
+  <h2>系所連結</h2>
+  <ol class="department_links">
+    <% @department_names.each_with_index do |dname,i|  %>
+      <% if i == 0 %>
+        <li><%= link_to "Management", "/" %></li>
+      <% else %>
+        <li><%= link_to dname, "/#{dname}" %></li>
+      <% end %>
+    <% end %>
+  </ol>
+</div>
 </body>
 </html>

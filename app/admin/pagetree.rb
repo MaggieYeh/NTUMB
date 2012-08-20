@@ -1,17 +1,23 @@
 #!/bin/env ruby
 # encoding: utf-8
 Department.pluck("name").each_with_index do |dname,index|
-  ActiveAdmin.register Page.send(dname), :as => dname + "-page" do
+  ActiveAdmin.register Page.send(dname), :as => dname + "_page" do
     menu :parent => "內容頁面", :priority => index+1, 
          :label => proc { I18n.t("active_admin.scopes.#{dname}") }
 
-    self.send(:scope, dname, {:default => true})
+    #self.send(:scope, dname, {:default => true})
 
     controller do
+      eval %Q{
+        def scoped_collection
+          end_of_association_chain.#{dname}
+        end
+      }
       def create
         instance_variable_set(
           "@#{self.controller_name.singularize}", 
-          Page.send(controller_name[0..-7].capitalize).new(params[controller_name[0..-2]])
+          #[0..-7 is to delete xxx_pages's _pages
+          Page.send(controller_name[0..-7]).new(params[controller_name[0..-2]])
         )
         create! do |format|
           format.html { redirect_to "/admin/#{controller_name}" }
@@ -31,7 +37,8 @@ Department.pluck("name").each_with_index do |dname,index|
 
 
     index ({ :as => :tree, :download_links => false, 
-             :"data-update-url" => "/admin/#{dname.downcase}_pages/sort" }) do |page|
+             :"data-update-url" => "/admin/#{dname.downcase}_pages/sort",
+             title: I18n.t("scopes.#{dname}") + "頁面"}) do |page|
       if page.parent == nil
         li :for => page, :class => "sortable_item" do
           div do
@@ -50,8 +57,10 @@ Department.pluck("name").each_with_index do |dname,index|
                 link_to I18n.t("active_admin.new_child_page"), 
                         "#{pages_path}/new?parent_id=#{page.id}"
               end
-              span do
-                link_to I18n.t("active_admin.delete"),"/admin/#{page_path}", method: :delete, data: {confirm: I18n.t("active_admin.delete_confirmation") }
+              unless page.delegated
+                span do
+                  link_to I18n.t("active_admin.delete"),"/admin/#{page_path}", method: :delete, data: {confirm: I18n.t("active_admin.delete_confirmation") }
+                end
               end
             end
           end
@@ -65,7 +74,7 @@ Department.pluck("name").each_with_index do |dname,index|
         f.input :title
         f.input :menu_title
         f.input :content, :as => :ckeditor #:input_html => { :class => "ckeditor" }
-        f.input :delegated
+        #f.input :delegated
         f.input :parent_id, as: :select, collection: page_tree_selection(f.object,dname), 
                  selected: f.object.parent_id || params[:parent_id]
       end

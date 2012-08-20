@@ -1,0 +1,7 @@
+"zh-TW":
+  activerecord:
+    models:
+      management_page: "管院頁面"
+      fin_page:
+        one: "頁面"
+        other: "頁面"
