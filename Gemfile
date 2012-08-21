@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.7'
 #gem 'copycopter_client', '~> 2.0.1'
+#gem 'newrelic_rpm'
 
 
 # Bundle edge Rails instead:
@@ -33,6 +34,7 @@ group :development do
 end
 gem 'ckeditor'
 gem 'carrierwave'
+gem 'paperclip'
 gem 'mini_magick'
 gem 'routing-filter'
 gem 'sanitize'
