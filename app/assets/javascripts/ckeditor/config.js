@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config )
   // Define changes to default configuration here. For example:
   // config.language = 'fr';
   // config.uiColor = '#AADC6E';
-  config.langCode = "zh";
+  config.langCode = "zh-TW";
   
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
@@ -67,7 +67,7 @@ CKEDITOR.editorConfig = function( config )
   CKEDITOR.on( 'dialogDefinition', function( ev ){
     // Take the dialog name and its definition from the event data.
     var dialogName = ev.data.name;
-    console.log(ev)
+    //console.log(ev)
     var dialogDefinition = ev.data.definition;
     var content, upload;
     
@@ -84,7 +84,7 @@ CKEDITOR.editorConfig = function( config )
   
   /* Extra plugins */
   // works only with en, ru, uk locales
-  config.extraPlugins = "embed";
+  config.extraPlugins = "embed,attachment";
   
   /* Toolbars */
   config.toolbar = 'Easy';
@@ -97,7 +97,7 @@ CKEDITOR.editorConfig = function( config )
         ['Styles','Format'], ['Subscript', 'Superscript', 'TextColor'], ['Maximize','-','About'], '/',
         ['Bold','Italic','Underline','Strike'], ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-        ['Link','Unlink','Anchor'], ['Image', 'Embed'],
+        ['Link','Unlink','Anchor'], ['Image', 'Embed', 'Attachment'],
         ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
     ];
 };

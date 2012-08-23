@@ -1,7 +1,6 @@
 Backend
-** upload files
+** upload files => almost done
 ** implement your own ckeditor file browser
-** news_report and document_files should have a fixed place and it should be render in the page tree
 1. english-content admin interface
 4. level 3 limit
 
@@ -13,12 +12,19 @@ Backend
     i some html content should use raw method to represent
 ** authorization to different department
 
+** news_report and document_files should have a fixed place and it should be render in the page tree
+** and also teachers
+HOW** : mark delegated as true, content will be the redirect_to path, use its own controller to render, PagesController will redirect those delegated page
+
+
 Bugs:
 
 Frontend....
 whole lot!
 1. title bar with department homepage link
 2. home page view
+** the teacher's view in frontend should be brief intro first which contains phone, email, fields
+** and a link to their detailed page
 
 
 Done:

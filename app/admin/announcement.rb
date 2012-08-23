@@ -8,8 +8,6 @@ ActiveAdmin.register Announcement do
               collection: Hash[AnnounceCategory.all.map do |c|
                                 [" "+I18n.t("#{c.name}.name")+" "+I18n.t("#{c.name}.hint"),c.id]
                               end]
-              #input_html: { style: "after" }
-                         #:collection => AnnounceCategory.all
     end
     f.inputs "有效期限" do
       f.input :announce_date, label: "開始日期", as: :datepicker,
@@ -23,8 +21,6 @@ ActiveAdmin.register Announcement do
     f.inputs "公告至" do
       f.input :departments, as: :check_boxes,
               :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
-              #:collection => Hash[Department.all.map{|d|[" "+I18n.t("scopes.#{d.name}"),d.id]}]
-              #input_html: { size: Department.count }
     end
     f.buttons                         
   end 

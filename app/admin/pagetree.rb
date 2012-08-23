@@ -23,6 +23,9 @@ Department.pluck("name").each_with_index do |dname,index|
           format.html { redirect_to "/admin/#{controller_name}" }
         end
       end
+      #def index
+        #redirect_to "/admin" unless can? :manage,
+      #end
     end
 
     collection_action :sort, :method => :post do

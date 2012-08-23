@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require external_link
+//= require links

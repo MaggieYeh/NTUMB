@@ -23,21 +23,22 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+group :development do
+  gem "pry-rails", git: "https://github.com/rweng/pry-rails.git"
+  gem "pry-doc"
+end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'activeadmin', git: "https://github.com/gregbell/active_admin.git"
 gem "awesome_nested_set", git: "https://github.com/collectiveidea/awesome_nested_set.git"
-group :development do
-  gem "pry-rails", git: "https://github.com/rweng/pry-rails.git"
-  gem "pry-doc"
-end
 gem 'ckeditor'
-gem 'carrierwave'
+#gem 'carrierwave'
 gem 'paperclip'
 gem 'mini_magick'
 gem 'routing-filter'
 gem 'sanitize'
+gem 'cancan'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

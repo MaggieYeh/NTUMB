@@ -9,6 +9,9 @@ ActiveAdmin.register NewsReport do
     f.inputs do
       f.input :title
       f.input :content, as: :ckeditor, input_html: { height: 400}
+      f.input :department,
+              :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
+    f.buttons
   end
 end
