@@ -28,3 +28,9 @@ if AnnounceCategory.count == 0
                            { name: "news"},
                            { name: "enrollments"}])
 end
+if Role.count == 0
+  Role.create([{ role: "super_admin"},{ role: "ib_admin"},
+               { role: "fin_admin"},{ role: "acc_admin"},
+               { role: "im_admin"}, { role: "ba_admin"},
+               { role: "gmba_admin"},{ role: "emba_admin"},])
+end

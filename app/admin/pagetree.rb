@@ -1,5 +1,12 @@
 #!/bin/env ruby
 # encoding: utf-8
+# Solution!
+# PageClassName as a constant which stores all xxxPage class name
+# and then call PageClassName.each do |pcn|
+#   ActiveAdmin.register instance_variable_get(pcn) do
+#     the same
+#   end
+# end
 Department.pluck("name").each_with_index do |dname,index|
   ActiveAdmin.register Page.send(dname), :as => dname + "_page" do
     menu :parent => "內容頁面", :priority => index+1, 
