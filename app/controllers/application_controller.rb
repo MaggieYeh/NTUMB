@@ -13,17 +13,18 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_admin_user)
   end
 
-  #attr_reader :current_department
-
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
-  private
+
+private
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
+
   def set_current_department
-    #@current_department = params[:department_name] || "management"
     Department.current_department = params[:department] || "management"
   end
+
 end

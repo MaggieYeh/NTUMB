@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823112848) do
+ActiveRecord::Schema.define(:version => 20120825102156) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -127,14 +127,15 @@ ActiveRecord::Schema.define(:version => 20120823112848) do
     t.integer  "lft"
     t.integer  "depth"
     t.integer  "parent_id"
-    t.string   "slug"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.text     "content"
-    t.boolean  "delegated"
     t.integer  "position"
     t.integer  "department_id"
     t.string   "path"
+    t.string   "type"
+    t.string   "url_name"
+    t.string   "delegated_to"
   end
 
   create_table "role_playings", :force => true do |t|

@@ -34,8 +34,8 @@ module RoutingFilter
       yield.tap do |params|                                       # invoke the given block (calls more filters and finally routing)
         if department 
           params[:department] = department  # set recognized department to the resulting params hash
-        else
-          params[:department] = "management"
+        #else
+          #params[:department] = "management"
         end
       end
     end

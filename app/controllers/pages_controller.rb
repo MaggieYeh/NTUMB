@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
-  before_filter :find_pages
+  #before_filter :find_pages
   before_filter :build_menu
   before_filter :find_department_name
   def view
     path = "/"+params[:path]
-    @page = @pages.find_by_path(path) || not_found
+    @page = department_variable.find_by_path(path) || not_found
   end
 
   def home
@@ -15,16 +15,20 @@ class PagesController < ApplicationController
 private
 
   def find_department_name
-    @department = params[:department]
+    @department = Department.current_department
     @department_names = Department.pluck("name")
   end
 
   def build_menu
-    @menu = @pages && create_menu(@pages)
+    @menu = create_menu(department_variable)
   end
   
-  def find_pages
-    @pages = Page.send(Department.current_department)
+  #def find_pages
+    #@pages = department_variable.all
+  #end
+
+  def department_variable
+    Department.current_department.downcase.concat("_page").camelcase.constantize
   end
 
   def page_path_to(page)
@@ -34,14 +38,15 @@ private
     path
   end
 
-  def create_menu(pages)
+  def create_menu(d_const)
     menu = {}
-    pages.roots.sort_by{|p| p.position}.each do |p|
+    d_const.roots.sort_by{|p| p.position}.each do |p|
       menu[p.menu_title.intern] = { path: page_path_to(p), 
                                     children: p.children && create_child_menu(p.children) }
     end
     menu
   end
+
   def create_child_menu(pages)
     child_menu = {}
     pages.sort_by{|p| p.position}.each do |p|
@@ -50,4 +55,5 @@ private
     end
     child_menu
   end
+
 end
