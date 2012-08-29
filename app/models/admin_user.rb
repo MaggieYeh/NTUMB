@@ -7,9 +7,10 @@ class AdminUser < ActiveRecord::Base
 
   has_many :roles, :through => :role_playings
   has_many :role_playings
+  has_one  :teacher
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role_ids, :teacher_id
   def role?(role_name)
     self.roles.pluck("role").include? role_name.to_s
   end

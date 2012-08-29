@@ -18,17 +18,9 @@ class Ability
         can :manage, Document, :department_id => Department.find_by_name(dname).id
       end
     end
-    #elsif user.role? :ib_admin
-      #can :manage, IbPage
-      #can :manage, NewsReport, :department_id => Department.find_by_name("IB").id
-      #can :manage, Announcement do |announcement|
-        #announcement.department_ids.include? Department.find_by_name("IB").id
-      #end
-      #can :manage, Document, :department_id => Department.find_by_name("IB").id
-    ##else
-      ##can :read, :all
-    #end
-    #
+    if user.role? :teacher
+      can :update, Teacher, :id => user.teacher_id
+    end
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are
     # :read, :create, :update and :destroy.

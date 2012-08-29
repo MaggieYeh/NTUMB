@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825102156) do
+ActiveRecord::Schema.define(:version => 20120828074523) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120825102156) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "teacher_id"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -86,6 +87,13 @@ ActiveRecord::Schema.define(:version => 20120825102156) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "teacher_id"
+  end
+
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -109,6 +117,14 @@ ActiveRecord::Schema.define(:version => 20120825102156) do
     t.integer  "document_file_file_size"
     t.datetime "document_file_updated_at"
     t.integer  "department_id"
+  end
+
+  create_table "educational_backgrounds", :force => true do |t|
+    t.string   "name"
+    t.string   "require_year"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "teacher_id"
   end
 
   create_table "news_reports", :force => true do |t|
@@ -138,6 +154,19 @@ ActiveRecord::Schema.define(:version => 20120825102156) do
     t.string   "delegated_to"
   end
 
+  create_table "research_areas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "researchings", :force => true do |t|
+    t.integer  "teacher_id"
+    t.integer  "research_area_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "role_playings", :force => true do |t|
     t.integer  "role_id"
     t.integer  "admin_user_id"
@@ -149,6 +178,30 @@ ActiveRecord::Schema.define(:version => 20120825102156) do
     t.string   "role"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "teacher_titles", :force => true do |t|
+    t.string   "title_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teachers", :force => true do |t|
+    t.integer  "admin_user_id"
+    t.integer  "department_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "cellphone"
+    t.integer  "title_id"
+    t.string   "email"
+    t.string   "homepage"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "tax_number"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

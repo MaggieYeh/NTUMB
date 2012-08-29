@@ -8,29 +8,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#mba,ba,acc,fin,ib,im,emba,gmba?
-#college of management,bussiness administration,accounting,finance,international bussiness,information management,mba , Executive mba(master of bussiness adminstration)
-#Department.create([{ name: "管院"},{ name: "工管"},
-                  #{ name: "會計"},{ name: "財金"},
-                  #{ name: "國企"},{ name: "資管"},
-                  #{ name: "MBA"}, { name: "EMBA"}])
-if Department.count == 0
-  Department.create([{ name: 'Management'},{ name: 'BA'},
-                    { name: 'Acc'},{ name: 'Fin'},
-                    { name: 'IB'},{ name: 'IM'},
-                    { name: 'MBA'}, { name: 'EMBA'}])
+Department::DEPARTMENTS.each do |d|
+  Department.find_or_create_by_name(d)
 end
-if AnnounceCategory.count == 0
-  AnnounceCategory.create([{ name: "administrative"},
-                           { name: "events"}, 
-                           { name: "intern_opportunities"}, 
-                           { name: "scholarship_and_exchange_student"},
-                           { name: "news"},
-                           { name: "enrollments"}])
+
+AnnounceCategory::CATEGORIES.each do |c|
+  AnnounceCategory.find_or_create_by_name(c)
 end
-if Role.count == 0
-  Role.create([{ role: "super_admin"},{ role: "ib_admin"},
-               { role: "fin_admin"},{ role: "acc_admin"},
-               { role: "im_admin"}, { role: "ba_admin"},
-               { role: "gmba_admin"},{ role: "emba_admin"},])
+
+Role::ROLES.each do |r|
+  Role.find_or_create_by_role(r)
 end
+
+
+

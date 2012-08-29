@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   validates :title, :presence => true
   validates :position, :presence => true
   validates :department_id, :presence => true
-  validates :url_name, :presence => true
+  validates :url_name, :presence => true, :unless => :delegated?
 
   before_validation :check_department
   before_validation :give_last_position
@@ -37,7 +37,8 @@ class Page < ActiveRecord::Base
 
   def self.to_department_abbr_s
     department_name = self.class_name.match(/^(.*)Page$/)[1]
-    if department_name.length == 2 
+    # == 2 || == 4 is a dirty solution for department name BA IB IM GMBA EMBA
+    if department_name.length == 2 || department_name.length == 4
       department_name = department_name.upcase
     end
     department_name

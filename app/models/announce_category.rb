@@ -4,4 +4,5 @@ class AnnounceCategory < ActiveRecord::Base
   def label_name
     I18n.t "#{name}.name"
   end
+  CATEGORIES = %w[administrative events intern_opportunities scholarship_and_exchange_student news enrollments]
 end

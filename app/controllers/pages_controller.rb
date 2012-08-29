@@ -22,10 +22,6 @@ private
   def build_menu
     @menu = create_menu(department_variable)
   end
-  
-  #def find_pages
-    #@pages = department_variable.all
-  #end
 
   def department_variable
     Department.current_department.downcase.concat("_page").camelcase.constantize
