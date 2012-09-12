@@ -6,8 +6,8 @@ class Department < ActiveRecord::Base
   has_many :announcings
   has_many :announcements, :through => :announcings
   has_many :teachers
-  cattr_accessor :current_department
+  cattr_accessor :current_department_name
 
-  DEPARTMENTS = %w[Management BA Acc Fin IB IM MBA EMBA]
+  DEPARTMENTS = %w[Management BA Acc Fin IB IM GMBA EMBA]
 
 end

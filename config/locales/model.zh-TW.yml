@@ -1,7 +1,53 @@
 "zh-TW":
   activerecord:
     models:
-      management_page: "管院頁面"
+      management_page: 
+        one: "管院頁面"
+        other: "管院頁面"
       fin_page:
-        one: "頁面"
-        other: "頁面"
+        one: "財金系頁面"
+        other: "財金系頁面"
+      ba_page:
+        one: "工管系頁面"
+        other: "工管系頁面"
+      im_page:
+        one: "資管系頁面"
+        other: "資管系頁面"
+      ib_page:
+        one: "國企系頁面"
+        other: "國企系頁面"
+      gmba_page:
+        one: "GMBA頁面"
+        other: "GMBA頁面"
+      emba_page:
+        one: "EMBA系頁面"
+        other: "EMBA系頁面"
+      acc_page:
+        one: "會計系頁面"
+        other: "會計系頁面"
+      announcement:
+        one: "公告"
+        other: "公告"
+      news_report:
+        one: "新聞報導"
+        other: "新聞報導"
+      document:
+        one: "文件"
+        other: "文件"
+      document_category:
+        one: "文件分類"
+        other: "文件分類"
+      teacher:
+        one: "教師"
+        other: "教師"
+      admin_user:
+        one: "管理員"
+        other: "管理員"
+    attributes:
+      page:
+        title: "標題"
+        menu_title: "選項名稱"
+        content: "內容"
+  translation:
+    "zh-TW": "中文"
+    en: "英文"

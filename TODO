@@ -1,34 +1,41 @@
 Backend
-** upload files => almost done
 ** implement your own ckeditor file browser
-1. english-content admin interface
 4. level 3 limit
 
 5. database schema requirements ( null => false etc )
 6. better interface detail
-  a. better sorting tree
+  a. better sorting tree -> with english option
   b. some english detail should be translated
   c. modify show page
-    i some html content should use raw method to represent
+     I. some html content should use raw method to represent
+  
 ** authorization to different department
+  -> creating account
 
-** news_report and document_files should have a fixed place and it should be render in the page tree
-** and also teachers
+  
 HOW** : mark delegated as true, content will be the redirect_to path, use its own controller to render, PagesController will redirect those delegated page
 
+--------
+Frontend:
 
-Bugs:
-
-Frontend....
 whole lot!
 1. title bar with department homepage link
 2. home page view
 ** the teacher's view in frontend should be brief intro first which contains phone, email, fields
 ** and a link to their detailed page
+3. teachers, news_reports, announcements, documents are now resourceful
+   but we need controller logic <- not implemented
 
+-------
+Bugs:
 
+-------
 Done:
 f:
   * events, news engines
+  * english-content admin interface
 b:
   * if you seach page in page filter, the whole scope will break
+  ** upload files => almost done
+  ** news_report and document should have a fixed place and it should be render in the page tree
+  ** and also teachers

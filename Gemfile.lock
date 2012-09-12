@@ -1,16 +1,16 @@
 GIT
   remote: https://github.com/collectiveidea/awesome_nested_set.git
-  revision: fe8a2abc910346a5e2bdf0b8a71b6ccd6402fe19
+  revision: abaefaa7412088b0dff20c55eed2383d0b1e52c4
   specs:
     awesome_nested_set (2.1.4)
       activerecord (>= 3.0.0)
 
 GIT
   remote: https://github.com/gregbell/active_admin.git
-  revision: 1a20a16d20e7237d586d6d17e596f5a0f15d2587
+  revision: 6681c18292e64f13db6e4d6a5b3a5c37617cf519
   specs:
-    activeadmin (0.4.4)
-      arbre (>= 1.0.0.rc4)
+    activeadmin (0.5.0)
+      arbre (>= 1.0.1)
       bourbon (>= 1.0.0)
       devise (>= 1.1.2)
       fastercsv
@@ -23,8 +23,24 @@ GIT
       sass (>= 3.1.0)
 
 GIT
+  remote: https://github.com/j0214ack/ckeditor.git
+  revision: f3604a5b3c1cab8e646c0dbed6d67edc2cfbf129
+  specs:
+    ckeditor (3.7.3)
+      mime-types
+      orm_adapter
+
+GIT
+  remote: https://github.com/netzpirat/ActiveAdmin-Globalize3-inputs.git
+  revision: 790a90dea6d80f07eda3d0e1ffcc4d9287851aee
+  specs:
+    ActiveAdmin-Globalize3-inputs (0.0.1)
+      activeadmin
+      globalize3
+
+GIT
   remote: https://github.com/rweng/pry-rails.git
-  revision: b410f123a5fe81accd46a1dd9c11fd6ff89c8d75
+  revision: c55389ceb31bd64723f079c48b6b6c7f97d8f1fe
   specs:
     pry-rails (0.2.1)
       pry (>= 0.9.10)
@@ -59,18 +75,15 @@ GEM
     activesupport (3.2.7)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    arbre (1.0.0)
+    arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bourbon (2.1.1)
       sass (>= 3.1)
-    builder (3.0.0)
+    builder (3.0.3)
     cancan (1.6.8)
-    ckeditor (3.7.1)
-      mime-types
-      orm_adapter
-    cocaine (0.2.1)
+    cocaine (0.3.0)
     coderay (1.0.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -90,24 +103,27 @@ GEM
     fastercsv (1.5.5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    globalize3 (0.2.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      paper_trail (~> 2)
     has_scope (0.5.1)
     hike (1.2.1)
-    i18n (0.6.0)
+    i18n (0.6.1)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
     journey (1.0.4)
-    jquery-rails (2.1.1)
+    jquery-rails (2.1.2)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     jquery-ui-rails (2.0.0)
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.5)
-    kaminari (0.13.0)
+    kaminari (0.14.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -124,7 +140,10 @@ GEM
     multi_json (1.3.6)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
-    paperclip (3.1.4)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
+    paperclip (3.2.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -155,7 +174,7 @@ GEM
       activesupport (= 3.2.7)
       bundler (~> 1.0)
       railties (= 3.2.7)
-    rails-i18n (0.6.5)
+    rails-i18n (0.6.6)
       i18n (~> 0.5)
     railties (3.2.7)
       actionpack (= 3.2.7)
@@ -178,7 +197,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    slop (3.3.2)
+    slop (3.3.3)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -191,9 +210,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
-    uglifier (1.2.7)
+    uglifier (1.3.0)
       execjs (>= 0.3.0)
-      multi_json (~> 1.3)
+      multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
     yard (0.8.2.1)
@@ -202,11 +221,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ActiveAdmin-Globalize3-inputs!
   activeadmin!
   awesome_nested_set!
   cancan
-  ckeditor
+  ckeditor!
   coffee-rails (~> 3.2.1)
+  globalize3
   jquery-rails
   jquery-ui-rails
   mini_magick

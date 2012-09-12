@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828074523) do
+ActiveRecord::Schema.define(:version => 20120910015404) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(:version => 20120828074523) do
     t.datetime "updated_at",      :null => false
     t.integer  "announcement_id"
   end
+
+  create_table "announcement_translations", :force => true do |t|
+    t.integer  "announcement_id"
+    t.string   "locale"
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "announcement_translations", ["announcement_id"], :name => "index_5ab9a4f290f5831e288ca0088d32c79311c8d7ad"
+  add_index "announcement_translations", ["locale"], :name => "index_announcement_translations_on_locale"
 
   create_table "announcements", :force => true do |t|
     t.string   "name"
@@ -106,6 +118,17 @@ ActiveRecord::Schema.define(:version => 20120828074523) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "document_translations", :force => true do |t|
+    t.integer  "document_id"
+    t.string   "locale"
+    t.text     "discription"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "document_translations", ["document_id"], :name => "index_document_translations_on_document_id"
+  add_index "document_translations", ["locale"], :name => "index_document_translations_on_locale"
+
   create_table "documents", :force => true do |t|
     t.text     "discription"
     t.integer  "category_id"
@@ -127,6 +150,18 @@ ActiveRecord::Schema.define(:version => 20120828074523) do
     t.integer  "teacher_id"
   end
 
+  create_table "news_report_translations", :force => true do |t|
+    t.integer  "news_report_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "news_report_translations", ["locale"], :name => "index_news_report_translations_on_locale"
+  add_index "news_report_translations", ["news_report_id"], :name => "index_news_report_translations_on_news_report_id"
+
   create_table "news_reports", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -134,6 +169,19 @@ ActiveRecord::Schema.define(:version => 20120828074523) do
     t.datetime "updated_at",    :null => false
     t.integer  "department_id"
   end
+
+  create_table "page_translations", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "locale"
+    t.string   "menu_title"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.string   "title"

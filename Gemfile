@@ -32,13 +32,15 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'activeadmin', git: "https://github.com/gregbell/active_admin.git"
 gem "awesome_nested_set", git: "https://github.com/collectiveidea/awesome_nested_set.git"
-gem 'ckeditor'
+gem 'ckeditor', git: "https://github.com/j0214ack/ckeditor.git"
 #gem 'carrierwave'
 gem 'paperclip'
 gem 'mini_magick'
 gem 'routing-filter'
 gem 'sanitize'
 gem 'cancan'
+gem 'globalize3'
+gem 'ActiveAdmin-Globalize3-inputs', git:"https://github.com/netzpirat/ActiveAdmin-Globalize3-inputs.git"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

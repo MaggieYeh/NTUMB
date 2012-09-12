@@ -5,15 +5,22 @@ class Page < ActiveRecord::Base
   #TODO check reserved word
   # like: url, page, admin, etc
 
-  attr_accessible :menu_title, :page_part_ids, :title, :content, :url_name
+  attr_accessible :menu_title, :title, :content
+  attr_accessible :page_part_ids, :url_name, :translations_attributes
   attr_accessible :parent_id
   belongs_to :department
 
-  validates :menu_title, :presence => true
-  validates :title, :presence => true
+  translates :menu_title, :title, :content, :fallbacks_for_empty_translations => true
+  class Translation
+    attr_accessible :locale, :title, :content, :menu_title
+    validates :menu_title, :presence => true
+  end
+  accepts_nested_attributes_for :translations, :reject_if => proc {|t| t[:menu_title].empty?}
+
+  #validates :title, :presence => true, :unless => :delegated?
   validates :position, :presence => true
   validates :department_id, :presence => true
-  validates :url_name, :presence => true, :unless => :delegated?
+  validates :url_name, :presence => true
 
   before_validation :check_department
   before_validation :give_last_position
@@ -21,6 +28,8 @@ class Page < ActiveRecord::Base
   before_save :update_path
 
   acts_as_nested_set
+
+  scope :delegated, where("delegated_to <> ''")
 
   def delegated?
     !!self.delegated_to

@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do     
-  menu :if => proc{ can?(:manage, AdminUser) }     
+  menu if: proc{ can?(:manage, AdminUser) }, priority: 1
   controller.authorize_resource 
 
   index do                            

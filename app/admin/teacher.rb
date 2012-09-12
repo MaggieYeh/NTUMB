@@ -1,5 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register Teacher do
+  menu priority: 8
   form do |f|
     f.inputs "基本資料" do
       f.input :name

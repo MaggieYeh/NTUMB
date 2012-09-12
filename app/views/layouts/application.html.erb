@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1><%= link_to @department, @department.match(/management/i) ? "/": "/#{@department}" %></h1>
+<h1><%= link_to @current_department_name, @current_department_name.match(/management/i) ? @management_link : @current_department_link %></h1>
 <%= render :partial => "pages/menu", :object => @menu %>
 
 <%= yield %>
@@ -16,9 +16,9 @@
   <ol class="department_links">
     <% @department_names.each_with_index do |dname,i|  %>
       <% if i == 0 %>
-        <li><%= link_to "Management", "/" %></li>
+        <li><%= link_to "Management", @management_link %></li>
       <% else %>
-        <li><%= link_to dname, "/#{dname}" %></li>
+        <li><%= link_to dname, @all_departments_links.at(i) %></li>
       <% end %>
     <% end %>
   </ol>

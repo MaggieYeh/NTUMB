@@ -1,7 +1,7 @@
 class Announcement < ActiveRecord::Base
   before_validation :check_empty_departments
 
-  attr_accessible :announce_date, :content, :due_date, :name
+  attr_accessible :content, :due_date, :name #,announce_date
   attr_accessible :department_ids
   attr_accessible :category_id
 
@@ -9,9 +9,21 @@ class Announcement < ActiveRecord::Base
   has_many :departments, :through => :announcings
   belongs_to :category, :class_name => 'AnnounceCategory'
 
-  scope :active, lambda { where("announce_date <= ? AND due_date >= ?", Date.today, Date.today )}
+  attr_accessible :translations_attributes
+  translates :content, :name, :fallbacks_for_empty_translations => true
+  class Translation
+    attr_accessible :locale, :content, :name
+  end
+  accepts_nested_attributes_for :translations
+
+  def announce_date
+    self.created_at.to_date
+  end
+
+  #scope :active, lambda { where("announce_date <= ? AND due_date >= ?", Date.today, Date.today )}
+  scope :active, lambda { where("due_date >= ?", Date.today )}
   scope :out_of_date, lambda { where("due_date < ?", Date.today) }
-  scope :not_announced_yet, lambda { where("announce_date > ?", Date.today) }
+  #scope :not_announced_yet, lambda { where("announce_date > ?", Date.today) }
   
 private
   def check_empty_departments
@@ -20,16 +32,16 @@ private
     end
   end
 end
-Department.all.each do |department|
+Department.pluck("name").each do |department_name|
   Announcement.instance_eval %Q{
-    def #{department.name}
-      Department.find_by_name("#{department.name}").announcements.order("updated_at DESC")
+    def #{department_name}
+      Department.find_by_name("#{department_name}").announcements.order("updated_at DESC")
     end
-    def #{department.name.downcase}
-      Department.find_by_name("#{department.name}").announcements.order("updated_at DESC")
+    def #{department_name.downcase}
+      Department.find_by_name("#{department_name}").announcements.order("updated_at DESC")
     end
-    def #{department.name.upcase}
-      Department.find_by_name("#{department.name}").announcements.order("updated_at DESC")
+    def #{department_name.upcase}
+      Department.find_by_name("#{department_name}").announcements.order("updated_at DESC")
     end
   }
 end

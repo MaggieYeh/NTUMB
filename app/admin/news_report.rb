@@ -1,10 +1,23 @@
 # encoding: utf-8
 ActiveAdmin.register NewsReport do
-  #index :as => :blog do
-    #title :title
-    #body :content
-  #end
-  menu :priority => 12, :label => "新聞報導"
+
+  config.batch_actions = false
+  menu priority: 6
+
+  index :as => :block do |report|
+    div class: "news_report" do
+      h3 report.title
+      div class: "content" do
+        raw report.content
+      end
+      br
+    end
+  end
+
+  filter :department
+  filter :title
+  filter :content
+
   form do |f|
     f.inputs do
       f.input :title

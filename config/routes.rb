@@ -1,5 +1,9 @@
 NTUMB::Application.routes.draw do
-  #get "pages/view"
+
+  resources :teachers, :only => [:index, :show, :edit, :update]
+  resources :news_reports, :only => [:index, :show]
+  resources :documents, :only => [:index, :show]
+  resources :announcements, :only => [:index, :show]
 
   mount Ckeditor::Engine => '/ckeditor'
 

@@ -10,6 +10,8 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "jquery-ui/jquery-ui-1.8.16.custom";
+
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -34,3 +36,43 @@ li.has_nested {
   }
 }
 
+li.hidden {
+    display: none;
+}
+
+
+/*******************************************************************************
+* Language Tabs
+*
+*******************************************************************************/
+.ui-widget-content {
+  border: none;
+}
+.ui-widget-header {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  background: none;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+  border: 1px solid #ccc;
+}
+ul.ui-tabs-nav.language-selection {
+  border-bottom: 1px solid gainsboro;
+}
+.ui-tabs {
+  padding: 0;
+}
+.ui-tabs .ui-tabs-panel {
+  padding: 0;
+  padding-top: 20px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl, {
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

@@ -1,0 +1,2 @@
+module NewsReportsHelper
+end

@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
   before_filter :set_current_department
+  before_filter :find_department_name
+  before_filter :build_menu
 
-
-  # cancan
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to admin_dashboard_path, :alert => exception.message
   end
@@ -24,7 +24,56 @@ private
   end
 
   def set_current_department
-    Department.current_department = params[:department] || "management"
+    Department.current_department_name = params[:department] || "management"
+  end
+
+  def find_department_name
+    @current_department_name = Department.current_department_name
+    @department_names = Department.pluck("name")
+  end
+
+  def build_menu
+    @menu = create_menu(department_variable)
+    @management_link = prepend_prefix_params_to_path("/",false)
+    @all_departments_links = @department_names.map do |d| 
+      prepend_prefix_params_to_path("/#{d}",false)
+    end
+    @current_department_link = prepend_prefix_params_to_path("/#{@current_department_name}",false)
+  end
+
+  def department_variable
+    Department.current_department_name.downcase.concat("_page").camelcase.constantize
+  end
+
+  def page_path_to(page)
+    path = page.path
+    prepend_prefix_params_to_path(path)
+  end
+
+  def prepend_prefix_params_to_path(path, prepend_department = true)
+    if prepend_department && !(Department.current_department_name.downcase == "management")
+      path.prepend("/#{Department.current_department_name.to_s}") 
+    end
+    path.prepend("/#{I18n.locale.to_s}") unless I18n.locale == I18n.default_locale
+    path
+  end
+
+  def create_menu(d_const)
+    menu = {}
+    d_const.roots.sort_by{|p| p.position}.each do |p|
+      menu[p.menu_title.intern] = { path: page_path_to(p), 
+                                    children: p.children && create_child_menu(p.children) }
+    end
+    menu
+  end
+
+  def create_child_menu(pages)
+    child_menu = {}
+    pages.sort_by{|p| p.position}.each do |p|
+      child_menu[p.menu_title.intern] = { path: page_path_to(p), 
+                                          children: p.children && create_child_menu(p.children) }
+    end
+    child_menu
   end
 
 end

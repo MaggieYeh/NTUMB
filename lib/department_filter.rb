@@ -1,6 +1,6 @@
 module RoutingFilter
   class Department < Filter
-    @@include_default_department = true
+    @@include_default_department = false
     cattr_writer :include_default_department
 
     class << self
@@ -34,8 +34,6 @@ module RoutingFilter
       yield.tap do |params|                                       # invoke the given block (calls more filters and finally routing)
         if department 
           params[:department] = department  # set recognized department to the resulting params hash
-        #else
-          #params[:department] = "management"
         end
       end
     end
@@ -43,7 +41,7 @@ module RoutingFilter
     def around_generate(*args, &block)
       params = args.extract_options!                              # this is because we might get a call like forum_topics_path(forum, topic, :department => :en)
       department = params.delete(:department)                             # extract the passed :department option
-      department = ::Department.current_department if department.nil? # default to current_department when department is nil (could also be false)
+      department = ::Department.current_department_name if department.nil? # default to current_department when department is nil (could also be false)
       department = "management" unless valid_department?(department)#reset to management as default department
 
       args << params
@@ -60,7 +58,7 @@ module RoutingFilter
     end
 
     def default_department?(department)
-      department && department.to_sym == "management".to_sym
+      department && department.downcase.to_sym == "management".to_sym
     end
 
     def prepend_department?(department)
