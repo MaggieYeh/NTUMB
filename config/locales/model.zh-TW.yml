@@ -44,9 +44,20 @@
         one: "管理員"
         other: "管理員"
     attributes:
+      created_at: "建立日期"
+      updated_at: "更新日期"
       page:
         title: "標題"
         menu_title: "選項名稱"
+        content: "內容"
+      announcement:
+        name: "公告名稱"
+        content: "公告內容"
+        announce_date: "公告日期"
+        due_date: "結束日期"
+        category: "公告分類"
+      news_report:
+        title: "標題"
         content: "內容"
   translation:
     "zh-TW": "中文"

@@ -61,7 +61,7 @@ Page.descendants.each_with_index do |dpage,i|
           div do
             span "[handle]", :class => "handle"
             span page.menu_title
-            div :class => "item_actions" do
+            div :class => "tree_item_actions" do
               page_path = d_pages+"/"+page.id.to_s 
               pages_path = d_pages
               

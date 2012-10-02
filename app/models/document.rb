@@ -2,7 +2,10 @@ class Document < ActiveRecord::Base
   attr_accessible :category_id, :document_file, :department_id, :discription
   belongs_to :category, :class_name => "DocumentCategory"
   belongs_to :department
+  belongs_to :announcement
   has_attached_file :document_file
+
+  validates_attachment :document_file, presence: true
 
   attr_accessible :translations_attributes
   translates :discription, :fallbacks_for_empty_translations => true

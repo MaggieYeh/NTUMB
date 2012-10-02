@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+
+@import "bootstrap";
+
+@mixin red-gradient-background(){
+  width: 100%;
+  @include gradient-vertical(rgb(146,13,15),rgb(127,11,13));
+}
+
+@mixin grey-gradient-background(){
+  width: 100%;
+  @include gradient-vertical(rgb(70,70,70),rgb(57,57,57));
+}
+
+@mixin center-aligned-menu-item(){
+  text-align: center;
+  li{
+    float: none;
+    display: inline-block;
+  }
+}
+
+/*------------- end of variable, mixin defines -------------*/
+
+#header,#menu-wrapper,#footer{
+  p,span,a,h1,h2,h3,h4{
+    color: white;
+  }
+}
+
+#header-wrapper{
+  @include red-gradient-background();
+  #header{
+    form{
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+#menu-wrapper{
+  @include grey-gradient-background();
+  ol#main-menu{
+    @include center-aligned-menu-item();
+    margin: 0px;
+    li:hover>ol{
+      display: block;
+    }
+  }
+}
+
+#main{
+  min-height: 500px;
+}
+
+#department-links-wrapper{
+  @include grey-gradient-background();
+  ol#department-links{
+    @include center-aligned-menu-item();
+    margin: 0px;
+  }
+}
+
+#footer-wrapper{
+  @include red-gradient-background();
+  #footer{
+    text-align: center;
+  }
+}

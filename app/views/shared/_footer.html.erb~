@@ -1,0 +1,26 @@
+<div id="department-links-wrapper">
+  <div class="container">
+    <ol id="department-links" class="nav nav-pills">
+      <% @department_names.each_with_index do |dname,i|  %>
+        <% if i == 0 %>
+          <li><%= link_to "Management", @management_link %></li>
+        <% else %>
+          <li><%= link_to dname, @all_departments_links.at(i) %></li>
+        <% end %>
+      <% end %>
+    </ol>
+  </div>
+</div><!-- end of department-links-wrapper -->
+<div id="footer-wrapper">
+  <div id="footer" class="container">
+    <span id="copyright">
+      <small> &copy; National Taiwan University All Rights Reserved</small>
+    </span>
+    <address>
+      <span><small>地址：106 台北市羅斯福路四段一號 管理學院</small></span>
+      <span>
+        <small>電話：+886-2-33661000; +886-2-33661008 傳真：+886-2-23632082</small>
+      </span>
+    </address>
+  </div><!-- end of footer -->
+</div>

@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale
-  before_filter :set_current_department
-  before_filter :find_department_name
-  before_filter :build_menu
+  before_filter do
+    set_locale if request.path.match(/^\/admin/).nil?
+  end
+  before_filter do 
+    set_current_department if request.path.match(/^\/admin/).nil?
+  end
+  before_filter do
+    find_department_name if request.path.match(/^\/admin/).nil?
+  end
+  before_filter do
+    build_menu if request.path.match(/^\/admin/).nil?
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to admin_dashboard_path, :alert => exception.message

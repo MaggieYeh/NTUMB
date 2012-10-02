@@ -4,9 +4,12 @@ $(document).ready(function() {
   $("a").click(function() {
     open_new_window = false;
     link_host = this.href.split("/")[2];
+    is_linking_to_admin = !!this.href.split("/")[3].match("admin");
     document_host = document.location.href.split("/")[2];
+    is_at_admin = !!document.location.href.split("/")[3].match("admin");
 
-    if (link_host != document_host) {
+    if (( link_host != document_host ) || 
+        ( is_at_admin && !is_linking_to_admin )) {
       open_new_window = true;
     }
 

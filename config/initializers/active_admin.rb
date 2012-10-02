@@ -115,7 +115,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  config.batch_actions = false
   
 
   # == Controller Filters
@@ -146,7 +146,8 @@ ActiveAdmin.setup do |config|
   # and feel.
   #
   # To load a stylesheet:
-    config.register_stylesheet 'page_tree.css.scss'
+    config.register_stylesheet 'admin/page_tree.css.scss'
+    config.register_stylesheet 'admin/tabbed_index.css.scss'
     #config.register_stylesheet 'announcement.css.scss'
   
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
@@ -156,5 +157,7 @@ ActiveAdmin.setup do |config|
     config.register_javascript 'ckeditor/init.js'
     config.register_javascript 'ckeditor/config.js'
     config.register_javascript 'jquery.mjs.nestedSortable.js'
-    config.register_javascript 'page_tree.js'
+    config.register_javascript 'admin/page_tree.js'
+    config.register_javascript 'admin/tabbed_index.js'
+    config.register_javascript 'links.js'
 end

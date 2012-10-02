@@ -12,7 +12,7 @@
   <div id="main-wrapper">
     <div id="main" class="container">
       <%= yield %>
-    </div><!-- end of main container -->
+    </div>
   </div><!-- end of main-wrapper -->
   <%= render partial: "shared/footer" %>
 </body>

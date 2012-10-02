@@ -10,6 +10,7 @@ gem 'rails', '3.2.7'
 
 gem 'sqlite3'
 gem 'rails-i18n'
+gem 'bootstrap-sass'
 
 
 # Gems used only for assets and not required
@@ -40,7 +41,8 @@ gem 'routing-filter'
 gem 'sanitize'
 gem 'cancan'
 gem 'globalize3'
-gem 'ActiveAdmin-Globalize3-inputs', git:"https://github.com/netzpirat/ActiveAdmin-Globalize3-inputs.git"
+gem 'ActiveAdmin-Globalize3-inputs', git:"https://github.com/j0214ack/ActiveAdmin-Globalize3-inputs.git"
+gem "html_truncator"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,0 +1,23 @@
+.tabbed_item_content{
+  border: solid 1px gainsboro !important;
+  padding: 1.2em !important;
+  border-radius: 3px;
+  /*border-top-left-radius: 0px;*/
+}
+
+.admin_tabbed_item{
+  margin-bottom: 2em !important;
+}
+
+.missing_translation{
+  color: red !important;
+}
+
+.item_actions{
+  display: inline-block;
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+  span {
+    margin-right: 2px !important;
+  }
+}

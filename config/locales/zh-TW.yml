@@ -88,7 +88,7 @@
       Acc: "會計"
       Fin: "財金"
       EMBA: "EMBA"
-      MBA: "MBA"
+      GMBA: "GMBA"
       management: "管院"
       ba: "工管"
       ib: "國企"
@@ -96,7 +96,7 @@
       acc: "會計"
       fin: "財金"
       emba: "EMBA"
-      mba: "MBA"
+      gmba: "GMBA"
     models:
       page: "網頁頁面"
       pages: "網頁頁面"
