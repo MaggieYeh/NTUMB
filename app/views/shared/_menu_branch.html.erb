@@ -1,7 +1,7 @@
-<ol>
+<ol class="dropdown-menu">
   <% menu_branch.each do |menu_name,path_and_children| %>
     <% has_child = !path_and_children[:children].empty? %>
-    <li <%= has_child ? "class='hover'" : "" %>>
+    <li <%= has_child ? "class='dropdown'" : "" %>>
       <%= link_to menu_name.to_s, path_and_children[:path] %>
     </li>
     <% if has_child  %>

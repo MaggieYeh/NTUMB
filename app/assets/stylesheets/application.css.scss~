@@ -13,6 +13,9 @@
 
 
 @import "bootstrap";
+@import "bootstrap-responsive";
+
+$red-grey-border: rgb(40,18,18);
 
 @mixin red-gradient-background(){
   width: 100%;
@@ -21,7 +24,8 @@
 
 @mixin grey-gradient-background(){
   width: 100%;
-  @include gradient-vertical(rgb(70,70,70),rgb(57,57,57));
+  background-image: url(office.png);
+  /*@include gradient-vertical(rgb(30,30,30),rgb(13,13,13));*/
 }
 
 @mixin center-aligned-menu-item(){
@@ -34,7 +38,7 @@
 
 /*------------- end of variable, mixin defines -------------*/
 
-#header,#menu-wrapper,#footer{
+#header,#menu-wrapper,#footer,#department-links{
   p,span,a,h1,h2,h3,h4{
     color: white;
   }
@@ -43,6 +47,8 @@
 #header-wrapper{
   @include red-gradient-background();
   #header{
+    padding-top: 5px;
+    padding-bottom: 5px;
     form{
       margin-top: 10px;
       margin-bottom: 3px;
@@ -52,21 +58,35 @@
 
 #menu-wrapper{
   @include grey-gradient-background();
+  border-top: 1px solid $red-grey-border;
   ol#main-menu{
     @include center-aligned-menu-item();
     margin: 0px;
-    li:hover>ol{
-      display: block;
+    li.dropdown:hover{
+      > ol.dropdown-menu{
+        display: block;
+        margin-top: 0px;
+        @include grey-gradient-background();
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+      }
     }
   }
 }
 
-#main{
-  min-height: 500px;
+#main-wrapper{
+  background-image: url(retina_dust.png);
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  #main{
+    min-height: 500px;
+  }
 }
+
 
 #department-links-wrapper{
   @include grey-gradient-background();
+  border-bottom: 1px solid $red-grey-border;
   ol#department-links{
     @include center-aligned-menu-item();
     margin: 0px;
