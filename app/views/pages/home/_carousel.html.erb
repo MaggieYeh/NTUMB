@@ -1,0 +1,15 @@
+<div id="carousel" class="carousel slide">
+  <div class="carousel-inner">
+    <% @carousels.each_with_index do |c,i| %>
+      <div class="item <%= "active" if i == 0 %>">
+        <%= image_tag c.picture.url(:medium) %>
+        <div class="carousel-caption">
+          <h4><%= c.title %></h4>
+          <p><%= c.caption %></p>
+        </div>
+      </div>
+    <% end %>
+  </div><!-- end of carousel-inner -->
+  <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+</div><!-- end of carousel -->

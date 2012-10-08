@@ -1,8 +1,0 @@
-<p>you are in homepage</p>
-<h2><%= "公告" %></h2>
-<% if @announcements %>
-  <% @announcements.each do |a| %>
-    <h1><%= a.name %></h1>
-    <p><%= raw a.content %></p>
-  <% end %>
-<% end %>

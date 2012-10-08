@@ -13,7 +13,7 @@
 
 
 @import "bootstrap";
-@import "bootstrap-responsive";
+/*@import "bootstrap-responsive";*/
 
 $red-grey-border: rgb(40,18,18);
 
@@ -37,6 +37,10 @@ $red-grey-border: rgb(40,18,18);
 }
 
 /*------------- end of variable, mixin defines -------------*/
+
+html,body{
+  height: 100%;
+}
 
 #header,#menu-wrapper,#footer,#department-links{
   p,span,a,h1,h2,h3,h4{
@@ -76,12 +80,16 @@ $red-grey-border: rgb(40,18,18);
 }
 
 #main-wrapper{
-  background-image: url(retina_dust.png);
   border-top: 1px solid grey;
+}
+
+#non-footer{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -80px;
+  background-image: url(retina_dust.png);
   border-bottom: 1px solid grey;
-  #main{
-    min-height: 500px;
-  }
 }
 
 
@@ -94,9 +102,13 @@ $red-grey-border: rgb(40,18,18);
   }
 }
 
-#footer-wrapper{
+#info-wrapper{
   @include red-gradient-background();
-  #footer{
+  #info{
     text-align: center;
   }
+}
+
+#push,#footer{
+  height: 80px;
 }

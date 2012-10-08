@@ -10,7 +10,8 @@ class PagesController < ApplicationController
 
   def home
     @announcements = Announcement.send(@current_department_name)
-    render 'pages/home/index'
+    @carousels = Carousel.recent
+    #render 'pages/home/index'
   end
 
 end

@@ -3,17 +3,20 @@
 <head>
   <title>NTUMB</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    controller_name, :media => "all" %>
+  <%= javascript_include_tag "application", controller_name %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render :partial => "shared/header" %>
-  <%= render :partial => "shared/menu" %>
-  <div id="main-wrapper">
-    <div id="main" class="container">
-      <%= yield %>
-    </div><!-- end of main container -->
-  </div><!-- end of main-wrapper -->
+  <div id="non-footer">
+    <%= render :partial => "shared/header" %>
+    <%= render :partial => "shared/menu" %>
+    <div id="main-wrapper">
+      <div id="main" class="container">
+        <%= yield %>
+      </div><!-- end of main container -->
+    </div><!-- end of main-wrapper -->
+  </div>
   <%= render partial: "shared/footer" %>
 </body>
 </html>

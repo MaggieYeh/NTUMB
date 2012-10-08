@@ -14,8 +14,6 @@ class Document < ActiveRecord::Base
   end
   accepts_nested_attributes_for :translations
 
-  def self.recent(num = 5)
-    self.order("updated_at DESC").limit(num)
-  end
+  scope :recent, proc{|n = 3| order("created_at DESC").limit(n)}
 
 end

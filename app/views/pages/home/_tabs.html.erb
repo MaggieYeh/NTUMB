@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs" id="home-tabs">
+  <li class="active"><a href="#announcements" data-toggle="tab">即時<br />訊息</a></li>
+  <li><a href="#youtube-channel" data-toggle="tab">管院<br />頻道</a></li>
+  <li><a href="#recruiting" data-toggle="tab">管院<br />徵才</a></li>
+  <li><a href="#students" data-toggle="tab">學生<br />專區</a></li>
+</ul>
+<div class="tab-content well" id="home-tabs-content">
+  <ul id="announcements" class="tab-pane unstyled active">
+    <% @announcements.each_with_index do |a,i| %>
+      <li><%= a.name %></li>
+    <% end %>
+  </ul>
+  <ul id="youtube-channel" class="tab-pane unstyled"></ul>
+  <ul id="recruiting" class="tab-pane unstyled"></ul>
+  <ul id="students" class="tab-pane unstyled"></ul>
+</div>

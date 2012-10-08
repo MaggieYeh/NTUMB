@@ -13,4 +13,6 @@ class NewsReport < ActiveRecord::Base
   end
   accepts_nested_attributes_for :translations
 
+  scope :recent, proc{|n = 3| order("created_at DESC").limit(n)}
+
 end
