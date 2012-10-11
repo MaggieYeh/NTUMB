@@ -27,6 +27,10 @@ end
 group :development do
   gem "pry-rails", git: "https://github.com/rweng/pry-rails.git"
   gem "pry-doc"
+  gem 'rb-fsevent' # for mac OS X
+  #gem "rb-notify" # for linux
+  #gem "wdm" #for windows
+  gem "guard-livereload"
 end
 
 gem 'jquery-rails'

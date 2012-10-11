@@ -1,10 +1,14 @@
 <div id="header-wrapper">
   <div class="container" id="header">
     <div class="row">
-      <div class="span6">
-        <h1><%= link_to @current_department_name, @current_department_name.match(/management/i) ? @management_link : @current_department_link %></h1>
+      <div class="span8">
+          <a href="<%= @header_link %>">
+            <%= image_tag("logo.png", size: "60x60") %>
+            <h1 class="kai"><%= @header_text %></h1>
+            <span>National Taiwan University College of Management</span>
+         </a>
       </div>
-      <div class="span4 offset2">
+      <div class="span4">
         <form class="form-search">
           <input type="text" placeholder="站內搜尋" class="input-medium search-query">
           <button type="submit"><i class="icon-search"></i></button>
@@ -12,11 +16,11 @@
         <% if I18n.locale == :en %>
           <%= link_to "中文", "/" %>
         <% else %>
-          <%= link_to "en", "/en" %>
+          <%= link_to "English", "/en" %>
         <% end %>
-        <%= link_to "聯絡我們", "/contact" %>
-        <%= link_to "網站導覽", "/sitemap" %>
-        <%= link_to "台大首頁", "http://www.ntu.edu.tw" %>
+        <%= link_to I18n.t("front_end.contact"), "/contact" %>
+        <%= link_to I18n.t("front_end.sitemap"), "/sitemap" %>
+        <%= link_to I18n.t("front_end.ntu_site"), "http://www.ntu.edu.tw" %>
       </div>
     </div><!-- row -->
   </div><!-- header -->

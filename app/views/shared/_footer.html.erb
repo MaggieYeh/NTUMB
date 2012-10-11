@@ -4,9 +4,9 @@
       <ol id="department-links" class="nav nav-pills">
         <% @department_names.each_with_index do |dname,i|  %>
           <% if i == 0 %>
-            <li><%= link_to "Management", @management_link %></li>
+            <li><%= link_to I18n.t("front_end.Management"), @management_link %></li>
           <% else %>
-            <li><%= link_to dname, @all_departments_links.at(i) %></li>
+            <li><%= link_to I18n.t("front_end.#{dname}"), @all_departments_links.at(i) %></li>
           <% end %>
         <% end %>
       </ol>

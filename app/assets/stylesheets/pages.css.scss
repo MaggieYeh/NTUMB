@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
 
 #home-tabs{
   margin-bottom: 5px;
@@ -9,4 +12,14 @@
 
 #home-tabs-content{
   background-color: white;
+}
+
+.page-nav{
+  margin-top: 20px;
+  border: solid 1px #DDD;
+  @include border-radius(10px);
+  padding: 10px;
+  a {
+    margin: 0px !important;
+  }
 }

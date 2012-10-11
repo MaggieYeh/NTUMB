@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
     find_department_name if request.path.match(/^\/admin/).nil?
   end
   before_filter do
+    build_header if request.path.match(/^\/admin/).nil?
+  end
+  before_filter do
     build_menu if request.path.match(/^\/admin/).nil?
   end
 
@@ -26,6 +29,12 @@ class ApplicationController < ActionController::Base
   end
 
 private
+
+  def build_header
+    @header_text = I18n.t("front_end.#{@current_department_name}")
+    @header_text.prepend(I18n.t('front_end.ntu') + " ")
+    @header_link = @current_department_name.match(/management/i) ? @management_link : @current_department_link
+  end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale

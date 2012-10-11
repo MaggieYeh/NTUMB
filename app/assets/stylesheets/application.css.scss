@@ -16,6 +16,7 @@
 /*@import "bootstrap-responsive";*/
 
 $red-grey-border: rgb(40,18,18);
+$linkColorHover: #999;
 
 @mixin red-gradient-background(){
   width: 100%;
@@ -30,7 +31,7 @@ $red-grey-border: rgb(40,18,18);
 
 @mixin center-aligned-menu-item(){
   text-align: center;
-  li{
+  >li {
     float: none;
     display: inline-block;
   }
@@ -53,9 +54,27 @@ html,body{
   #header{
     padding-top: 5px;
     padding-bottom: 5px;
+    img{
+      margin-right: 10px;
+      display: inline-block;
+      float: left;
+    }
+    .kai{
+      font-family: dfkai-sb, stkaiti, 標楷體, 华文楷体;
+    }
+    h1{
+      padding: 0px;
+      margin: 5px;
+      margin-left: 0px;
+      font-size: 2.3em;
+    }
+    span{
+      color: $grayLighter;
+      margin-left: 5px;
+    }
     form{
       margin-top: 10px;
-      margin-bottom: 3px;
+      margin-bottom: 9px;
     }
   }
 }
@@ -66,14 +85,23 @@ html,body{
   ol#main-menu{
     @include center-aligned-menu-item();
     margin: 0px;
-    li.dropdown:hover{
+    >li>a:hover {
+      background-color: $linkColorHover;
+    }
+    li.dropdown:hover {
       > ol.dropdown-menu{
         display: block;
         margin-top: 0px;
+        >li>a:hover {
+          background-color: $linkColorHover;
+        }
         @include grey-gradient-background();
         border-top: 1px black solid;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
+        li{
+          text-align: left;
+        }
       }
     }
   }
@@ -92,11 +120,13 @@ html,body{
   border-bottom: 1px solid grey;
 }
 
-
 #department-links-wrapper{
   @include grey-gradient-background();
   border-bottom: 1px solid $red-grey-border;
   ol#department-links{
+    >li>a:hover {
+      background-color: $linkColorHover;
+    }
     @include center-aligned-menu-item();
     margin: 0px;
   }
@@ -112,3 +142,4 @@ html,body{
 #push,#footer{
   height: 80px;
 }
+

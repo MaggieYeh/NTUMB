@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html charset="uft-8">
 <head>
   <title>NTUMB</title>
+  <link rel="shortcut icon" href="/favicon.ico?v=3" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    controller_name, :media => "all" %>
   <%= javascript_include_tag "application", controller_name %>
@@ -16,6 +17,7 @@
         <%= yield %>
       </div><!-- end of main container -->
     </div><!-- end of main-wrapper -->
+    <div id="push"></div>
   </div>
   <%= render partial: "shared/footer" %>
 </body>

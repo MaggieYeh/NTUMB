@@ -20,8 +20,7 @@ Page.descendants.each do |department_page|
       eval %Q{
         #{controller}_page = #{department_page}.new
         #{controller}_page.delegated_to = "#{controller}"
-        #{controller}_page.menu_title = "#{controller}"
-        #{controller}_page.translation.menu_title = "#{controller}"
+        #{controller}_page.translation_for(:"zh-TW").menu_title = I18n.t('front_end.#{controller}')
         #{controller}_page.translation_for(:en).menu_title = "#{controller}"
         #{controller}_page.url_name = "#{controller}"
         unless #{controller}_page.save
@@ -34,3 +33,10 @@ Page.descendants.each do |department_page|
   end
 end
 
+if AdminUser.count == 0
+  super_admin = AdminUser.new
+  super_admin.email = "admin@example.com"
+  super_admin.password = "password"
+  super_admin.roles << Role.first
+  super_admin.save
+end
