@@ -70,6 +70,13 @@ ActiveAdmin.register NewsReport do
       f.input :department, label: "所屬系所", include_blank: false,
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
+    f.inputs "預覽" do
+      f.input :preview, label: "預覽圖"
+      f.input :text_up, label: "預覽方式", as: :radio, 
+               collection: {"圖片在上" => false, "文字在上" => true}
+      f.input :preview_color, label: "顏色", as: :radio,
+               collection: Hash[ [["隨機", "random"]] + StickerColor::COLOR_NAMES.zip(StickerColor::COLORS)]
+    end
     f.buttons
   end
 end

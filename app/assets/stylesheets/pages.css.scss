@@ -5,10 +5,42 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
+@mixin sticker-bar($color){
+  border-top: 8px solid $color;
+}
 
 #home-tabs{
   margin-bottom: 5px;
 }
+
+#stickers{
+  margin-top: 40px;
+}
+
+.sticker{
+  padding: 15px;
+}
+  /*COLORS = %w[5183c7 c65152 9abb58 8465a7 4daecb ff9748]*/
+
+.sticker5183c7{
+  @include sticker-bar(#5183c7) 
+}
+.stickerc65152{
+  @include sticker-bar(#c65152) 
+}
+.sticker9abb58{
+  @include sticker-bar(#9abb58) 
+}
+.sticker8465a7{
+  @include sticker-bar(#8465a7) 
+}
+.sticker4daecb{
+  @include sticker-bar(#4daecb) 
+}
+.stickerff9748{
+  @include sticker-bar(#ff9748) 
+}
+
 
 #home-tabs-content{
   background-color: white;

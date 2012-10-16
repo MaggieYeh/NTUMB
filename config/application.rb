@@ -20,6 +20,7 @@ module NTUMB
     require "#{Rails.root}/lib/index_as_tree.rb"
     require "#{Rails.root}/lib/patch_aa_load.rb"
     require "#{Rails.root}/lib/department_filter.rb"
+    require "#{Rails.root}/lib/sticker_colors.rb"
     #require "#{Rails.root}/lib/create_pages.rb"
 
     # Only load the plugins named here, in the order given (default is alphabetical).

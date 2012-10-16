@@ -1,6 +1,13 @@
-
-<div class="row">
-  <div class="offset1 span3 sticker"></div>
-  <div class="span3 sticker"></div>
-  <div class="span3 sticker"></div>
+<div class="row" id="stickers">
+  <% @news.each_with_index do |news,i| %>
+    <div class="<%='offset1' if i == 0 %> span3 sticker well sticker<%=news.preview_color%>">
+      <% unless news.text_up %>
+        <%= image_tag(news.preview.url(:thumb)) %>
+      <% end %>
+        <%= raw my_html_truncator(news.translation_for(:"zh-TW").content) %>
+      <% if news.text_up %>
+        <%= image_tag(news.preview.url(:thumb)) %>
+      <% end %>
+    </div>
+  <% end %>
 </div><!-- end of row -->
