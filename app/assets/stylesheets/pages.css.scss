@@ -6,19 +6,41 @@
 @import "bootstrap/mixins";
 
 @mixin sticker-bar($color){
-  border-top: 8px solid $color;
+  border-top: 5px solid $color;
+}
+
+#carousel{
 }
 
 #home-tabs{
   margin-bottom: 5px;
 }
 
+#tab-container{
+  margin-right: 20px;
+}
+
 #stickers{
+}
+
+.margin40{
   margin-top: 40px;
 }
 
 .sticker{
   padding: 15px;
+  padding-top: 10px;
+  height: 310px;
+  a.more{
+    margin-right: 10px;
+  }
+  img{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
   /*COLORS = %w[5183c7 c65152 9abb58 8465a7 4daecb ff9748]*/
 

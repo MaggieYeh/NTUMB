@@ -1,13 +1,34 @@
-<div class="row" id="stickers">
+<div class="row margin40" id="stickers">
   <% @news.each_with_index do |news,i| %>
-    <div class="<%='offset1' if i == 0 %> span3 sticker well sticker<%=news.preview_color%>">
-      <% unless news.text_up %>
-        <%= image_tag(news.preview.url(:thumb)) %>
-      <% end %>
-        <%= raw my_html_truncator(news.translation_for(:"zh-TW").content) %>
-      <% if news.text_up %>
-        <%= image_tag(news.preview.url(:thumb)) %>
-      <% end %>
+    <div class="span4">
+      <div class="sticker well sticker<%=news.preview_color%>">
+        <h4><%= news.title %></h4>
+        <% unless news.text_up %>
+          <%= image_tag(news.preview.url(:thumb)) %>
+        <% end %>
+        <div>
+          <%= raw HTML_Truncator.truncate(news.translation_for(:"zh-TW").content,5,:ellipsis => '<a href="/more-to-read">...more</a>') %>
+        </div>
+        <% if news.text_up %>
+          <%= image_tag(news.preview.url(:thumb)) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div><!-- end of row -->
+<div class="row" id="stickers">
+  <% @news2.each_with_index do |news,i| %>
+    <div class="span4">
+      <div class="sticker well sticker<%=news.preview_color%>">
+        <h4><%= news.title %></h4>
+        <% unless news.text_up %>
+          <%= image_tag(news.preview.url(:thumb)) %>
+        <% end %>
+          <%= raw my_html_truncator(news.translation_for(:"zh-TW").content) %>
+        <% if news.text_up %>
+          <%= image_tag(news.preview.url(:thumb)) %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div><!-- end of row -->
