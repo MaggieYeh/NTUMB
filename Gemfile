@@ -47,6 +47,7 @@ gem 'cancan'
 gem 'globalize3'
 gem 'ActiveAdmin-Globalize3-inputs', git:"https://github.com/j0214ack/ActiveAdmin-Globalize3-inputs.git"
 gem "html_truncator"
+gem 'nokogiri'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

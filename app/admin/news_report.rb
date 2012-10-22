@@ -71,7 +71,8 @@ ActiveAdmin.register NewsReport do
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
     f.inputs "預覽" do
-      f.input :preview, label: "預覽圖"
+      f.input :preview, label: "預覽圖", hint: "請盡量選擇16:9左右的寬照片"
+      f.input :preview_text, label: "預覽文字", hint: "80個中文字以內。留空則自動擷取"
       f.input :text_up, label: "預覽方式", as: :radio, 
                collection: {"圖片在上" => false, "文字在上" => true}
       f.input :preview_color, label: "顏色", as: :radio,

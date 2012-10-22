@@ -11,17 +11,5 @@ module ApplicationHelper
       #"#{d*i.level} #{i.menu_title}"
     #end
   #end
-  def relax_sanitize(input)
-    Sanitize.clean(input, Sanitize::Config::RELAXED)
-  end
-
-  def my_html_truncator(input_string = "")
-    input_string_without_img = remove_img(input_string)
-    HTML_Truncator.truncate(input_string_without_img, 100, :length_in_chars => true)
-  end
-
-  def remove_img(string = "")
-    string.gsub(/< *img[^>]*>/,"")
-  end
 
 end

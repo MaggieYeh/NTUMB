@@ -7,7 +7,7 @@
           <%= image_tag(news.preview.url(:thumb)) %>
         <% end %>
         <div>
-          <%= raw HTML_Truncator.truncate(news.translation_for(:"zh-TW").content,5,:ellipsis => '<a href="/more-to-read">...more</a>') %>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...更多", news_report_path(news) %></p>
         </div>
         <% if news.text_up %>
           <%= image_tag(news.preview.url(:thumb)) %>
@@ -24,7 +24,9 @@
         <% unless news.text_up %>
           <%= image_tag(news.preview.url(:thumb)) %>
         <% end %>
-          <%= raw my_html_truncator(news.translation_for(:"zh-TW").content) %>
+        <div>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...更多", news_report_path(news) %></p>
+        </div>
         <% if news.text_up %>
           <%= image_tag(news.preview.url(:thumb)) %>
         <% end %>

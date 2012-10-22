@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
     find_department_name if request.path.match(/^\/admin/).nil?
   end
   before_filter do
+    build_links if request.path.match(/^\/admin/).nil?
+  end
+  before_filter do
     build_header if request.path.match(/^\/admin/).nil?
   end
   before_filter do
@@ -49,13 +52,16 @@ private
     @department_names = Department.pluck("name")
   end
 
-  def build_menu
-    @menu = create_menu(department_variable)
+  def build_links
     @management_link = prepend_prefix_params_to_path("/",false)
     @all_departments_links = @department_names.map do |d| 
       prepend_prefix_params_to_path("/#{d}",false)
     end
     @current_department_link = prepend_prefix_params_to_path("/#{@current_department_name}",false)
+  end
+
+  def build_menu
+    @menu = create_menu(department_variable)
   end
 
   def department_variable

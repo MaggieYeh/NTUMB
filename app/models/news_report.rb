@@ -1,7 +1,8 @@
 class NewsReport < ActiveRecord::Base
   attr_accessible :department_id
   belongs_to :department
-  attr_accessible :translations_attributes, :content, :title, :preview, :text_up, :preview_color
+  attr_accessible :translations_attributes, :content, :title
+  attr_accessible :preview, :text_up, :preview_color, :preview_text
   has_attached_file :preview, styles: { thumb: "290x150#" }
 
 
@@ -27,6 +28,9 @@ private
     end
     if self.text_up.to_s.empty? 
       self.text_up = false
+    end
+    if self.preview_text.to_s.empty?
+      self.preview_text = MyTruncator.preview_truncator(self.content)
     end
   end
 

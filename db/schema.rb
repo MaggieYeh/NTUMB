@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016012801) do
+ActiveRecord::Schema.define(:version => 20121018095812) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20121016012801) do
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
     t.string   "preview_color"
+    t.string   "preview_text"
   end
 
   create_table "page_translations", :force => true do |t|
