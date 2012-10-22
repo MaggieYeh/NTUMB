@@ -33,6 +33,7 @@ group :development do
   gem "guard-livereload"
 end
 
+gem 'memcache-client'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'activeadmin', git: "https://github.com/gregbell/active_admin.git"
