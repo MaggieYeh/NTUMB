@@ -20,11 +20,9 @@ class PagesController < ApplicationController
     @news2 = NewsReport.recent(6)[3..5]
     if Rails.cache.exist?('videos')
       @videos = Rails.cache.read('videos')
-      binding.pry
     else
       @videos = fetch_youtube_channel_list
       Rails.cache.write('videos', @videos, expires_in: 10.minutes)
-      binding.pry
     end
     #render 'pages/home/index'
   end
@@ -52,17 +50,17 @@ private
     ret["duration"] = ""
     ret["duration"] << "#{duration_h}:" unless duration_h == 0
     if (duration_h != 0) and (duration_m < 10)
-      ret["duration"] << "0#{duration_m}:"
+      ret["duration"] << "0#{duration_m.to_s}:"
     else
-      ret["duration"] << duration_m << ':'
+      ret["duration"] << duration_m.to_s << ':'
     end
     if duration_s < 10
-      ret["duration"] << "0#{duration_s}"
+      ret["duration"] << "0#{duration_s.to_s}"
     else
-      ret["duration"] << "#{duration_s}" 
+      ret["duration"] << "#{duration_s.to_s}" 
     end
-    ret["description"] = video_entry.css("media|group media|description").text
-    ret["published_at"] = video_entry.css("published").text
+    ret["description"] = video_entry.css("media|group media|description").text[0..20]
+    ret["published_at"] = Time.strptime(video_entry.css("published").text,'%Y-%m-%d').to_date.to_s
     ret["view_count"] = video_entry.css("yt|statistics").attr('viewCount').value
     ret
   end

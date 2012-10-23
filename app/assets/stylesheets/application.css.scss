@@ -25,11 +25,12 @@ $linkColorHover: #999;
 
 @mixin grey-gradient-background(){
   width: 100%;
-  background-image: url(office.png);
-  /*@include gradient-vertical(rgb(30,30,30),rgb(13,13,13));*/
+  /*background-image: url(office.png);*/
+  @include gradient-vertical(rgb(91,91,91),rgb(83,83,83));
 }
 
 @mixin center-aligned-menu-item(){
+  padding-top: 2px;
   text-align: center;
   >li {
     float: none;
@@ -81,7 +82,7 @@ html,body{
 
 #menu-wrapper{
   @include grey-gradient-background();
-  border-top: 1px solid $red-grey-border;
+  /*border-top: 1px solid $red-grey-border;*/
   ol#main-menu{
     @include center-aligned-menu-item();
     margin: 0px;

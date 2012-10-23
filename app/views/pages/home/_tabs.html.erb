@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs" id="home-tabs">
-  <li class="active"><a href="#announcements" data-toggle="tab">即時<br />訊息</a></li>
-  <li><a href="#youtube-channel" data-toggle="tab">管院<br />頻道</a></li>
-  <li><a href="#recruiting" data-toggle="tab">管院<br />徵才</a></li>
-  <li><a href="#students" data-toggle="tab">學生<br />專區</a></li>
+  <li class="active"><a href="#announcements" data-toggle="tab">即時訊息</a></li>
+  <li><a href="#youtube-channel" data-toggle="tab">管院頻道</a></li>
+  <li><a href="#recruiting" data-toggle="tab">管院徵才</a></li>
+  <li><a href="#students" data-toggle="tab">學生專區</a></li>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
   <ul id="announcements" class="tab-pane unstyled active">
@@ -10,7 +10,27 @@
       <li><%= a.name %></li>
     <% end %>
   </ul>
-  <ul id="youtube-channel" class="tab-pane unstyled"></ul>
+  <ul id="youtube-channel" class="tab-pane unstyled">
+    <% @videos.each do |v| %>
+      <li>
+        <a href="<%= html_escape v['video_url'] %>">
+          <span class="video-thumb-wrapper">
+            <span class="video-thumb">
+              <span class="video-thumb-inner">
+                <%= image_tag(v['thumb_url']) %>
+              </span>
+              <span class="duration"><%= v['duration'] %></span>
+            </span>
+          </span>
+          <div class="video-info">
+            <span class="video-title"><%= v['title'] %></span><br />
+            <span class="video-stats">觀看次數: <%= "#{v['view_count']}" %><br />
+              發佈日期: <%= "#{v['published_at']}" %></span>
+          </div>
+        </a>
+      </li>
+    <% end %>
+  </ul>
   <ul id="recruiting" class="tab-pane unstyled"></ul>
   <ul id="students" class="tab-pane unstyled"></ul>
 </div>

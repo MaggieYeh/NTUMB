@@ -14,13 +14,61 @@
 
 #home-tabs{
   margin-bottom: 5px;
+  font-size: 120%;
+}
+
+ul#youtube-channel{
+  >li {
+    height: 90px;
+    margin-bottom: 15px;
+    span.video-thumb-wrapper{
+      height: 90px;
+      width: 120px;
+      float: left;
+      margin-right: 9px;
+      span.video-thumb{
+        position: relative;
+        height: 90px;
+        width: 120px;
+        display: block;
+        span.duration{
+          z-index: 1;
+          position: absolute;
+          bottom: 2px;
+          right: 2px; 
+          padding-right: 2px;
+          padding-left: 3px;
+          @include border-radius(4px);
+          background-color: rgba(0,0,0,0.75);
+          color: #ddd;
+        }
+      }
+    }
+    div.video-info{
+      height: 90px;
+      position: relative;
+      span.video-title{
+        margin-top: 2px;
+        font-weight: bold;
+      }
+      span.video-stats{
+        position: absolute;
+        bottom: 1px;
+      }
+    }
+  }
 }
 
 @media (min-width: 768px){
   #tab-container{
     padding-left: 50px;
+    height: 400px;
     /*margin-right: 20px;*/
   }
+}
+
+#tab-container{
+  overflow: scroll;
 }
 
 #stickers{
