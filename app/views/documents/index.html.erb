@@ -1,2 +1,35 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<div class="row">
+  <div class="span3">
+    <%= render partial: "shared/pagenav" %>
+  </div>
+  <div class="span8 offset1">
+    <div class="tabbable">
+      <ul class="nav nav-pills">
+        <% DocumentCategory.each_with_index do |c,i| %>
+          <li <%= "class='active'" if i == 0 %>>
+            <a href="#ann_<%= c.name %>" data-toggle="tab"><%= c.name %></a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="search-form">
+        <form class="navbar-search pull-left">
+          <input type="text" class="search-query" placeholder="<%= I18n.t "front_end.search_ann" %>">
+        </form>
+      </div>
+      <div class="tab-content">
+        <% DocumentCategory.each_with_index do |c,i| %>
+          <div class="tab-pane <%= 'active' if i == 0 %>" id="ann_<%= c.name %>">
+            <% c.documents.each do |d| %>
+              <a href="<%= document_path(d) %>">
+                <h4><%= d.name %></h4>
+              </a>
+              <span class="date-duration">
+                <%= d.announce_date.strftime("%Y/%m/%d") %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      </div><!-- tab-content -->
+    </div><!-- tabbable -->
+  </div>
+</div>

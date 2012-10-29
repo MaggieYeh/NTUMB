@@ -2,15 +2,11 @@ class PagesController < ApplicationController
 
   def view
     path = "/"+params[:path]
-    @page = department_variable.find_by_path(path) || not_found
-    if @page.level == 0
-      @nav_list = @page.children.map{|c|[c.translation_for(I18n.locale).menu_title,c.path]}.unshift([@page.translation_for(I18n.locale).menu_title,@page.path])
-    else
-      @nav_list = @page.parent.children.map{|c|[c.translation_for(I18n.locale).menu_title,c.path]}.unshift([@page.parent.translation_for(I18n.locale).menu_title,@page.parent.path])
-    end
+    @page = department_page_variable.find_by_path(path) || not_found
     if @page.delegated?
       redirect_to :controller => @page.delegated_to.intern, :action => :index
     end
+    build_page_nav
   end
 
   def home
@@ -28,6 +24,10 @@ class PagesController < ApplicationController
   end
 
 private
+
+  def build_page_nav
+    @nav_list = ::MyUtils.build_nav_list(@page)
+  end
 
   def fetch_youtube_channel_list
     doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/NTUManagement/uploads?v=2").read)

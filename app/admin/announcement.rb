@@ -2,7 +2,7 @@
 ActiveAdmin.register Announcement do     
   menu priority: 4
 
-  filter :category, collection: Hash[AnnounceCategory.all.map do |c|
+  filter :announce_category, collection: Hash[AnnounceCategory.all.map do |c|
                                       [I18n.t("#{c.name}.name"),c.id]
                                     end]
   filter :translations_name, label: "公告名稱", as: :string
@@ -29,7 +29,7 @@ ActiveAdmin.register Announcement do
       f.has_many :documents do |d|
         d.input :discription, input_html: { rows: 5 }
         d.input :document_file
-        d.input :category
+        d.input :document_category
         d.input :department,
                 :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
         if d.object.id
@@ -39,7 +39,7 @@ ActiveAdmin.register Announcement do
       end
     end
     f.inputs do
-      f.input :category, label: "公告類別", as: :radio,
+      f.input :announce_category, label: "公告類別", as: :radio,
               collection: Hash[AnnounceCategory.all.map do |c|
                                 [" "+I18n.t("#{c.name}.name")+" "+I18n.t("#{c.name}.hint"),c.id]
                               end]

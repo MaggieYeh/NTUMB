@@ -13,8 +13,17 @@ Role::ROLES.each do |r|
   Role.find_or_create_by_role(r)
 end
 
+if TeacherTitle.count == 0
+  TeacherTitle::TITLES_en.zip(TeacherTitle::TITLES_zh).each do |t|
+    a_title = TeacherTitle.new
+    a_title.translation_for(:en).title_name = t[0]
+    a_title.translation_for(:"zh-TW").title_name = t[1]
+    a_title.save
+  end
+end
+
 Page.descendants.each do |department_page|
-  %w[teachers announcements news_reports documents].each do |controller|
+  MODEL_INDEX_PAGES.each do |controller|
     # it will return nil if not found
     unless department_page.delegated.find_by_delegated_to(controller) 
       eval %Q{

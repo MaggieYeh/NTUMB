@@ -1,2 +1,35 @@
-<h1>Announcements#index</h1>
-<p>Find me in app/views/announcements/index.html.erb</p>
+<div class="row">
+  <div class="span3">
+    <%= render partial: "shared/pagenav" %>
+  </div>
+  <div class="span8 offset1">
+    <div class="tabbable">
+      <ul class="nav nav-pills">
+        <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
+          <li <%= "class='active'" if i == 0 %>>
+            <a href="#ann_<%= c %>" data-toggle="tab"><%= I18n.t "#{c}.name" %></a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="search-form pull-right">
+        <form class="navbar-search">
+          <input type="text" class="search-query" placeholder="<%= I18n.t "front_end.search_ann" %>">
+        </form>
+      </div>
+      <div class="tab-content">
+        <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
+          <div class="tab-pane <%= 'active' if i == 0 %>" id="ann_<%= c %>">
+            <% AnnounceCategory.find_by_name(c).announcements.each do |a| %>
+              <a href="<%= announcement_path(a) %>">
+                <h4><%= a.name %></h4>
+              </a>
+              <span class="date-duration">
+                <%= a.announce_date.strftime("%Y/%m/%d") %> - <%= a.due_date.strftime("%Y/%m/%d") %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      </div><!-- tab-content -->
+    </div><!-- tabbable -->
+  </div><!-- span8 -->
+</div><!-- row -->

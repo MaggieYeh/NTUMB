@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
-  attr_accessible :category_id, :document_file, :department_id, :discription
-  belongs_to :category, :class_name => "DocumentCategory"
+  attr_accessible :document_category_id, :document_file, :department_id, :discription
+  belongs_to :document_category
   belongs_to :department
   belongs_to :announcement
   has_attached_file :document_file
@@ -15,5 +15,9 @@ class Document < ActiveRecord::Base
   accepts_nested_attributes_for :translations
 
   scope :recent, proc{|n = 3| order("created_at DESC").limit(n)}
+
+  def publish_date
+    self.updated_at.to_date
+  end
 
 end

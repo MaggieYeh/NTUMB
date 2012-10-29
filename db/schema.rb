@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018095812) do
+ActiveRecord::Schema.define(:version => 20121029185005) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20121018095812) do
     t.string   "name"
     t.date     "due_date"
     t.text     "content"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "category_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "announce_category_id"
   end
 
   create_table "announcings", :force => true do |t|
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20121018095812) do
 
   create_table "documents", :force => true do |t|
     t.text     "discription"
-    t.integer  "category_id"
+    t.integer  "document_category_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.string   "document_file"
@@ -246,6 +246,17 @@ ActiveRecord::Schema.define(:version => 20121018095812) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "teacher_title_translations", :force => true do |t|
+    t.integer  "teacher_title_id"
+    t.string   "locale"
+    t.string   "title_name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "teacher_title_translations", ["locale"], :name => "index_teacher_title_translations_on_locale"
+  add_index "teacher_title_translations", ["teacher_title_id"], :name => "index_7025d7b1c8f012c194fc767e0df2dacb6e617ae2"
 
   create_table "teacher_titles", :force => true do |t|
     t.string   "title_name"

@@ -9,7 +9,7 @@ ActiveAdmin.register Teacher do
       f.input :cellphone
       f.input :tax_number
       f.input :avatar
-      f.input :title
+      f.input :title, member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
       f.input :email
       f.input :homepage
     end

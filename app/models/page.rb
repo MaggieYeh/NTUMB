@@ -4,6 +4,10 @@ class Page < ActiveRecord::Base
 
   #TODO check reserved word
   # like: url, page, admin, etc
+  #
+
+  MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents]
+  RESERVED_PATH = MODEL_INDEX_PAGES + %w[url page admin]
 
   attr_accessible :menu_title, :title, :content
   attr_accessible :page_part_ids, :url_name, :translations_attributes
@@ -55,6 +59,15 @@ class Page < ActiveRecord::Base
 
   def self.to_admin_symbol
     self.to_department_abbr_s.downcase.concat("_admin").intern
+  end
+
+  def self.nav_list_for(model_name)
+    nav_list = []
+    if MODEL_INDEX_PAGES.member?(model_name)
+      page = self.find_by_url_name(model_name)
+      nav_list = ::MyUtils.build_nav_list(page)
+    end
+    nav_list
   end
 
   private

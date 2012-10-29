@@ -1,6 +1,6 @@
 class DocumentCategory < ActiveRecord::Base
   attr_accessible :name
-  has_many :documents, :inverse_of => :category
+  has_many :documents
   def label_name
     I18n.t "#{name}.name"
   end

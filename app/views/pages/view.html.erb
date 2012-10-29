@@ -1,12 +1,6 @@
 <div class="row">
   <div class="span3">
-    <ul class="nav nav-list page-nav">
-      <% @nav_list.each do |n| %>
-        <li <%="class='active'" if n[1] == @page.path %>>
-          <%= link_to n[0],n[1] %>
-        </li>
-      <% end %>
-    </ul>
+    <%= render partial: "shared/pagenav" %>
   </div>
   <div class="span8 offset1">
     <h3><%= @page.title %></h3>

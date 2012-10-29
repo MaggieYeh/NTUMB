@@ -22,6 +22,7 @@ module NTUMB
     require "#{Rails.root}/lib/department_filter.rb"
     require "#{Rails.root}/lib/sticker_colors.rb"
     require "#{Rails.root}/lib/truncators.rb"
+    require "#{Rails.root}/lib/utils.rb"
     #require "#{Rails.root}/lib/create_pages.rb"
 
     # Only load the plugins named here, in the order given (default is alphabetical).

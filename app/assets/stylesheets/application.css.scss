@@ -26,7 +26,7 @@ $linkColorHover: #999;
 @mixin grey-gradient-background(){
   width: 100%;
   /*background-image: url(office.png);*/
-  @include gradient-vertical(rgb(91,91,91),rgb(83,83,83));
+  @include gradient-vertical(rgb(73,68,68),rgb(63,60,60));
 }
 
 @mixin center-aligned-menu-item(){
@@ -97,7 +97,7 @@ html,body{
           background-color: $linkColorHover;
         }
         @include grey-gradient-background();
-        border-top: 1px black solid;
+        /*border-top: 1px black solid;*/
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         li{
@@ -109,7 +109,9 @@ html,body{
 }
 
 #main-wrapper{
-  border-top: 1px solid grey;
+  /*border-top: 1px solid grey;*/
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 #non-footer{
@@ -118,12 +120,13 @@ html,body{
   height: 100%;
   margin: 0 auto -80px;
   background-image: url(retina_dust.png);
+  /*background-color: red;*/
   border-bottom: 1px solid grey;
 }
 
 #department-links-wrapper{
   @include grey-gradient-background();
-  border-bottom: 1px solid $red-grey-border;
+  /*border-bottom: 1px solid $red-grey-border;*/
   ol#department-links{
     >li>a:hover {
       background-color: $linkColorHover;
@@ -144,3 +147,12 @@ html,body{
   height: 80px;
 }
 
+.page-nav{
+  margin-top: 10px;
+  border: solid 1px #DDD;
+  @include border-radius(10px);
+  padding: 10px;
+  a {
+    margin: 0px !important;
+  }
+}

@@ -1,7 +1,14 @@
-<ul>
-  <% @teachers.each do |t| %>
-    <li>
-      <h3><%= t.name %></h3>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="span3">
+    <%= render partial: "shared/pagenav" %>
+  </div>
+  <div class="span8 offset1">
+    <ul>
+      <% @teachers.each do |t| %>
+        <li>
+          <h3><%= t.name %></h3>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

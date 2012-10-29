@@ -6,8 +6,13 @@
 </ul>
 <div class="tab-content well" id="home-tabs-content">
   <ul id="announcements" class="tab-pane unstyled active">
-    <% @announcements.each_with_index do |a,i| %>
-      <li><%= a.name %></li>
+    <% @announcements.each do |a| %>
+      <li>
+        <a href="#">
+          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-title"><%= a.name %></span>
+        </a>
+      </li>
     <% end %>
   </ul>
   <ul id="youtube-channel" class="tab-pane unstyled">

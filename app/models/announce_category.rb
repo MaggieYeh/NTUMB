@@ -1,6 +1,6 @@
 class AnnounceCategory < ActiveRecord::Base
   attr_accessible :name
-  has_many :announcements, :inverse_of => :category
+  has_many :announcements
   def label_name
     I18n.t "#{name}.name"
   end

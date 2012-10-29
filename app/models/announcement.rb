@@ -3,15 +3,15 @@ class Announcement < ActiveRecord::Base
 
   attr_accessible :due_date
   attr_accessible :department_ids
-  attr_accessible :category_id
+  attr_accessible :announce_category_id
 
-  validates :category, presence: true
+  validates :announce_category, presence: true
   validates :departments, presence: true
 
   has_many :announcings
   has_many :departments, :through => :announcings
   has_many :documents
-  belongs_to :category, :class_name => 'AnnounceCategory'
+  belongs_to :announce_category
   accepts_nested_attributes_for :documents, :reject_if => proc { |d| d[:document_file].blank?},
                                 :allow_destroy => true
 

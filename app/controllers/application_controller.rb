@@ -53,38 +53,25 @@ private
   end
 
   def build_links
-    @management_link = prepend_prefix_params_to_path("/",false)
+    @management_link = ::MyUtils.prepend_prefix_params_to_path("/",false)
     @all_departments_links = @department_names.map do |d| 
-      prepend_prefix_params_to_path("/#{d}",false)
+      ::MyUtils.prepend_prefix_params_to_path("/#{d}",false)
     end
-    @current_department_link = prepend_prefix_params_to_path("/#{@current_department_name}",false)
+    @current_department_link = ::MyUtils.prepend_prefix_params_to_path("/#{@current_department_name}",false)
   end
 
   def build_menu
-    @menu = create_menu(department_variable)
+    @menu = create_menu(department_page_variable)
   end
 
-  def department_variable
+  def department_page_variable
     Department.current_department_name.downcase.concat("_page").camelcase.constantize
-  end
-
-  def page_path_to(page)
-    path = page.path
-    prepend_prefix_params_to_path(path)
-  end
-
-  def prepend_prefix_params_to_path(path, prepend_department = true)
-    if prepend_department && !(Department.current_department_name.downcase == "management")
-      path.prepend("/#{Department.current_department_name.to_s}") 
-    end
-    path.prepend("/#{I18n.locale.to_s}") unless I18n.locale == I18n.default_locale
-    path
   end
 
   def create_menu(d_const)
     menu = {}
     d_const.roots.sort_by{|p| p.position}.each do |p|
-      menu[p.menu_title.intern] = { path: page_path_to(p), 
+      menu[p.menu_title.intern] = { path: ::MyUtils.page_path_to(p), 
                                     children: p.children && create_child_menu(p.children) }
     end
     menu
@@ -93,7 +80,7 @@ private
   def create_child_menu(pages)
     child_menu = {}
     pages.sort_by{|p| p.position}.each do |p|
-      child_menu[p.menu_title.intern] = { path: page_path_to(p), 
+      child_menu[p.menu_title.intern] = { path: ::MyUtils.page_path_to(p), 
                                           children: p.children && create_child_menu(p.children) }
     end
     child_menu

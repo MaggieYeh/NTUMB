@@ -59,6 +59,8 @@
       news_report:
         title: "標題"
         content: "內容"
+      teacher_title:
+        title_name: "職稱"
   translation:
     "zh-TW": "中文"
     en: "英文"

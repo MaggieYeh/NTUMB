@@ -9,6 +9,8 @@
   border-top: 5px solid $color;
 }
 
+$nav-border-color: #ddd;
+
 #carousel{
 }
 
@@ -17,8 +19,25 @@
   font-size: 120%;
 }
 
+ul.tab-pane{
+  >li{
+    font-size: 110%;
+    height: 50px;
+    margin-bottom: 10px;
+    span.tab-item-published-time{
+      float: left;
+      height: 50px;
+      margin-right: 9px;
+    }
+    span.tab-item-title{
+      height: 50px;
+    }
+  }
+}
+
 ul#youtube-channel{
   >li {
+    font-size: 100%;
     height: 90px;
     margin-bottom: 15px;
     span.video-thumb-wrapper{
@@ -59,17 +78,31 @@ ul#youtube-channel{
   }
 }
 
-@media (min-width: 768px){
-  #tab-container{
-    padding-left: 50px;
-    height: 400px;
-    /*margin-right: 20px;*/
+#tab-container{
+  ul#home-tabs{
+    border-color: $nav-border-color !important;
+  }
+  li.active{
+  }
+  li.active>a{
+    border-color: $nav-border-color !important;
+    background-color: #9abb58;
+  }
+  div.tab-content{
+    border-color: $nav-border-color !important;
   }
 }
 
-#tab-container{
-  overflow: scroll;
+@media (min-width: 768px){
+  #tab-container{
+    padding-left: 50px;
+    /*margin-right: 20px;*/
+  }
+  #home-tabs-content{
+    height: 319px;
+  }
 }
+
 
 #stickers{
 }
@@ -114,17 +147,24 @@ ul#youtube-channel{
   @include sticker-bar(#ff9748) 
 }
 
+.sticker9a7016{
+  @include sticker-bar(#9a7016) 
+}
+.sticker293352{
+  @include sticker-bar(#293352) 
+}
+.sticker13c29f{
+  @include sticker-bar(#13c29f) 
+}
+.stickera2a012{
+  @include sticker-bar(#a2a012) 
+}
+
 
 #home-tabs-content{
-  background-color: white;
+  /*background-color: white;*/
+  background: url('bigger_bell_bg_tr25.png') no-repeat 100%;
+  /*background-image: url('bell_bg.png');*/
+  /*background-repeat: no-repeat;*/
 }
 
-.page-nav{
-  margin-top: 20px;
-  border: solid 1px #DDD;
-  @include border-radius(10px);
-  padding: 10px;
-  a {
-    margin: 0px !important;
-  }
-}

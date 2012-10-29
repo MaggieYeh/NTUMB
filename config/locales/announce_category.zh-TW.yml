@@ -1,5 +1,4 @@
 "zh-TW":
-  ltest: "中文!"
   administrative:
     name: "行政公告" 
     hint: "如：施工、人員招聘、法規頒佈更動等等..."
