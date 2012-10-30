@@ -2,20 +2,15 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
+  <div class="span9">
     <div class="tabbable">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-tabs">
         <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
           <li <%= "class='active'" if i == 0 %>>
             <a href="#ann_<%= c %>" data-toggle="tab"><%= I18n.t "#{c}.name" %></a>
           </li>
         <% end %>
       </ul>
-      <div class="search-form pull-right">
-        <form class="navbar-search">
-          <input type="text" class="search-query" placeholder="<%= I18n.t "front_end.search_ann" %>">
-        </form>
-      </div>
       <div class="tab-content">
         <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
           <div class="tab-pane <%= 'active' if i == 0 %>" id="ann_<%= c %>">

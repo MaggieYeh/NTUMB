@@ -11,6 +11,8 @@ class PagesController < ApplicationController
 
   def home
     @announcements = Announcement.send(@current_department_name)
+    @jobs_announcements = Announcement.send(@current_department_name).jobs
+    @student_announcements = Announcement.send(@current_department_name).student
     @carousels = Carousel.recent
     @news = NewsReport.recent(6)[0..2]
     @news2 = NewsReport.recent(6)[3..5]

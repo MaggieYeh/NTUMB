@@ -5,6 +5,7 @@ class TeachersController < ApplicationController
   def index
     #@teachers = Teacher.page(params[:page])
     @teachers = Teacher.all
+    @title_categories = TeacherTitle.all
   end
 
   def show

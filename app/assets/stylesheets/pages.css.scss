@@ -5,11 +5,13 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
-@mixin sticker-bar($color){
-  border-top: 5px solid $color;
-}
 
+/*$nav-active-bg-color: #8c9e1c;*/
+/*$nav-active-bg-color: #d8db2b;*/
+$nav-active-bg-color: #9aa542;
+/*$nav-active-bg-color: #93a542;*/
 $nav-border-color: #ddd;
+$nav-active-color: white;
 
 #carousel{
 }
@@ -22,7 +24,7 @@ $nav-border-color: #ddd;
 ul.tab-pane{
   >li{
     font-size: 110%;
-    height: 50px;
+    min-height: 40px;
     margin-bottom: 10px;
     span.tab-item-published-time{
       float: left;
@@ -82,11 +84,15 @@ ul#youtube-channel{
   ul#home-tabs{
     border-color: $nav-border-color !important;
   }
+  li>a:hover {
+    background-color: #aaa;
+  }
   li.active{
   }
   li.active>a{
     border-color: $nav-border-color !important;
-    background-color: #9abb58;
+    background-color: $nav-active-bg-color;
+    color: $nav-active-color;
   }
   div.tab-content{
     border-color: $nav-border-color !important;
@@ -128,37 +134,6 @@ ul#youtube-channel{
 }
   /*COLORS = %w[5183c7 c65152 9abb58 8465a7 4daecb ff9748]*/
 
-.sticker5183c7{
-  @include sticker-bar(#5183c7) 
-}
-.stickerc65152{
-  @include sticker-bar(#c65152) 
-}
-.sticker9abb58{
-  @include sticker-bar(#9abb58) 
-}
-.sticker8465a7{
-  @include sticker-bar(#8465a7) 
-}
-.sticker4daecb{
-  @include sticker-bar(#4daecb) 
-}
-.stickerff9748{
-  @include sticker-bar(#ff9748) 
-}
-
-.sticker9a7016{
-  @include sticker-bar(#9a7016) 
-}
-.sticker293352{
-  @include sticker-bar(#293352) 
-}
-.sticker13c29f{
-  @include sticker-bar(#13c29f) 
-}
-.stickera2a012{
-  @include sticker-bar(#a2a012) 
-}
 
 
 #home-tabs-content{

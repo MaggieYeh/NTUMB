@@ -2,13 +2,43 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
-    <ul>
-      <% @teachers.each do |t| %>
-        <li>
-          <h3><%= t.name %></h3>
-        </li>
+  <div class="span9">
+    <div id="expanding" class="accordion">
+      <% @title_categories.each_with_index do |tc,i| %>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a data-parent="expanding" href="#tt_<%= tc.translation_for(:en).title_name %>"
+               class="accordion-toggle" data-toggle="collapse">
+              <%= tc.title_name %>
+            </a>
+          </div>
+          <div class="accordion-body collapse <%= "in" if i == 0%>" 
+               id="tt_<%= tc.translation_for(:en).title_name %>">
+            <div class="accordion-inner">
+              <ul class="unstyled">
+                  <li>
+                    <span class="teacher-data teacher-name">職員姓名</span>
+                    <span class="teacher-data teacher-email">電子郵件</span>
+                    <span class="teacher-data teacher-room">研究室</span>
+                    <span class="teacher-data teacher-homepage">個人網頁 </span>
+                  </li>
+                <% tc.teachers.each do |teacher| %>
+                  <li>
+                    <span class="teacher-data teacher-name">
+                      <%= link_to teacher.name, teacher_path(teacher) %>
+                    </span>
+                    <span class="teacher-data teacher-email"><%= teacher.email %></span>
+                    <span class="teacher-data teacher-room"></span>
+                    <span class="teacher-data teacher-homepage">
+                      <%= link_to teacher.homepage, teacher.homepage %>
+                    </span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div><!-- accordion-group -->
       <% end %>
-    </ul>
+    </div><!-- #expanding -->
   </div>
 </div>

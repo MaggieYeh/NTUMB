@@ -8,7 +8,7 @@
   <ul id="announcements" class="tab-pane unstyled active">
     <% @announcements.each do |a| %>
       <li>
-        <a href="#">
+        <a href="<%= announcement_path(a) %>">
           <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
           <span class="tab-item-title"><%= a.name %></span>
         </a>
@@ -36,6 +36,24 @@
       </li>
     <% end %>
   </ul>
-  <ul id="recruiting" class="tab-pane unstyled"></ul>
-  <ul id="students" class="tab-pane unstyled"></ul>
+  <ul id="recruiting" class="tab-pane unstyled">
+    <% @jobs_announcements.each do |a| %>
+      <li>
+        <a href="<%= announcement_path(a) %>">
+          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-title"><%= a.name %></span>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <ul id="students" class="tab-pane unstyled">
+    <% @student_announcements.each do |a| %>
+      <li>
+        <a href="<%= announcement_path(a) %>">
+          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-title"><%= a.name %></span>
+        </a>
+      </li>
+    <% end %>
+  </ul>
 </div>

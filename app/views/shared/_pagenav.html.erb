@@ -1,7 +1,13 @@
 <ul class="nav nav-list page-nav">
   <% @nav_list.each do |n| %>
     <%#<li <%="class='active'" if n[1] == ::MyUtils.prepend_prefix_params_to_path(request.path) %>
-    <li <%="class='active'" if n[1].split("/").last == request.path.split("/").last %>>
+    <% active = false %>
+    <% if params[:id].nil? %>
+      <% active = true if n[1].split("/").last == request.path.split("/").last %>
+    <% elsif n[1].split("/").last == request.path.split("/")[-2] %>
+      <% active = true %>
+    <% end %>
+    <li <%="class='active'" if active %>>
     <%= link_to n[0],n[1] %>
     </li>
   <% end %>

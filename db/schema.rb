@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029185005) do
+ActiveRecord::Schema.define(:version => 20121030034653) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20121029185005) do
     t.integer  "document_file_file_size"
     t.datetime "document_file_updated_at"
     t.integer  "department_id"
+    t.integer  "announcement_id"
   end
 
   create_table "educational_backgrounds", :force => true do |t|
@@ -270,7 +271,7 @@ ActiveRecord::Schema.define(:version => 20121029185005) do
     t.string   "name"
     t.string   "phone"
     t.string   "cellphone"
-    t.integer  "title_id"
+    t.integer  "teacher_title_id"
     t.string   "email"
     t.string   "homepage"
     t.datetime "created_at",          :null => false

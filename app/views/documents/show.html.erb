@@ -2,8 +2,9 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
-    <h1>Documents#show</h1>
-    <p>Find me in app/views/documents/show.html.erb</p>
+  <div class="span9">
+    <h1><%= @document.document_file_file_name %></h1>
+    <p><%= @document.discription %></p>
+    <%= link_to(I18n.t("front_end.download_link"),@document.document_file.to_s, class: "download") %>
   </div>
 </div>

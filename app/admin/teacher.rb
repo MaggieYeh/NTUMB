@@ -9,7 +9,7 @@ ActiveAdmin.register Teacher do
       f.input :cellphone
       f.input :tax_number
       f.input :avatar
-      f.input :title, member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
+      f.input :teacher_title, member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
       f.input :email
       f.input :homepage
     end
@@ -26,8 +26,8 @@ ActiveAdmin.register Teacher do
     end
     f.inputs "學歷" do
       f.has_many :educational_backgrounds do |e|
-        e.input :name
-        e.input :require_year
+        e.input :name, label: "學位名稱"
+        e.input :require_year, label: "取得年份"
         if e.object.id
           e.input :_destroy, :as => :boolean, :label => "delete"
         end

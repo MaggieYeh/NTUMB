@@ -2,8 +2,16 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
-    <h1>NewsReports#index</h1>
-    <p>Find me in app/views/news_reports/index.html.erb</p>
+  <div class="span9">
+    <% @news_reports.each_with_index do |news,i| %>
+      <% unless i == 0 %>
+        <div class="hr sticker<%= StickerColor.get_random_color %>"/></div>
+      <% end %>
+      <div class="news-item row">
+        <%= image_tag(news.preview.url(:small), class: i%2 == 1 ? "pull-right" : "pull-left" ) %>
+        <h4><%= news.title %></h4>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...更多", news_report_path(news) %></p>
+      </div>
+    <% end %>
   </div>
 </div>

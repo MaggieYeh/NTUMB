@@ -20,6 +20,10 @@ $(document).ready(function() {
       }
     }
 
+    //if ($(this).hasClass("download")){
+      //open_new_window = true;
+    //}
+
     if (open_new_window){
       window.open(this.href);
       return false;

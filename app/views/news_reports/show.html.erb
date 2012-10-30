@@ -2,8 +2,8 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
-    <h1>NewsReports#show</h1>
-    <p>Find me in app/views/news_reports/show.html.erb</p>
+  <div class="span9">
+    <h1><%= @news_report.title %></h1>
+    <%= raw @news_report.content %>
   </div>
 </div>

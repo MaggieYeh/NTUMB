@@ -3,7 +3,7 @@ class NewsReport < ActiveRecord::Base
   belongs_to :department
   attr_accessible :translations_attributes, :content, :title
   attr_accessible :preview, :text_up, :preview_color, :preview_text
-  has_attached_file :preview, styles: { thumb: "290x150#" }
+  has_attached_file :preview, styles: { thumb: "290x150#", small: "175x130#" }
 
 
   validates :department_id, presence: true

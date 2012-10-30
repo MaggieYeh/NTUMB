@@ -156,3 +156,41 @@ html,body{
     margin: 0px !important;
   }
 }
+
+/* sticker colors */
+
+@mixin sticker-bar($color){
+  border-top: 5px solid $color;
+}
+
+.sticker5183c7{
+  @include sticker-bar(#5183c7) 
+}
+.stickerc65152{
+  @include sticker-bar(#c65152) 
+}
+.sticker9abb58{
+  @include sticker-bar(#9abb58) 
+}
+.sticker8465a7{
+  @include sticker-bar(#8465a7) 
+}
+.sticker4daecb{
+  @include sticker-bar(#4daecb) 
+}
+.stickerff9748{
+  @include sticker-bar(#ff9748) 
+}
+
+.sticker9a7016{
+  @include sticker-bar(#9a7016) 
+}
+.sticker293352{
+  @include sticker-bar(#293352) 
+}
+.sticker13c29f{
+  @include sticker-bar(#13c29f) 
+}
+.stickera2a012{
+  @include sticker-bar(#a2a012) 
+}

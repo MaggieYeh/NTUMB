@@ -4,9 +4,10 @@ class Announcement < ActiveRecord::Base
   attr_accessible :due_date
   attr_accessible :department_ids
   attr_accessible :announce_category_id
+  attr_accessible :documents_attributes
 
-  validates :announce_category, presence: true
-  validates :departments, presence: true
+  #validates :announce_category, presence: true
+  #validates :departments, presence: true
 
   has_many :announcings
   has_many :departments, :through => :announcings
@@ -19,8 +20,8 @@ class Announcement < ActiveRecord::Base
   translates :content, :name, :fallbacks_for_empty_translations => true
   class Translation
     attr_accessible :locale, :content, :name
-    validates :content, presence: true
-    validates :name, presence: true
+    #validates :content, presence: true
+    #validates :name, presence: true
   end
   accepts_nested_attributes_for :translations
 
@@ -35,6 +36,10 @@ class Announcement < ActiveRecord::Base
   #scope :active, lambda { where("announce_date <= ? AND due_date >= ?", Date.today, Date.today )}
   scope :active, lambda { where("due_date >= ?", Date.today )}
   scope :out_of_date, lambda { where("due_date < ?", Date.today) }
+  scope :categories, lambda{|c1,c2| where("announce_category_id = ?",c1) + where("announce_category_id = ?", c2)}
+  scope :instant, lambda{ categories(AnnounceCategory.find_by_name("administrative"),AnnounceCategory.find_by_name("events")) }
+  scope :student, lambda{ categories(AnnounceCategory.find_by_name("scholarship_and_exchange_student"),AnnounceCategory.find_by_name("enrollments")) }
+  scope :jobs, lambda{ categories(AnnounceCategory.find_by_name("intern_opportunities"),AnnounceCategory.find_by_name("enrollments")) }
   #scope :not_announced_yet, lambda { where("announce_date > ?", Date.today) }
   
 private

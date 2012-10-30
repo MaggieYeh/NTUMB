@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  attr_accessible :document_category_id, :document_file, :department_id, :discription
+  attr_accessible :document_category_id, :document_file, :department_id, :discription, :announcement_id
   belongs_to :document_category
   belongs_to :department
   belongs_to :announcement

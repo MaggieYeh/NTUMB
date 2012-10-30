@@ -1,8 +1,9 @@
 class Teacher < ActiveRecord::Base
-  attr_accessible :cellphone, :department_id, :email, :homepage, :name, :phone, :title_id, :tax_number, :avatar
+  attr_accessible :cellphone, :department_id, :email, :homepage, :name, :phone,
+                  :tax_number, :avatar, :teacher_title_id
   attr_accessible :educational_backgrounds_attributes
   attr_accessible :courses_attributes
-  attr_accessible :reasearch_areas_attributes
+  attr_accessible :research_areas_attributes
   has_attached_file :avatar
   has_many :research_areas, :through => :researchings
   has_many :researchings
@@ -11,7 +12,7 @@ class Teacher < ActiveRecord::Base
 
   belongs_to :admin_user
   belongs_to :department
-  belongs_to :title, :class_name => "TeacherTitle"
+  belongs_to :teacher_title
 
   accepts_nested_attributes_for :courses, :reject_if => proc { |c| c[:name].blank?},
                                 :allow_destroy => true

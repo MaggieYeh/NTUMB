@@ -2,8 +2,26 @@
   <div class="span3">
     <%= render partial: "shared/pagenav" %>
   </div>
-  <div class="span8 offset1">
-    <h1>Teachers#show</h1>
-    <p>Find me in app/views/teachers/show.html.erb</p>
+  <div class="span9">
+    <img src="<%= @teacher.avatar.url %>" alt="" />
+    <span><%= @teacher.name %></span>
+    <span><%= @teacher.phone %></span>
+    <span><%= @teacher.cellphone %></span>
+    <span><%= @teacher.homepage %></span>
+    <ul>
+      <% @teacher.educational_backgrounds.each do |eb| %>
+        <li><%= eb.name %></li>
+      <% end %>
+    </ul>
+    <ul>
+      <% @teacher.research_areas.each do |ra| %>
+        <li><%= ra.name %></li>
+      <% end %>
+    </ul>
+    <ul>
+      <% @teacher.courses.each do |course| %>
+        <li><%= course.name %></li>
+      <% end %>
+    </ul>
   </div>
 </div>
