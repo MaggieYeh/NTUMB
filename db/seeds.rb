@@ -23,7 +23,7 @@ if TeacherTitle.count == 0
 end
 
 Page.descendants.each do |department_page|
-  MODEL_INDEX_PAGES.each do |controller|
+  Page::MODEL_INDEX_PAGES.each do |controller|
     # it will return nil if not found
     unless department_page.delegated.find_by_delegated_to(controller) 
       eval %Q{
