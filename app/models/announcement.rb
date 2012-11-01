@@ -1,13 +1,13 @@
 class Announcement < ActiveRecord::Base
   before_validation :check_empty_departments
 
-  attr_accessible :due_date
+  attr_accessible :due_date, :announce_date
   attr_accessible :department_ids
   attr_accessible :announce_category_id
   attr_accessible :documents_attributes
 
-  #validates :announce_category, presence: true
-  #validates :departments, presence: true
+  validates :announce_category, presence: true
+  validates :departments, presence: true
 
   has_many :announcings
   has_many :departments, :through => :announcings
@@ -25,9 +25,9 @@ class Announcement < ActiveRecord::Base
   end
   accepts_nested_attributes_for :translations
 
-  def announce_date
-    self.created_at.to_date
-  end
+  #def announce_date
+    #self.created_at.to_date
+  #end
 
   def lasting_days
     (self.due_date - announce_date).to_i

@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     splited_array = this.href.split(".");
     if (splited_array.length > 1) {
-      if (this.href.split(".").pop().match(/pdf|jpg|gif|jpeg|png|doc|docx|xls|xlsx/) != null){
+      if (this.href.split(".").pop().match(/^(pdf|jpg|gif|jpeg|png|doc|docx|xls|xlsx)$/) != null){
         open_new_window = true;
       }
     }

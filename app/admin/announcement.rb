@@ -49,10 +49,12 @@ ActiveAdmin.register Announcement do
               :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
     f.inputs do
+      f.input :announce_date, label: "公告開始日期", as: :datepicker, 
+              input_html: {value:f.object.announce_date || Date.today.strftime }
       f.input :due_date, label: "公告結束日期", as: :datepicker, 
               input_html: {value:f.object.due_date || Date.today.next_month.strftime }
     end
-    f.buttons                         
+    f.actions
   end #form do
 
   #index as: :tabbed_table, tabs: %w[中文 英文] do |announcement|

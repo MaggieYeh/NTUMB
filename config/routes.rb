@@ -62,8 +62,6 @@ NTUMB::Application.routes.draw do
   #       get 'recent', :on => :collection
   #     end
   #   end
-
-  # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)

@@ -17,12 +17,14 @@ module NTUMB
 
     # Custom directories with classes and modules you want to be autoloadable.
     #config.autoload_paths += %W(#{config.root}/extras)
+    #
     require "#{Rails.root}/lib/index_as_tree.rb"
     require "#{Rails.root}/lib/patch_aa_load.rb"
     require "#{Rails.root}/lib/department_filter.rb"
     require "#{Rails.root}/lib/sticker_colors.rb"
     require "#{Rails.root}/lib/truncators.rb"
     require "#{Rails.root}/lib/utils.rb"
+
     #require "#{Rails.root}/lib/create_pages.rb"
 
     # Only load the plugins named here, in the order given (default is alphabetical).

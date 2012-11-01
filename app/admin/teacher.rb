@@ -43,6 +43,6 @@ ActiveAdmin.register Teacher do
         c.form_buffers.last # to avoid bug with nil possibly being returned from the above
       end
     end
-    f.buttons
+    f.actions
   end
 end

@@ -9,6 +9,6 @@ ActiveAdmin.register Document do
       f.input :department,
               :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
-    f.buttons
+    f.actions
   end
 end

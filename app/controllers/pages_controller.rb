@@ -14,8 +14,9 @@ class PagesController < ApplicationController
     @jobs_announcements = Announcement.send(@current_department_name).jobs
     @student_announcements = Announcement.send(@current_department_name).student
     @carousels = Carousel.recent
-    @news = NewsReport.recent(6)[0..2]
-    @news2 = NewsReport.recent(6)[3..5]
+    @news_all = NewsReport.recent(6)
+    @news = @news_all[0..2] || []
+    @news2 = @news_all[3..5] || []
     if Rails.cache.exist?('videos')
       @videos = Rails.cache.read('videos')
     else

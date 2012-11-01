@@ -78,6 +78,6 @@ ActiveAdmin.register NewsReport do
       f.input :preview_color, label: "顏色", as: :radio,
                collection: Hash[ [["隨機", "random"]] + StickerColor::COLOR_NAMES.zip(StickerColor::COLORS)]
     end
-    f.buttons
+    f.actions
   end
 end

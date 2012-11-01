@@ -13,8 +13,8 @@ class NewsReport < ActiveRecord::Base
   translates :title, :content, :fallbacks_for_empty_translations => true
   class Translation
     attr_accessible :locale, :title, :content
-    validates :title, presence: true
-    validates :content, presence: true
+    #validates :title, presence: true
+    #validates :content, presence: true
   end
   accepts_nested_attributes_for :translations
 

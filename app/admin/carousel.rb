@@ -9,7 +9,7 @@ ActiveAdmin.register Carousel do
       f.input :department, label: "所屬系所", include_blank: false,
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
     end
-    f.buttons
+    f.actions
   end
 
   filter :title

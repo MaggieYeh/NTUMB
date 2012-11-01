@@ -3,6 +3,7 @@
 Page.descendants.each_with_index do |dpage,i|
   ActiveAdmin.register dpage do
     config.batch_actions = false
+    config.paginate = false
     if dpage == ManagementPage
       menu parent: "內容頁面", priority: 0
     else
@@ -44,7 +45,7 @@ Page.descendants.each_with_index do |dpage,i|
           gf.input :locale, as: :hidden
         end
       end
-      f.buttons                         
+      f.actions                         
     end 
 
     filter :title

@@ -44,7 +44,11 @@ private
   end
 
   def set_current_department
-    Department.current_department_name = params[:department] || "management"
+    if params[:department].to_s.empty?
+      Department.current_department_name = "management"
+    else
+      Department.current_department_name = params[:department]
+    end
   end
 
   def find_department_name
