@@ -21,3 +21,16 @@ class Document < ActiveRecord::Base
   end
 
 end
+Department::DEPARTMENTS.each do |department_name|
+  Document.instance_eval %Q{
+    def #{department_name}
+      Department.find_by_name("#{department_name}").documents
+    end
+    def #{department_name.downcase}
+      Department.find_by_name("#{department_name}").documents
+    end
+    def #{department_name.upcase}
+      Department.find_by_name("#{department_name}").documents
+    end
+  }
+end

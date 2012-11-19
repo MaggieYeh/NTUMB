@@ -1,6 +1,8 @@
 # encoding: utf-8
 ActiveAdmin.register Document do     
-  menu parent: "上傳文件"
+  menu parent: "上傳文件" ,if: proc{ can?(:manage,Document) }
+  controller.authorize_resource
+
   form do |f|
     f.inputs "上傳檔案" do
       f.input :discription, input_html: { rows: 5 }

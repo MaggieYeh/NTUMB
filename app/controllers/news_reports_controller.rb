@@ -3,7 +3,7 @@ class NewsReportsController < ApplicationController
   before_filter :build_nav_list
 
   def index
-    @news_reports = NewsReport.all
+    @news_reports = NewsReport.send(@current_department_name)
   end
 
   def show

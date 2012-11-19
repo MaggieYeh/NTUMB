@@ -2,15 +2,18 @@
 # encoding: utf-8
 Page.descendants.each_with_index do |dpage,i|
   ActiveAdmin.register dpage do
+
     config.batch_actions = false
     config.paginate = false
     if dpage == ManagementPage
-      menu parent: "內容頁面", priority: 0
+      menu parent: "內容頁面", priority: 0,if: proc{ can?(:manage,dpage) }
     else
-      menu parent: "內容頁面"
+      menu parent: "內容頁面",if: proc{ can?(:manage,dpage) }
     end
     d_page = dpage.name.underscore
     d_pages = dpage.name.underscore.pluralize
+
+    controller.authorize_resource
 
     controller do
       def create
@@ -33,6 +36,8 @@ Page.descendants.each_with_index do |dpage,i|
     form do |f|                         
       f.inputs "#{d_page}" do
         f.input :url_name
+        f.input :delegated_to, label: "外部連結", 
+                hint: "如果有外部連結，則會直接連到你所輸入的網址，內文不會出現"
         f.input :parent_id, as: :select,
                  collection: page_tree_selection(f.object,dpage), 
                  selected: f.object.parent_id || params[:parent_id]
@@ -66,7 +71,7 @@ Page.descendants.each_with_index do |dpage,i|
               page_path = d_pages+"/"+page.id.to_s 
               pages_path = d_pages
               
-              unless page.delegated?
+              unless page.delegated_as_controller_index?
                 span do
                   link_to I18n.t("active_admin.edit"),"/admin/#{page_path}/edit"
                 end

@@ -3,7 +3,7 @@ class AnnouncementsController < ApplicationController
   before_filter :build_nav_list
 
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.send(@current_department_name)
   end
 
   def show

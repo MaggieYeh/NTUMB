@@ -8,14 +8,22 @@ class Ability
     if user.role? :super_admin
       can :manage, :all
     end
+    if user.role? :mc_admin
+      can :manage, :all
+      cannot :manage, AdminUser
+    end
     Page.descendants.each do |dpage|
       if user.role? dpage.to_admin_symbol
         dname = dpage.to_department_abbr_s
         can :manage, dpage
         can :manage, NewsReport, :department_id => Department.find_by_name(dname).id
-        can :manage, Announcement
+        can :manage, Announcement, :department_id => Department.find_by_name(dname).id
+        #can :manage, Announcement
         can :manage, DocumentCategory
+        cannot :destroy, DocumentCategory
         can :manage, Document, :department_id => Department.find_by_name(dname).id
+        can :manage, Carousel, :department_id => Department.find_by_name(dname).id
+        can :manage, Teacher, :department_id => Department.find_by_name(dname).id
       end
     end
     if user.role? :teacher

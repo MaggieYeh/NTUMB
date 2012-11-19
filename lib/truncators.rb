@@ -21,7 +21,7 @@ class MyTruncator
     end
 
     chosen_p.each_char.each_with_object(ret) do |c,r|
-      if r.bytesize + c.bytesize > 220
+      if r.bytesize + c.bytesize > 185
         break
       else
         r << c

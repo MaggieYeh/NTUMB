@@ -10,9 +10,9 @@ class NewsReport < ActiveRecord::Base
 
   before_validation :config_preview
 
-  translates :title, :content, :fallbacks_for_empty_translations => true
+  translates :title, :content, :preview_text, :fallbacks_for_empty_translations => true
   class Translation
-    attr_accessible :locale, :title, :content
+    attr_accessible :locale, :title, :content, :preview_text
     #validates :title, presence: true
     #validates :content, presence: true
   end
@@ -29,9 +29,27 @@ private
     if self.text_up.to_s.empty? 
       self.text_up = false
     end
-    if self.preview_text.to_s.empty?
-      self.preview_text = MyTruncator.preview_truncator(self.content)
+    if self.translation_for(:"zh-TW").preview_text.to_s.empty?
+      self.translation_for(:"zh-TW").preview_text = MyTruncator.preview_truncator(self.translation_for(:"zh-TW").content)
     end
+    if self.translation_for(:en).preview_text.to_s.empty?
+      self.translation_for(:en).preview_text = MyTruncator.preview_truncator(self.translation_for(:en).content)
+    end
+    self.translation_for(:"zh-TW").preview_text = self.translation_for(:"zh-TW").preview_text[0..70]
+    self.translation_for(:en).preview_text = self.translation_for(:en).preview_text[0..170]
   end
 
+end
+Department::DEPARTMENTS.each do |department_name|
+  NewsReport.instance_eval %Q{
+    def #{department_name}
+      Department.find_by_name("#{department_name}").news_reports
+    end
+    def #{department_name.downcase}
+      Department.find_by_name("#{department_name}").news_reports
+    end
+    def #{department_name.upcase}
+      Department.find_by_name("#{department_name}").news_reports
+    end
+  }
 end

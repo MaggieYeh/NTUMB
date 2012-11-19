@@ -2,8 +2,10 @@
 class StickerColor
   #COLOR_NAMES = %w[藍 紅 綠 紫 淺藍 橘色 太妃糖色 深藍 草綠 粉褐]
   #COLORS = %w[5183c7 c65152 9abb58 8465a7 4daecb ff9748 9a7016 293352 13c29f a2a012]
-  COLOR_NAMES = %w[藍 紅 紫 淺藍 橘色 太妃糖色 深藍 草綠 粉褐]
-  COLORS = %w[5183c7 c65152 8465a7 4daecb ff9748 9a7016 293352 13c29f a2a012]
+  #COLOR_NAMES = %w[藍 紅 紫 淺藍 橘色 太妃糖色 深藍 草綠 粉褐]
+  #COLORS = %w[5183c7 c65152 8465a7 4daecb ff9748 9a7016 293352 13c29f a2a012]
+  COLOR_NAMES = %w[藍 紅 紫 淺藍 橘色 太妃糖色 深藍 草綠]
+  COLORS = %w[5183c7 c65152 8465a7 4daecb ff9748 9a7016 293352 13c29f]
   def self.generate_stikcer_colors(num = 3)
     ret_colors = []
     if num > COLORS.count

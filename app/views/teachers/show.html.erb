@@ -4,24 +4,60 @@
   </div>
   <div class="span9">
     <img src="<%= @teacher.avatar.url %>" alt="" />
-    <span><%= @teacher.name %></span>
-    <span><%= @teacher.phone %></span>
-    <span><%= @teacher.cellphone %></span>
-    <span><%= @teacher.homepage %></span>
+    <table>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.title" %></td>
+        <td><%= @teacher.teacher_title.title_name %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.name" %></td>
+        <td><%= @teacher.name %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.room" %></td>
+        <td><%= @teacher.room %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.phone" %></td>
+        <td><%= @teacher.phone %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.cellphone" %></td>
+        <td><%= @teacher.cellphone %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.tax" %></td>
+        <td><%= @teacher.tax_number %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.homepage" %></td>
+        <td><%= @teacher.homepage %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t "front_end.teacher.email" %></td>
+        <td><%= @teacher.email %></td>
+      </tr>
+    </table>
     <ul>
+      <h4><%= I18n.t "front_end.teacher.educational_backgrounds"%></h4>
       <% @teacher.educational_backgrounds.each do |eb| %>
         <li><%= eb.name %></li>
       <% end %>
     </ul>
     <ul>
+      <h4><%= I18n.t "front_end.teacher.research_areas"%></h4>
       <% @teacher.research_areas.each do |ra| %>
         <li><%= ra.name %></li>
       <% end %>
     </ul>
     <ul>
+      <h4><%= I18n.t "front_end.teacher.courses"%></h4>
       <% @teacher.courses.each do |course| %>
         <li><%= course.name %></li>
       <% end %>
+    </ul>
+    <ul>
+      <h4><%= I18n.t "front_end.teacher.publications" %></h4>
     </ul>
   </div>
 </div>

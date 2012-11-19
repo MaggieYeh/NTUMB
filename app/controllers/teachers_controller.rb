@@ -4,7 +4,7 @@ class TeachersController < ApplicationController
 
   def index
     #@teachers = Teacher.page(params[:page])
-    @teachers = Teacher.all
+    @teachers = Teacher.send(@current_department_name)
     @title_categories = TeacherTitle.all
   end
 

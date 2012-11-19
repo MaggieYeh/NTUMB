@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
   before_filter :build_nav_list
 
   def index
-    @documents = Document.all
+    @documents = Document.send(@current_department_name)
   end
 
   def show

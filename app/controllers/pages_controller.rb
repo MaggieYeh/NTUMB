@@ -3,18 +3,18 @@ class PagesController < ApplicationController
   def view
     path = "/"+params[:path]
     @page = department_page_variable.find_by_path(path) || not_found
-    if @page.delegated?
+    if @page.delegated_as_controller_index?
       redirect_to :controller => @page.delegated_to.intern, :action => :index
     end
     build_page_nav
   end
 
   def home
-    @announcements = Announcement.send(@current_department_name)
-    @jobs_announcements = Announcement.send(@current_department_name).jobs
-    @student_announcements = Announcement.send(@current_department_name).student
-    @carousels = Carousel.recent
-    @news_all = NewsReport.recent(6)
+    @announcements = Announcement.send(@current_department_name).recent(8)
+    @jobs_announcements = Announcement.send(@current_department_name).recent(20).jobs
+    @student_announcements = Announcement.send(@current_department_name).recent(20).student
+    @carousels = Carousel.send(@current_department_name).recent(6)
+    @news_all = NewsReport.send(@current_department_name).recent(6)
     @news = @news_all[0..2] || []
     @news2 = @news_all[3..5] || []
     if Rails.cache.exist?('videos')

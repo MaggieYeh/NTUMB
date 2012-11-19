@@ -24,7 +24,7 @@ $linkColorHover: #999;
 }
 
 @mixin grey-gradient-background(){
-  width: 100%;
+  /*width: 100%;*/
   /*background-image: url(office.png);*/
   @include gradient-vertical(rgb(73,68,68),rgb(63,60,60));
 }
@@ -38,10 +38,31 @@ $linkColorHover: #999;
   }
 }
 
+@mixin hidden {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin visible {
+  display: initial;
+  visibility: visible;
+}
+
+
 /*------------- end of variable, mixin defines -------------*/
 
 html,body{
   height: 100%;
+}
+
+.visible-980-1200{
+  @include hidden;
+}
+
+@media (min-width: 980px) and (max-width: 1200px){
+  .visible-980-1200{
+    @include visible;
+  }
 }
 
 #header,#menu-wrapper,#footer,#department-links{
@@ -60,14 +81,20 @@ html,body{
       display: inline-block;
       float: left;
     }
+    img.aacsb{
+      display: inline-block;
+    }
     .kai{
-      font-family: dfkai-sb, stkaiti, 標楷體, 华文楷体;
+      font-family: 文鼎粗行楷, 華康郭泰碑, 書法家顏楷體, dfkai-sb, stkaiti, 標楷體, 华文楷体;
     }
     h1{
       padding: 0px;
       margin: 5px;
       margin-left: 0px;
       font-size: 2.3em;
+    }
+    .header-info{
+      display: inline-block; 
     }
     span{
       color: $grayLighter;
@@ -84,13 +111,16 @@ html,body{
   @include grey-gradient-background();
   /*border-top: 1px solid $red-grey-border;*/
   ol#main-menu{
-    @include center-aligned-menu-item();
+    /*@include center-aligned-menu-item();*/
     margin: 0px;
     >li>a:hover {
       background-color: $linkColorHover;
     }
     li.dropdown:hover {
       > ol.dropdown-menu{
+        span {
+          display: inline-block
+        }
         display: block;
         margin-top: 0px;
         >li>a:hover {
@@ -101,7 +131,7 @@ html,body{
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         li{
-          text-align: left;
+          /*text-align: left;*/
         }
       }
     }
@@ -148,6 +178,12 @@ html,body{
 }
 
 .page-nav{
+  li{
+    padding-left: 25px;
+  }
+  li.nav-parent{
+    padding-left: 0px; 
+  }
   margin-top: 10px;
   border: solid 1px #DDD;
   @include border-radius(10px);

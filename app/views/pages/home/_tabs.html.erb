@@ -1,15 +1,15 @@
 <ul class="nav nav-tabs" id="home-tabs">
-  <li class="active"><a href="#announcements" data-toggle="tab">即時訊息</a></li>
-  <li><a href="#youtube-channel" data-toggle="tab">管院頻道</a></li>
-  <li><a href="#recruiting" data-toggle="tab">管院徵才</a></li>
-  <li><a href="#students" data-toggle="tab">學生專區</a></li>
+  <li class="active"><a href="#announcements" data-toggle="tab">即時<br class="visible-980-1200"/>訊息</a></li>
+  <li><a href="#youtube-channel" data-toggle="tab">管院<br class="visible-980-1200"/>頻道</a></li>
+  <li><a href="#recruiting" data-toggle="tab">管院<br class="visible-980-1200"/>徵才</a></li>
+  <li><a href="#students" data-toggle="tab">學生<br class="visible-980-1200"/>專區</a></li>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
   <ul id="announcements" class="tab-pane unstyled active">
     <% @announcements.each do |a| %>
       <li>
         <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-published-time"><%= a.announce_date.to_s %></span>
           <span class="tab-item-title"><%= a.name %></span>
         </a>
       </li>
@@ -40,7 +40,7 @@
     <% @jobs_announcements.each do |a| %>
       <li>
         <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-published-time"><%= a.announce_date.to_date.to_s %></span>
           <span class="tab-item-title"><%= a.name %></span>
         </a>
       </li>
@@ -50,7 +50,7 @@
     <% @student_announcements.each do |a| %>
       <li>
         <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.created_at.to_date.to_s %></span>
+          <span class="tab-item-published-time"><%= a.announce_date.to_date.to_s %></span>
           <span class="tab-item-title"><%= a.name %></span>
         </a>
       </li>

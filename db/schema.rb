@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101072023) do
+ActiveRecord::Schema.define(:version => 20121119030105) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -74,14 +74,20 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.datetime "updated_at",           :null => false
     t.integer  "announce_category_id"
     t.date     "announce_date"
+    t.integer  "department_id"
   end
 
-  create_table "announcings", :force => true do |t|
-    t.integer  "announcement_id"
-    t.integer  "department_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "carousel_translations", :force => true do |t|
+    t.integer  "carousel_id"
+    t.string   "locale"
+    t.text     "caption"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
+
+  add_index "carousel_translations", ["carousel_id"], :name => "index_carousel_translations_on_carousel_id"
+  add_index "carousel_translations", ["locale"], :name => "index_carousel_translations_on_locale"
 
   create_table "carousels", :force => true do |t|
     t.string   "title"
@@ -111,6 +117,17 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
+
+  create_table "course_translations", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_translations", ["course_id"], :name => "index_course_translations_on_course_id"
+  add_index "course_translations", ["locale"], :name => "index_course_translations_on_locale"
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -156,6 +173,17 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.integer  "announcement_id"
   end
 
+  create_table "educational_background_translations", :force => true do |t|
+    t.integer  "educational_background_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "educational_background_translations", ["educational_background_id"], :name => "index_803252512f8f01f49e40ccda3b5d2da06ccfd84e"
+  add_index "educational_background_translations", ["locale"], :name => "index_educational_background_translations_on_locale"
+
   create_table "educational_backgrounds", :force => true do |t|
     t.string   "name"
     t.string   "require_year"
@@ -171,6 +199,7 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.text     "content"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "preview_text"
   end
 
   add_index "news_report_translations", ["locale"], :name => "index_news_report_translations_on_locale"
@@ -223,6 +252,17 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.string   "delegated_to"
   end
 
+  create_table "research_area_translations", :force => true do |t|
+    t.integer  "research_area_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "research_area_translations", ["locale"], :name => "index_research_area_translations_on_locale"
+  add_index "research_area_translations", ["research_area_id"], :name => "index_188cfa6d0995f7ffea2f12a9d681ed5cf26eb778"
+
   create_table "research_areas", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -266,6 +306,18 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "teacher_translations", :force => true do |t|
+    t.integer  "teacher_id"
+    t.string   "locale"
+    t.string   "name"
+    t.string   "room"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "teacher_translations", ["locale"], :name => "index_teacher_translations_on_locale"
+  add_index "teacher_translations", ["teacher_id"], :name => "index_teacher_translations_on_teacher_id"
+
   create_table "teachers", :force => true do |t|
     t.integer  "admin_user_id"
     t.integer  "department_id"
@@ -282,6 +334,7 @@ ActiveRecord::Schema.define(:version => 20121101072023) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "room"
   end
 
 end

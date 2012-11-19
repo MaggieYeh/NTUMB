@@ -29,7 +29,7 @@ module ActiveAdmin
                       #page_path= d_pages+"/" + child.id.to_s 
                       #pages_path= d_pages 
                       tree_node_path = tree_index_path + "/" + child.id.to_s
-                      unless child.delegated?
+                      unless child.delegated_as_controller_index?
                         span do
                           link_to I18n.t("active_admin.edit"),"/admin/#{tree_node_path}/edit"
                         end

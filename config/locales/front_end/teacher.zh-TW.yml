@@ -1,0 +1,15 @@
+"zh-TW":
+  front_end:
+    teacher:
+      title: "職稱"
+      name: "姓名"
+      room: "研究室"
+      phone: "電話"
+      cellphone: "手機"
+      tax: "傳真"
+      homepage: "個人網頁"
+      email: "E-mail"
+      educational_backgrounds: "學歷"
+      research_areas: "研究領域"
+      courses: "開設課程"
+      publications: "著作"
