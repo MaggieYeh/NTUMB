@@ -53,7 +53,7 @@ private
 
   def find_department_name
     @current_department_name = Department.current_department_name
-    @department_names = Department.pluck("name")
+    @department_names = Department::DEPARTMENTS
   end
 
   def build_links
@@ -75,8 +75,13 @@ private
   def create_menu(d_const)
     menu = {}
     d_const.roots.sort_by{|p| p.position}.each do |p|
-      menu[p.menu_title.intern] = { path: ::MyUtils.page_path_to(p), 
-                                    children: p.children && create_child_menu(p.children) }
+      unless p.translation_for(I18n.locale).menu_title.to_s.empty?
+        menu[p.menu_title.intern] = { path: ::MyUtils.page_path_to(p), 
+                                      children: p.children && create_child_menu(p.children) }
+      end
+    end
+    if @current_department_name == "management"
+      menu["International Affairs"] = { path: "/en/ia", children: "" }
     end
     menu
   end
@@ -84,9 +89,11 @@ private
   def create_child_menu(pages)
     child_menu = {}
     pages.sort_by{|p| p.position}.each do |p|
-      child_menu[p.menu_title.intern] = { 
-        path: (p.delegated? and !p.delegated_as_controller_index?) ? p.delegated_to : ::MyUtils.page_path_to(p), 
-        children: p.children && create_child_menu(p.children) }
+      unless p.translation_for(I18n.locale).menu_title.to_s.empty?
+        child_menu[p.menu_title.intern] = { 
+          path: (p.delegated? and !p.delegated_as_controller_index?) ? p.delegated_to : ::MyUtils.page_path_to(p), 
+          children: p.children && create_child_menu(p.children) }
+      end
     end
     child_menu
   end

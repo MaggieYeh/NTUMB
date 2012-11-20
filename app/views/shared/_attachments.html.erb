@@ -1,0 +1,8 @@
+<ul class="unstyled attachments">
+  <% documents.each_with_index do |document,i| %>
+    <li>
+      <span>附件<%= i + 1 %>：</span>
+      <%= link_to document.document_file_file_name, document.document_file.url %>
+    </li>
+  <% end %>
+</ul>

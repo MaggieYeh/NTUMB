@@ -14,6 +14,11 @@ class Page < ActiveRecord::Base
   attr_accessible :parent_id
   belongs_to :department
 
+  attr_accessible :documents_attributes
+  has_many :documents
+  accepts_nested_attributes_for :documents, :reject_if => proc { |d| d[:document_file].blank?},
+                                :allow_destroy => true
+
   translates :menu_title, :title, :content, :fallbacks_for_empty_translations => true
   class Translation
     attr_accessible :locale, :title, :content, :menu_title

@@ -4,9 +4,14 @@
       <% @menu.each do |menu_name,path_and_children| %>
         <% has_child = !path_and_children[:children].empty? %>
         <li <%= has_child ? "class='dropdown'" : "" %>>
-          <%= link_to menu_name.to_s, path_and_children[:path] %>
           <% if has_child %>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+              <%= menu_name.to_s %>
+              <span class="caret"></span>
+            </a>
             <%= render :partial => "shared/menu_branch", :object => path_and_children[:children]%>
+          <% else %>
+            <%= link_to menu_name.to_s, path_and_children[:path] %>
           <% end %>
         </li>
       <% end %>

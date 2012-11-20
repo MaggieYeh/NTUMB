@@ -14,6 +14,7 @@ class Department < ActiveRecord::Base
 
   cattr_accessor :current_department_name
 
-  DEPARTMENTS = %w[Management BA Acc Fin IB IM GMBA EMBA]
+  DEPARTMENTS = %w[Management BA Acc Fin IB IM EMBA GMBA]
+  INTERNATIONAL_AFFAIRS = "IA"
 
 end

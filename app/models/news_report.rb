@@ -1,10 +1,14 @@
 class NewsReport < ActiveRecord::Base
-  attr_accessible :department_id
+  attr_accessible :department_id, :announce_date
   belongs_to :department
   attr_accessible :translations_attributes, :content, :title
   attr_accessible :preview, :text_up, :preview_color, :preview_text
   has_attached_file :preview, styles: { thumb: "290x150#", small: "175x130#" }
 
+  attr_accessible :documents_attributes
+  has_many :documents
+  accepts_nested_attributes_for :documents, :reject_if => proc { |d| d[:document_file].blank?},
+                                :allow_destroy => true
 
   validates :department_id, presence: true
 
@@ -18,7 +22,7 @@ class NewsReport < ActiveRecord::Base
   end
   accepts_nested_attributes_for :translations
 
-  scope :recent, proc{|n = 3| order("created_at DESC").limit(n)}
+  scope :recent, proc{|n = 3| order("announce_date DESC").limit(n)}
 
 private
 
@@ -36,20 +40,21 @@ private
       self.translation_for(:en).preview_text = MyTruncator.preview_truncator(self.translation_for(:en).content)
     end
     self.translation_for(:"zh-TW").preview_text = self.translation_for(:"zh-TW").preview_text[0..70]
-    self.translation_for(:en).preview_text = self.translation_for(:en).preview_text[0..170]
+    self.translation_for(:en).preview_text = self.translation_for(:en).preview_text[0..140]
   end
 
 end
-Department::DEPARTMENTS.each do |department_name|
-  NewsReport.instance_eval %Q{
-    def #{department_name}
-      Department.find_by_name("#{department_name}").news_reports
-    end
-    def #{department_name.downcase}
-      Department.find_by_name("#{department_name}").news_reports
-    end
-    def #{department_name.upcase}
-      Department.find_by_name("#{department_name}").news_reports
-    end
-  }
-end
+::MyUtils.add_department_scopes(NewsReport)
+#(Department::DEPARTMENTS + Department::INTERNATIONAL_AFFAIRS).each do |department_name|
+  #NewsReport.instance_eval %Q{
+    #def #{department_name}
+      #Department.find_by_name("#{department_name}").news_reports
+    #end
+    #def #{department_name.downcase}
+      #Department.find_by_name("#{department_name}").news_reports
+    #end
+    #def #{department_name.upcase}
+      #Department.find_by_name("#{department_name}").news_reports
+    #end
+  #}
+#end

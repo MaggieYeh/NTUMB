@@ -29,16 +29,17 @@ class Teacher < ActiveRecord::Base
                                 :allow_destroy => true
 
 end
-Department::DEPARTMENTS.each do |department_name|
-  Teacher.instance_eval %Q{
-    def #{department_name}
-      Department.find_by_name("#{department_name}").teachers
-    end
-    def #{department_name.downcase}
-      Department.find_by_name("#{department_name}").teachers
-    end
-    def #{department_name.upcase}
-      Department.find_by_name("#{department_name}").teachers
-    end
-  }
-end
+::MyUtils.add_department_scopes(Teacher)
+#(Department::DEPARTMENTS.append(Department::INTERNATIONAL_AFFAIRS)).each do |department_name|
+  #Teacher.instance_eval %Q{
+    #def #{department_name}
+      #Department.find_by_name("#{department_name}").teachers
+    #end
+    #def #{department_name.downcase}
+      #Department.find_by_name("#{department_name}").teachers
+    #end
+    #def #{department_name.upcase}
+      #Department.find_by_name("#{department_name}").teachers
+    #end
+  #}
+#end

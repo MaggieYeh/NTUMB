@@ -1,8 +1,11 @@
 class Document < ActiveRecord::Base
-  attr_accessible :document_category_id, :document_file, :department_id, :discription, :announcement_id
+  attr_accessible :document_category_id, :document_file, :department_id, :discription, 
+                  :announcement_id, :news_report_id, :page_id
   belongs_to :document_category
   belongs_to :department
   belongs_to :announcement
+  belongs_to :news_report
+  belongs_to :page
   has_attached_file :document_file
 
   validates_attachment :document_file, presence: true
@@ -21,16 +24,17 @@ class Document < ActiveRecord::Base
   end
 
 end
-Department::DEPARTMENTS.each do |department_name|
-  Document.instance_eval %Q{
-    def #{department_name}
-      Department.find_by_name("#{department_name}").documents
-    end
-    def #{department_name.downcase}
-      Department.find_by_name("#{department_name}").documents
-    end
-    def #{department_name.upcase}
-      Department.find_by_name("#{department_name}").documents
-    end
-  }
-end
+::MyUtils.add_department_scopes(Document)
+#(Department::DEPARTMENTS + Department::INTERNATIONAL_AFFAIRS).each do |department_name|
+  #Document.instance_eval %Q{
+    #def #{department_name}
+      #Department.find_by_name("#{department_name}").documents
+    #end
+    #def #{department_name.downcase}
+      #Department.find_by_name("#{department_name}").documents
+    #end
+    #def #{department_name.upcase}
+      #Department.find_by_name("#{department_name}").documents
+    #end
+  #}
+#end

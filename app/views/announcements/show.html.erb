@@ -5,5 +5,6 @@
   <div class="span9">
     <h3><%= @announcement.name %></h3>
     <%= raw @announcement.content %>
+    <%= render "shared/attachments", documents: @announcement.documents %>
   </div>
 </div>

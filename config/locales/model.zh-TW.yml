@@ -16,6 +16,9 @@
       ib_page:
         one: "國企系頁面"
         other: "國企系頁面"
+      ia_page:
+        one: "國際事務頁面"
+        other: "國際事務頁面"
       gmba_page:
         one: "GMBA頁面"
         other: "GMBA頁面"

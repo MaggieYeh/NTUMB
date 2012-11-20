@@ -13,16 +13,17 @@ class Carousel < ActiveRecord::Base
   belongs_to :department
   
 end
-Department::DEPARTMENTS.each do |department_name|
-  Carousel.instance_eval %Q{
-    def #{department_name}
-      Department.find_by_name("#{department_name}").carousels
-    end
-    def #{department_name.downcase}
-      Department.find_by_name("#{department_name}").carousels
-    end
-    def #{department_name.upcase}
-      Department.find_by_name("#{department_name}").carousels
-    end
-  }
-end
+::MyUtils.add_department_scopes(Carousel)
+#Department::DEPARTMENTS.each do |department_name|
+  #Carousel.instance_eval %Q{
+    #def #{department_name}
+      #Department.find_by_name("#{department_name}").carousels
+    #end
+    #def #{department_name.downcase}
+      #Department.find_by_name("#{department_name}").carousels
+    #end
+    #def #{department_name.upcase}
+      #Department.find_by_name("#{department_name}").carousels
+    #end
+  #}
+#end

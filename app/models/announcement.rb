@@ -53,16 +53,19 @@ private
   #end
     
 end
-Department::DEPARTMENTS.each do |department_name|
-  Announcement.instance_eval %Q{
-    def #{department_name}
-      Department.find_by_name("#{department_name}").announcements
-    end
-    def #{department_name.downcase}
-      Department.find_by_name("#{department_name}").announcements
-    end
-    def #{department_name.upcase}
-      Department.find_by_name("#{department_name}").announcements
-    end
-  }
-end
+
+::MyUtils.add_department_scopes(Announcement)
+
+#(Department::DEPARTMENTS + Department::INTERNATIONAL_AFFAIRS).each do |department_name|
+  #Announcement.instance_eval %Q{
+    #def #{department_name}
+      #Department.find_by_name("#{department_name}").announcements
+    #end
+    #def #{department_name.downcase}
+      #Department.find_by_name("#{department_name}").announcements
+    #end
+    #def #{department_name.upcase}
+      #Department.find_by_name("#{department_name}").announcements
+    #end
+  #}
+#end

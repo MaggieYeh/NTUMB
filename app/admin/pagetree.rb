@@ -42,6 +42,19 @@ Page.descendants.each_with_index do |dpage,i|
                  collection: page_tree_selection(f.object,dpage), 
                  selected: f.object.parent_id || params[:parent_id]
       end
+      f.inputs "新增附件（非必要）" do
+        f.has_many :documents do |d|
+          d.input :discription, input_html: { rows: 5 }
+          d.input :document_file
+          d.input :document_category
+          d.input :department,
+                  :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
+          if d.object.id
+            d.input :_destroy, :as => :boolean, :label => "delete"
+          end
+          d.form_buffers.last # to avoid bug with nil possibly being returned from the above
+        end
+      end
       f.globalize_inputs :translations do |gf|
         gf.inputs do
           gf.input :title

@@ -55,6 +55,11 @@ html,body{
   height: 100%;
 }
 
+.attachments{
+
+  margin-top: 15px;
+}
+
 .visible-980-1200{
   @include hidden;
 }
@@ -113,15 +118,20 @@ html,body{
   ol#main-menu{
     /*@include center-aligned-menu-item();*/
     margin: 0px;
+    .caret {
+      border-top-color: #ddd !important;
+      border-bottom-color: #ddd !important;
+    }
     >li>a:hover {
       background-color: $linkColorHover;
     }
-    li.dropdown:hover {
+    /*li.dropdown:hover {*/
+    li.dropdown {
       > ol.dropdown-menu{
         span {
           display: inline-block
         }
-        display: block;
+        /*display: block;*/
         margin-top: 0px;
         >li>a:hover {
           background-color: $linkColorHover;

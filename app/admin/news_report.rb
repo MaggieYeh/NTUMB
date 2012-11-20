@@ -68,7 +68,7 @@ ActiveAdmin.register NewsReport do
         span "有"
       end
     end
-    column :created_at
+    column :announce_date
     default_actions                   
   end
 
@@ -98,8 +98,24 @@ ActiveAdmin.register NewsReport do
       end
     end
     f.inputs do
+      date_value = f.object.announce_date || (f.object.created_at.nil? ? Date.today.strftime : f.object.created_at.to_date)
+      f.input :announce_date, label: "發佈日期", as: :datepicker,
+              input_html: {value: date_value }
       f.input :department, label: "所屬系所", include_blank: false,
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
+    end
+    f.inputs "新增附件（非必要）" do
+      f.has_many :documents do |d|
+        d.input :discription, input_html: { rows: 5 }
+        d.input :document_file
+        d.input :document_category
+        d.input :department,
+                :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
+        if d.object.id
+          d.input :_destroy, :as => :boolean, :label => "delete"
+        end
+        d.form_buffers.last # to avoid bug with nil possibly being returned from the above
+      end
     end
     f.inputs "預覽" do
       f.input :preview, label: "預覽圖", hint: "請盡量選擇16:9左右的寬照片"

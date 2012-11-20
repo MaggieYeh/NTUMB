@@ -4,6 +4,7 @@
 Department::DEPARTMENTS.each do |d|
   Department.find_or_create_by_name(d)
 end
+Department.find_or_create_by_name(Department::INTERNATIONAL_AFFAIRS)
 
 AnnounceCategory::CATEGORIES.each do |c|
   AnnounceCategory.find_or_create_by_name(c)
