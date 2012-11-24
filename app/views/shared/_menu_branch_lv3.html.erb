@@ -1,0 +1,9 @@
+<ol class="dropdown-menu">
+  <% menu_branch_lv3.each do |menu_name,path_and_children| %>
+    <li>
+      <span>
+        <%= link_to menu_name.to_s, path_and_children[:path] %>
+      </span>
+    </li>
+  <% end %>
+</ol>

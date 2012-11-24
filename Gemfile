@@ -13,6 +13,7 @@ gem 'mysql2'
 gem 'rails-i18n'
 gem 'bootstrap-sass'
 gem 'therubyracer'
+gem 'htmlentities'
 
 
 # Gems used only for assets and not required

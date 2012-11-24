@@ -4,7 +4,11 @@ class TeachersController < ApplicationController
 
   def index
     #@teachers = Teacher.page(params[:page])
-    @teachers = Teacher.send(@current_department_name)
+    if @current_department_name == "management"
+      @teachers = Teacher.all
+    else
+      @teachers = Teacher.send(@current_department_name)
+    end
     @title_categories = TeacherTitle.all
   end
 

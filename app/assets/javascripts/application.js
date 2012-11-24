@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require links
+//= require decorations
 //= require bootstrap

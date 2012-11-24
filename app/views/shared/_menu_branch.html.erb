@@ -1,13 +1,17 @@
 <ol class="dropdown-menu">
   <% menu_branch.each do |menu_name,path_and_children| %>
-    <% has_child = !path_and_children[:children].empty? %>
-    <li <%= has_child ? "class='dropdown'" : "" %>>
+    <% has_child = !(path_and_children[:children].empty?) %>
+    <% unless has_child %>
+    <li>
       <span>
         <%= link_to menu_name.to_s, path_and_children[:path] %>
       </span>
     </li>
-    <% if has_child  %>
-      <%= render :partial => "shared/menu_branch", :object => path_and_children[:children]%>
+    <% else %>
+      <li class="dropdown-submenu">
+        <%= link_to menu_name.to_s, "#" %>
+        <%= render :partial => "shared/menu_branch_lv3", :object => path_and_children[:children]%>
+      </li>
     <% end %>
   <% end %>
 </ol>

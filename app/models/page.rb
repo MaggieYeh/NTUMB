@@ -32,8 +32,9 @@ class Page < ActiveRecord::Base
   validates :url_name, :presence => true
 
   before_validation :check_department
-  before_validation :check_menu_title
+  #before_validation :check_menu_title
   before_validation :give_last_position
+  before_validation :check_delegated_path
 
   before_save :update_path
 
@@ -87,9 +88,18 @@ class Page < ActiveRecord::Base
 
   private
 
-  def check_menu_title
-    if self.menu_title.to_s.empty?
-      self.menu_title = self.url_name
+  #def check_menu_title
+    #if self.menu_title.to_s.empty?
+      #self.menu_title = self.url_name
+    #end
+  #end
+  #
+
+  def check_delegated_path
+    unless self.delegated_to.to_s.empty?
+      unless self.delegated_to.to_s.match(/^(http:\/\/|https:\/\/|ftp:\/\/)/)
+        self.delegated_to.prepend("http://")
+      end
     end
   end
 

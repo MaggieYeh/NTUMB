@@ -72,12 +72,14 @@ private
     Department.current_department_name.downcase.concat("_page").camelcase.constantize
   end
 
+        #menu[p.menu_title.intern] = { ::MyUtils.page_path_to(p), 
   def create_menu(d_const)
     menu = {}
     d_const.roots.sort_by{|p| p.position}.each do |p|
       unless p.translation_for(I18n.locale).menu_title.to_s.empty?
-        menu[p.menu_title.intern] = { path: ::MyUtils.page_path_to(p), 
-                                      children: p.children && create_child_menu(p.children) }
+        menu[p.menu_title.intern] = { 
+          path: (p.delegated? and !p.delegated_as_controller_index?) ? p.delegated_to : ::MyUtils.page_path_to(p),
+          children: p.children && create_child_menu(p.children) }
       end
     end
     if @current_department_name == "management"

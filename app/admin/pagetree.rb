@@ -38,9 +38,20 @@ Page.descendants.each_with_index do |dpage,i|
         f.input :url_name
         f.input :delegated_to, label: "外部連結", 
                 hint: "如果有外部連結，則會直接連到你所輸入的網址，內文不會出現"
-        f.input :parent_id, as: :select,
-                 collection: page_tree_selection(f.object,dpage), 
-                 selected: f.object.parent_id || params[:parent_id]
+        #f.input :parent_id, as: :select,
+                 #collection: page_tree_selection(f.object,dpage), 
+                 #selected: f.object.parent_id || params[:parent_id]
+        f.input :parent_id, as: :hidden,
+                :input_html => { :value => f.object.parent_id || params[:parent_id] }
+      end
+      f.globalize_inputs :translations do |gf|
+        gf.inputs do
+          gf.input :menu_title, label: "選單名稱",
+                   hint: "若將該語言的選單名稱留空白，則此頁面就不會在該語言出現"
+          gf.input :title, label: "頁面標題"
+          gf.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 }
+          gf.input :locale, as: :hidden
+        end
       end
       f.inputs "新增附件（非必要）" do
         f.has_many :documents do |d|
@@ -53,14 +64,6 @@ Page.descendants.each_with_index do |dpage,i|
             d.input :_destroy, :as => :boolean, :label => "delete"
           end
           d.form_buffers.last # to avoid bug with nil possibly being returned from the above
-        end
-      end
-      f.globalize_inputs :translations do |gf|
-        gf.inputs do
-          gf.input :title
-          gf.input :menu_title
-          gf.input :content, as: :ckeditor, input_html: { height: 500 }
-          gf.input :locale, as: :hidden
         end
       end
       f.actions                         

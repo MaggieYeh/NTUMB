@@ -23,16 +23,18 @@
                     <span class="teacher-data teacher-homepage">個人網頁 </span>
                   </li>
                 <% tc.teachers.each do |teacher| %>
-                  <li>
-                    <span class="teacher-data teacher-name">
-                      <%= link_to teacher.name, teacher_path(teacher) %>
-                    </span>
-                    <span class="teacher-data teacher-email"><%= teacher.email %></span>
-                    <span class="teacher-data teacher-room"></span>
-                    <span class="teacher-data teacher-homepage">
-                      <%= link_to teacher.homepage, teacher.homepage %>
-                    </span>
-                  </li>
+                  <% if @teachers.include?(teacher) %>
+                    <li>
+                      <span class="teacher-data teacher-name">
+                        <%= link_to teacher.name, teacher_path(teacher) %>
+                      </span>
+                      <span class="teacher-data teacher-email"><%= teacher.email %></span>
+                      <span class="teacher-data teacher-room"></span>
+                      <span class="teacher-data teacher-homepage">
+                        <%= link_to teacher.homepage, teacher.homepage %>
+                      </span>
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
             </div>

@@ -64,7 +64,7 @@ private
     end
     ret["description"] = video_entry.css("media|group media|description").text[0..20]
     ret["published_at"] = Time.strptime(video_entry.css("published").text,'%Y-%m-%d').to_date.to_s
-    ret["view_count"] = video_entry.css("yt|statistics").attr('viewCount').value
+    #ret["view_count"] = video_entry.css("yt|statistics").attr('viewCount').value
     ret
   end
 

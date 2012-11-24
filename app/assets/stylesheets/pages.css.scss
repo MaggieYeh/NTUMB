@@ -88,8 +88,6 @@ ul#youtube-channel{
   li>a:hover {
     background-color: #aaa;
   }
-  li.active{
-  }
   li.active>a{
     border-color: $nav-border-color !important;
     background-color: $nav-active-bg-color;
