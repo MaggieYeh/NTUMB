@@ -4,8 +4,8 @@ development:
   reconnect: false
   database: NTUMB_development
   pool: 5
-  username: root
-  password: 'mcc2012'
+  username: 
+  password: ''
   host: localhost
   socket: /var/lib/mysql/mysql.sock
 
@@ -15,8 +15,8 @@ test:
   reconnect: false
   database: NTUMB_test
   pool: 5
-  username: root
-  password: 'mcc2012'
+  username: 
+  password: 
   host: localhost
   socket: /var/lib/mysql/mysql.sock
 
@@ -26,8 +26,8 @@ production:
   reconnect: false
   database: NTUMB_production
   pool: 5
-  username: root
-  password: 'mcc2012'
+  username: 
+  password:
   host: localhost
   socket: /var/lib/mysql/mysql.sock
 
