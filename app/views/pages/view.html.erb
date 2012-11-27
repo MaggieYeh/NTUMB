@@ -7,7 +7,9 @@
     <% 
         @output = Nokogiri::HTML::DocumentFragment.parse(@page.content)
     %>
+  <div class="user-input-content">
     <%= raw @output.to_html %>
+  </div>
     <%= render "shared/attachments", documents: @page.documents %>
   </div>
 </div>
