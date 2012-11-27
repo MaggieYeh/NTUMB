@@ -4,7 +4,10 @@
   </div>
   <div class="span9">
     <h3><%= @news_report.title %></h3>
-    <%= raw @news_report.content %>
+    <% 
+        @output = Nokogiri::HTML::DocumentFragment.parse(@news_report.content)
+    %>
+    <%= raw @output.to_html %>
     <%= render "shared/attachments", documents: @news_report.documents %>
   </div>
 </div>
