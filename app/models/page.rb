@@ -38,7 +38,7 @@ class Page < ActiveRecord::Base
 
   before_save :update_path
 
-  acts_as_nested_set
+  acts_as_nested_set dependent: :destroy
 
   scope :delegated, where("delegated_to <> ''")
 
