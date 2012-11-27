@@ -23,10 +23,10 @@ if TeacherTitle.count == 0
   end
 end
  #again it's a one time patch
-TeacherTitle.all.zip(TeacherTitle::TITLES_en) do |t|
-  t[0].translation_for(:en).title_name = t[1]
-  t[0].save
-end
+#TeacherTitle.all.zip(TeacherTitle::TITLES_en) do |t|
+  #t[0].translation_for(:en).title_name = t[1]
+  #t[0].save
+#end
 
 Page.descendants.each do |department_page|
   Page::MODEL_INDEX_PAGES.each do |controller|
@@ -71,15 +71,15 @@ Page.descendants.each do |department_page|
   #end #8.times i
 end # PAGE.descendans do
 #below used once and be thrown away to monkey patch records
-Page.descendants.each do |department_page|
-  Page::MODEL_INDEX_PAGES.each do |controller|
-    p = department_page.delegated.find_by_delegated_to(controller)
-    unless p.nil?
-      p.translation_for(:en).menu_title = I18n.t("front_end.#{controller}",:locale => :en)
-      p.save
-    end
-  end
-end
+#Page.descendants.each do |department_page|
+  #Page::MODEL_INDEX_PAGES.each do |controller|
+    #p = department_page.delegated.find_by_delegated_to(controller)
+    #unless p.nil?
+      #p.translation_for(:en).menu_title = I18n.t("front_end.#{controller}",:locale => :en)
+      #p.save
+    #end
+  #end
+#end
 
 if AdminUser.count == 0
   super_admin = AdminUser.new
