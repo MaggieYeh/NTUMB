@@ -9,11 +9,15 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'rails-i18n'
 gem 'bootstrap-sass'
 gem 'therubyracer'
 gem 'htmlentities'
+
+# 11/27
+#gem 'acts_as_archive'
+gem 'paranoia'
 
 
 # Gems used only for assets and not required

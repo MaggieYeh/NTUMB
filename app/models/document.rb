@@ -1,4 +1,5 @@
 class Document < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :document_category_id, :document_file, :department_id, :discription, 
                   :announcement_id, :news_report_id, :page_id
   belongs_to :document_category

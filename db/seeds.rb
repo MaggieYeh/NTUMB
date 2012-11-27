@@ -22,11 +22,11 @@ if TeacherTitle.count == 0
     a_title.save
   end
 end
-# again it's a one time patch
-#TeacherTitle.all.zip(TeacherTitle::TITLES_en) do |t|
-  #t[0].translation_for(:en).title_name = t[1]
-  #t[0].save
-#end
+ #again it's a one time patch
+TeacherTitle.all.zip(TeacherTitle::TITLES_en) do |t|
+  t[0].translation_for(:en).title_name = t[1]
+  t[0].save
+end
 
 Page.descendants.each do |department_page|
   Page::MODEL_INDEX_PAGES.each do |controller|
@@ -44,17 +44,42 @@ Page.descendants.each do |department_page|
           end
         end
       }
+    end # unless
+  end # PAGE::MODEL do
+  #8.times do |i|
+    #a = department_page.new
+    #a.translation_for(:"zh-TW").menu_title = "#{i} zh-TW"
+    #a.translation_for(:en).menu_title = "#{i} en"
+    #a.url_name = i.to_s
+    #a.save
+    #8.times do |j|
+      #b = department_page.new
+      #b.translation_for(:"zh-TW").menu_title = "#{i}-#{j} zh-TW"
+      #b.translation_for(:en).menu_title = "#{i}-#{j} en"
+      #b.url_name = "#{i}-#{j}"
+      #b.parent = a
+      #b.save
+      #4.times do |k|
+        #c = department_page.new
+        #c.translation_for(:"zh-TW").menu_title = "#{i}-#{j}-#{k} zh-TW"
+        #c.translation_for(:en).menu_title = "#{i}-#{j}-#{k} en"
+        #c.url_name = "#{i}-#{j}-#{k}"
+        #c.parent = b
+        #c.save
+      #end #8.times k
+    #end #8.times j
+  #end #8.times i
+end # PAGE.descendans do
+#below used once and be thrown away to monkey patch records
+Page.descendants.each do |department_page|
+  Page::MODEL_INDEX_PAGES.each do |controller|
+    p = department_page.delegated.find_by_delegated_to(controller)
+    unless p.nil?
+      p.translation_for(:en).menu_title = I18n.t("front_end.#{controller}",:locale => :en)
+      p.save
     end
   end
 end
-#below used once and be thrown away to monkey patch records
-#Page.descendants.each do |department_page|
-  #Page::MODEL_INDEX_PAGES.each do |controller|
-    #p = department_page.delegated.find_by_delegated_to(controller)
-    #p.translation_for(:en).menu_title = I18n.t("front_end.#{controller}",:locale => :en)
-    #p.save
-  #end
-#end
 
 if AdminUser.count == 0
   super_admin = AdminUser.new

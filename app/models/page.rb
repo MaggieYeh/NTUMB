@@ -6,6 +6,7 @@ class Page < ActiveRecord::Base
   # like: url, page, admin, etc
   #
 
+  acts_as_paranoid
   MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents]
   RESERVED_PATH = MODEL_INDEX_PAGES + %w[url page admin]
 
@@ -38,7 +39,7 @@ class Page < ActiveRecord::Base
 
   before_save :update_path
 
-  acts_as_nested_set
+  acts_as_nested_set dependent: :destroy
 
   scope :delegated, where("delegated_to <> ''")
 
