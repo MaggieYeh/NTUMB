@@ -1,6 +1,7 @@
 class Announcement < ActiveRecord::Base
   #before_validation :check_empty_departments
 
+  acts_as_paranoid
   attr_accessible :due_date, :announce_date
   attr_accessible :department_id
   attr_accessible :announce_category_id

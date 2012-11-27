@@ -1,4 +1,5 @@
 class NewsReport < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :department_id, :announce_date
   belongs_to :department
   attr_accessible :translations_attributes, :content, :title

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121119203031) do
+ActiveRecord::Schema.define(:version => 20121127031450) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121119203031) do
     t.integer  "announce_category_id"
     t.date     "announce_date"
     t.integer  "department_id"
+    t.datetime "deleted_at"
   end
 
   create_table "carousel_translations", :force => true do |t|
@@ -173,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20121119203031) do
     t.integer  "announcement_id"
     t.integer  "news_report_id"
     t.integer  "page_id"
+    t.datetime "deleted_at"
   end
 
   create_table "educational_background_translations", :force => true do |t|
@@ -221,6 +223,7 @@ ActiveRecord::Schema.define(:version => 20121119203031) do
     t.string   "preview_color"
     t.string   "preview_text"
     t.date     "announce_date"
+    t.datetime "deleted_at"
   end
 
   create_table "page_translations", :force => true do |t|
@@ -253,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20121119203031) do
     t.string   "type"
     t.string   "url_name"
     t.string   "delegated_to"
+    t.datetime "deleted_at"
   end
 
   create_table "research_area_translations", :force => true do |t|
@@ -338,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20121119203031) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "room"
+    t.datetime "deleted_at"
   end
 
 end

@@ -1,0 +1,21 @@
+Page:
+  - class: Page::Archive
+    table: archived_pages
+Department:
+  - class: Department::Archive
+    table: archived_departments
+Teacher:
+  - class: Teacher::Archive
+    table: archived_teachers
+Document:
+  - class: Document::Archive
+    table: archived_documents
+NewsReport:
+  - class: NewsReport::Archive
+    table: archived_new_reports
+Announcement:
+  - class: Announcement::Archive
+    table: archived_announcements
+Carousel:
+  - class: Carousel::Archive
+    table: archived_carousels
