@@ -1,0 +1,30 @@
+<div id="header-wrapper">
+  <div class="container" id="header">
+    <div class="row">
+      <div class="span6">
+          <a href="<%= @header_link %>">
+            <%= image_tag("logo.png", size: "60x60") %>
+            <h1 class="kai"><%= @header_text %></h1>
+            <span>National Taiwan University College of Management</span>
+         </a>
+      </div>
+      <div class="span6">
+        <div class="header-info">
+          <form class="form-search">
+            <input type="text" placeholder="search" class="input-medium search-query">
+            <button type="submit"><i class="icon-search"></i></button>
+          </form>
+          <% if I18n.locale == :en %>
+            <%= link_to "中文", "/" %>
+          <% else %>
+            <%= link_to "English", "/en" %>
+          <% end %>
+          <%= link_to I18n.t("front_end.contact"), "/contact" %>
+          <%= link_to I18n.t("front_end.sitemap"), "/sitemap" %>
+          <%= link_to I18n.t("front_end.ntu_site"), "http://www.ntu.edu.tw" %>
+        </div>
+        <%= image_tag("aacsb.png",width: "180", class: "aacsb") %>
+      </div>
+    </div><!-- row -->
+  </div><!-- header -->
+</div><!-- header-wrapper -->
