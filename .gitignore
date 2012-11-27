@@ -16,7 +16,7 @@
 /db/seeds.rb
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*.log*
 /tmp
 
 # Ignore update assets
