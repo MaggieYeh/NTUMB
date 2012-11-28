@@ -17,7 +17,7 @@ ActiveAdmin.register Teacher do
       f.input :cellphone, label: '手機'
       f.input :tax_number, label: "傳真"
       f.input :avatar, label: "照片"
-      f.input :teacher_title, member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
+      f.input :teacher_title, label: "職稱", member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
       f.input :email
       f.input :homepage, label: "個人網頁"
     end
