@@ -97,9 +97,11 @@ class Page < ActiveRecord::Base
   #
 
   def check_delegated_path
-    unless self.delegated_to.to_s.empty?
-      unless self.delegated_to.to_s.match(/^(http:\/\/|https:\/\/|ftp:\/\/)/)
-        self.delegated_to.prepend("http://")
+    unless self.delegated_as_controller_index?
+      unless self.delegated_to.to_s.empty?
+        unless self.delegated_to.to_s.match(/^(http:\/\/|https:\/\/|ftp:\/\/)/)
+          self.delegated_to.prepend("http://")
+        end
       end
     end
   end
