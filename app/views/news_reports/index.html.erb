@@ -10,7 +10,7 @@
       <div class="news-item row">
         <%= image_tag(news.preview.url(:small), class: i%2 == 1 ? "pull-right" : "pull-left" ) %>
         <h4><%= news.title %></h4>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...更多", news_report_path(news) %></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...more", news_report_path(news) %></p>
       </div>
     <% end %>
   </div>

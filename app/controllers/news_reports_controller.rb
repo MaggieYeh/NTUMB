@@ -3,7 +3,9 @@ class NewsReportsController < ApplicationController
   before_filter :build_nav_list
 
   def index
-    @news_reports = NewsReport.send(@current_department_name)
+    @news_reports = NewsReport.send(@current_department_name).select do |n|
+      !n.translation_for(I18n.locale).title.empty?
+    end
   end
 
   def show
