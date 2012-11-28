@@ -1,9 +1,18 @@
 // Place all the styles related to the teachers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.teacher-data{
+.teacher-data-name{
   font-size: 1.2em;
-  float: left;
-  width: 140px;
+  /*float: left;*/
+  width: 170px;
   margin: 5px 15px;
+}
+.teacher-data{
+  /*float: left;*/
+  width: 170px;
+  margin: 5px 15px;
+}
+
+.teacher-data-name, .teacher-data-room{
+  font-size: 1.2em;
 }

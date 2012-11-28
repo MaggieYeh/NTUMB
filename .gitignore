@@ -7,6 +7,9 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore backup files
+*-bk
+
 # Ignore bundles plz
 /vendor/bundle
 
@@ -18,6 +21,7 @@ Gemfile.lock
 /db/*.sqlite3
 /config/database.yml*
 /db/seeds.rb
+
 
 # Ignore all logfiles and tempfiles.
 /log/*.log*

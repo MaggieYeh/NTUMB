@@ -15,28 +15,32 @@
           <div class="accordion-body collapse <%= "in" if i == 0%>" 
                id="tt_<%= tc.translation_for(:en).title_name %>">
             <div class="accordion-inner">
-              <ul class="unstyled">
-                  <li>
-                    <span class="teacher-data teacher-name">職員姓名</span>
-                    <span class="teacher-data teacher-email">電子郵件</span>
-                    <span class="teacher-data teacher-room">研究室</span>
-                    <span class="teacher-data teacher-homepage">個人網頁 </span>
-                  </li>
+              <table border="0">
+                <tr>
+                  <td class="teacher-data-name">職員姓名</td>
+                  <td class="teacher-data-name">電子郵件</td>
+                  <td class="teacher-data-name">研究室</td>
+                  <td class="teacher-data-name">個人網頁</td>
+                </tr>
                 <% tc.teachers.each do |teacher| %>
                   <% if @teachers.include?(teacher) %>
-                    <li>
-                      <span class="teacher-data teacher-name">
+                    <tr>
+                      <td class="teacher-data teacher-name">
                         <%= link_to teacher.name, teacher_path(teacher) %>
-                      </span>
-                      <span class="teacher-data teacher-email"><%= teacher.email %></span>
-                      <span class="teacher-data teacher-room"></span>
-                      <span class="teacher-data teacher-homepage">
+                      </td>
+                      <td class="teacher-data">
+                        <%= teacher.email %>
+                      </td>
+                      <td class="teacher-data teahcer-room">
+                        <%= teacher.room %>
+                      </td>
+                      <td class="teacher-data">
                         <%= link_to teacher.homepage, teacher.homepage %>
-                      </span>
-                    </li>
+                      </td>
+                    </tr>
                   <% end %>
                 <% end %>
-              </ul>
+              </table>
             </div>
           </div>
         </div><!-- accordion-group -->
