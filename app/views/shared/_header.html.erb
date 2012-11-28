@@ -10,8 +10,9 @@
       </div>
       <div class="span6">
         <div class="header-info">
-          <form class="form-search">
-            <input type="text" placeholder="search" class="input-medium search-query">
+          <form class="form-search" action="http://www.google.com/search">
+            <input type="text" placeholder="search" name="q" class="input-medium search-query">
+            <input type="hidden" name="sitesearch" value="<%= request.host %>" />
             <button type="submit"><i class="icon-search"></i></button>
           </form>
           <% if I18n.locale == :en %>

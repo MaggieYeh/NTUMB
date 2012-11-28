@@ -98,13 +98,33 @@ ul#youtube-channel{
   }
 }
 
-@media (min-width: 768px){
+@media (min-width: 1200px){
   #tab-container{
     padding-left: 50px;
     /*margin-right: 20px;*/
   }
   #home-tabs-content{
     height: 319px;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1199px){
+  #tab-container{
+    padding-left: 40px;
+    /*margin-right: 20px;*/
+  }
+  #home-tabs-content{
+    height: 219px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px){
+  #tab-container{
+    padding-left: 30px;
+    /*margin-right: 20px;*/
+  }
+  #home-tabs-content{
+    height: 130px;
   }
 }
 

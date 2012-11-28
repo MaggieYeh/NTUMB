@@ -67,7 +67,7 @@ html,body{
   @include hidden;
 }
 
-@media (min-width: 980px) and (max-width: 1200px){
+@media (min-width: 980px) and (max-width: 1199px){
   .visible-980-1200{
     @include visible;
   }
