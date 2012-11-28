@@ -1,8 +1,21 @@
 <ul class="nav nav-tabs" id="home-tabs">
-  <li class="active"><a href="#announcements" data-toggle="tab">即時<br class="visible-980-1200"/>訊息</a></li>
-  <li><a href="#youtube-channel" data-toggle="tab">管院<br class="visible-980-1200"/>頻道</a></li>
-  <li><a href="#recruiting" data-toggle="tab">管院<br class="visible-980-1200"/>徵才</a></li>
-  <li><a href="#students" data-toggle="tab">學生<br class="visible-980-1200"/>專區</a></li>
+  <% 
+    tab_contents = []
+    if I18n.locale == :"zh-TW"
+      tab_contents << %Q{即時<br class="visible-980-1200"/>訊息}  \
+                   << %Q{管院<br class="visible-980-1200"/>頻道}  \
+                   << %Q{管院<br class="visible-980-1200"/>徵才}  \
+                   << %Q{學生<br class="visible-980-1200"/>專區}
+    else
+      tab_contents << "News" << "Channel" << "Recruit" << "Students"
+    end
+  %>
+    <li class="active">
+      <a href="#announcements" data-toggle="tab"><%= tab_contents[0] %></a>
+    </li>
+    <li><a href="#youtube-channel" data-toggle="tab"><%= tab_contents[1] %></a></li>
+    <li><a href="#recruiting" data-toggle="tab"><%= tab_contents[2] %></a></li>
+    <li><a href="#students" data-toggle="tab"><%= tab_contents[3] %></a></li>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
   <ul id="announcements" class="tab-pane unstyled active">
