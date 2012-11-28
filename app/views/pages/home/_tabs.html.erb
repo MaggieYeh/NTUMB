@@ -11,11 +11,11 @@
     end
   %>
     <li class="active">
-      <a href="#announcements" data-toggle="tab"><%= tab_contents[0] %></a>
+      <a href="#announcements" data-toggle="tab"><%= tab_contents[0].html_safe %></a>
     </li>
-    <li><a href="#youtube-channel" data-toggle="tab"><%= tab_contents[1] %></a></li>
-    <li><a href="#recruiting" data-toggle="tab"><%= tab_contents[2] %></a></li>
-    <li><a href="#students" data-toggle="tab"><%= tab_contents[3] %></a></li>
+    <li><a href="#youtube-channel" data-toggle="tab"><%= tab_contents[1].html_safe %></a></li>
+    <li><a href="#recruiting" data-toggle="tab"><%= tab_contents[2].html_safe %></a></li>
+    <li><a href="#students" data-toggle="tab"><%= tab_contents[3].html_safe %></a></li>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
   <ul id="announcements" class="tab-pane unstyled active">
