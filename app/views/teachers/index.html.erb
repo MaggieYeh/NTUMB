@@ -7,13 +7,13 @@
       <% @title_categories.each_with_index do |tc,i| %>
         <div class="accordion-group">
           <div class="accordion-heading">
-            <a data-parent="expanding" href="#tt_<%= tc.translation_for(:en).title_name %>"
+            <a data-parent="expanding" href="#tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>"
                class="accordion-toggle" data-toggle="collapse">
               <%= tc.title_name %>
             </a>
           </div>
           <div class="accordion-body collapse <%= "in" if i == 0%>" 
-               id="tt_<%= tc.translation_for(:en).title_name %>">
+               id="tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>">
             <div class="accordion-inner">
               <table border="0">
                 <tr>
@@ -44,7 +44,7 @@
             </div>
           </div>
         </div><!-- accordion-group -->
-      <% end %>
+      <% end %> <!-- each title_categories -->
     </div><!-- #expanding -->
   </div>
 </div>
