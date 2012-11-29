@@ -16,9 +16,15 @@
             <button type="submit"><i class="icon-search"></i></button>
           </form>
           <% if I18n.locale == :en %>
-            <%= link_to "中文", "/" %>
+            <%= 
+              link_to "中文", 
+                ("/" + (@current_department_name == "management" ? "" : "#{@current_department_name}")) 
+            %>
           <% else %>
-            <%= link_to "English", "/en" %>
+            <%= 
+              link_to "English", 
+              ("/en" + (@current_department_name == "management" ? "" : "/#{@current_department_name}"))
+            %>
           <% end %>
           <%= link_to I18n.t("front_end.contact"), "mailto:manager@management.ntu.edu.tw" %>
           <%= link_to I18n.t("front_end.sitemap"), "http://exp.management.ntu.edu.tw" %>

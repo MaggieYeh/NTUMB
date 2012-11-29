@@ -15,12 +15,14 @@
         <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
           <div class="tab-pane <%= 'active' if i == 0 %>" id="ann_<%= c %>">
             <% AnnounceCategory.find_by_name(c).announcements.each do |a| %>
-              <a href="<%= announcement_path(a) %>">
-                <h4><%= a.name %></h4>
-              </a>
-              <span class="date-duration">
-                發佈日期：<%= a.announce_date.strftime("%Y/%m/%d") %>
-              </span>
+              <% if @announcements.include? a %>
+                <a href="<%= announcement_path(a) %>">
+                  <h4><%= a.name %></h4>
+                </a>
+                <span class="date-duration">
+                  發佈日期：<%= a.announce_date.strftime("%Y/%m/%d") %>
+                </span>
+              <% end %>
             <% end %>
           </div>
         <% end %>

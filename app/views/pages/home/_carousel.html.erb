@@ -4,8 +4,15 @@
       <div class="item <%= "active" if i == 0 %>">
         <%= image_tag c.picture.url(:medium) %>
         <div class="carousel-caption">
-          <h4><%= c.title %></h4>
-          <p><%= c.caption %></p>
+          <% unless c.link_url.to_s.empty? %>
+            <a href="<%= c.link_url %>">
+              <h4><%= c.title %></h4>
+              <p><%= c.caption %></p>
+            </a>
+          <% else %>
+            <h4><%= c.title %></h4>
+            <p><%= c.caption %></p>
+          <% end %>
         </div>
       </div>
     <% end %>

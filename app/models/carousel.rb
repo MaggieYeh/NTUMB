@@ -11,19 +11,17 @@ class Carousel < ActiveRecord::Base
   scope :recent, proc{|n = 3| order("created_at DESC").limit(n)}
 
   belongs_to :department
+  before_validation :check_link_url
+
+private
+
+  def check_link_url
+    unless self.link_url.to_s.empty?
+      unless self.link_url.to_s.match(/^(http:\/\/|https:\/\/|ftp:\/\/)/)
+        self.link_url.prepend("http://")
+      end
+    end
+  end
   
 end
 ::MyUtils.add_department_scopes(Carousel)
-#Department::DEPARTMENTS.each do |department_name|
-  #Carousel.instance_eval %Q{
-    #def #{department_name}
-      #Department.find_by_name("#{department_name}").carousels
-    #end
-    #def #{department_name.downcase}
-      #Department.find_by_name("#{department_name}").carousels
-    #end
-    #def #{department_name.upcase}
-      #Department.find_by_name("#{department_name}").carousels
-    #end
-  #}
-#end

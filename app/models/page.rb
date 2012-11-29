@@ -31,6 +31,7 @@ class Page < ActiveRecord::Base
   validates :position, :presence => true
   validates :department_id, :presence => true
   validates :url_name, :presence => true
+  validate :examine_url_name
 
   before_validation :check_department
   #before_validation :check_menu_title
@@ -95,6 +96,14 @@ class Page < ActiveRecord::Base
     #end
   #end
   #
+
+  def examine_url_name
+    if RESERVED_PATH.include? self.url_name
+      self.errors.add(:url_name,"#{url_name} 是個保留字，請使用別的字")
+    elsif self.type.constantize.pluck("url_name").include? self.url_name
+      self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+    end
+  end
 
   def check_delegated_path
     unless self.delegated_as_controller_index?
