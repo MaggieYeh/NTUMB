@@ -18,6 +18,7 @@ ActiveAdmin.register Teacher do
       f.input :tax_number, label: "傳真"
       f.input :avatar, label: "照片"
       f.input :teacher_title, label: "職稱", member_label: proc{|t| t.translation_for(:"zh-TW").title_name}
+      f.input :joint_with, label: "合聘系所", hint: "若非合聘教師，此欄留空"
       f.input :email
       f.input :homepage, label: "個人網頁"
     end
