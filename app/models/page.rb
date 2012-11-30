@@ -100,8 +100,14 @@ class Page < ActiveRecord::Base
   def examine_url_name
     if RESERVED_PATH.include? self.url_name
       self.errors.add(:url_name,"#{url_name} 是個保留字，請使用別的字")
-    elsif self.type.constantize.pluck("url_name").include? self.url_name
-      self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+    elsif self.id.nil?
+      if self.type.constantize.pluck("url_name").include? self.url_name
+        self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+      end
+    else
+      if self.type.constantize.pluck("url_name").select{|name| name == self.url_name}.size > 1
+        self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+      end
     end
   end
 
