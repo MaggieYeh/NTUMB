@@ -131,8 +131,11 @@ class Page < ActiveRecord::Base
         self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
       end
     else
-      unless self.type.constantize.find_by_url_name(self.url_name).id == self.id
-        self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+      possible_dup_page = self.type.constantize.find_by_url_name(self.url_name)
+      unless possible_dup_page.nil?
+        unless self.type.constantize.find_by_url_name(self.url_name).id == self.id
+          self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+        end
       end
     end
   end
