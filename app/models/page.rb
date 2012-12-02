@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   #
 
   acts_as_paranoid
-  acts_as_nested_set dependent: :destroy, scope: :department
+  acts_as_nested_set dependent: :destroy, scope: :department #, order_column: :position
   MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents]
   RESERVED_PATH = MODEL_INDEX_PAGES + %w[url page admin]
 
@@ -30,14 +30,14 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :translations, :reject_if => proc {|t| t[:menu_title].empty?}
 
   #validates :title, :presence => true, :unless => :delegated?
-  validates :position, :presence => true
+  #validates :position, :presence => true
   validates :department_id, :presence => true
   validates :url_name, :presence => true
   validate :examine_url_name
 
   before_validation :check_department
   #before_validation :check_menu_title
-  before_validation :give_last_position
+  #before_validation :give_last_position
   before_validation :check_delegated_path
 
   before_save :update_path
@@ -89,6 +89,30 @@ class Page < ActiveRecord::Base
     nav_list
   end
 
+  # The following two function are base from 
+  # https://github.com/matenia/jQuery-Awesome-Nested-Set-Drag-and-Drop/blob/master/rails3_example/app/controllers/home_controller.rb
+  def self.sort_new_position(neworder)
+    previous_page = nil
+    neworder.each do |jspage|
+      dbpage = self.find(jspage['id']) 
+      previous_page.nil? ? dbpage.move_to_root : dbpage.move_to_right_of(previous_page)
+      sort_child_position(jspage,dbpage) unless jspage['children'].nil?
+      previous_page = dbpage
+    end
+    raise "#{self} can't not be rebuilt!" unless self.rebuild!
+  end
+
+  def self.sort_child_position(jspage,dbpage)
+    previous_page_child = nil
+    jspage['children'].each do |child|
+      child_db_page = self.find(child['id'])
+      previous_page_child.nil? ? child_db_page.move_to_child_of(dbpage) : \
+                                 child_db_page.move_to_right_of(previous_page_child)
+      sort_child_position(child,child_db_page) unless child['children'].nil?
+      previous_page_child = child_db_page
+    end
+  end
+
   private
 
   #def check_menu_title
@@ -123,12 +147,12 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def give_last_position
-    if self.position.nil?
-      max = self.class.maximum("position") || 0
-      self.position = max + 1
-    end
-  end
+  #def give_last_position
+    #if self.position.nil?
+      #max = self.class.maximum("position") || 0
+      #self.position = max + 1
+    #end
+  #end
 
   def check_department
     if self.department_id.nil?

@@ -9,7 +9,8 @@ module ActiveAdmin
           set_attribute "data-update-url", page_presenter.options[:"data-update-url"]
         end
         #id = "#{collection.first.class.name}_tree" if collection
-        collection.sort_by{|it| it.position}.each do |obj|
+        #collection.sort_by{|it| it.position}.each do |obj|
+        collection.sort_by{|it| it.lft}.each do |obj|
           instance_exec(obj, &page_presenter.block)
         end
       end
@@ -20,7 +21,8 @@ module ActiveAdmin
         if item.children
           context.instance_exec(context,item) do |context,current_node|
             ol do
-              current_node.children.sort_by{|it| it.position}.each do |child|
+              #current_node.children.sort_by{|it| it.position}.each do |child|
+              current_node.children.sort_by{|it| it.lft}.each do |child|
                 li :for => child, :class => 'sortable_item' do
                   div do
                     span '[handle]', :class => 'handle'

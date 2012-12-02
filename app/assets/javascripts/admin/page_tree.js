@@ -6,7 +6,7 @@ $(document).ready(function(){
     toleranceElement: '> div',
     tolerance: 'pointer',
     update: function(event, ui){
-      $.post($(this).data("update-url"),$(this).nestedSortable('serialize'));
+      $.post($(this).data("update-url"),{neworder: JSON.stringify($(this).nestedSortable('toHierarchy'))});
     },
     //maxlevels: 3
     placeholder: 'sortable_placeholder'

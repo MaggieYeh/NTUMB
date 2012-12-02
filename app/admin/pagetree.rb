@@ -24,12 +24,14 @@ Page.descendants.each_with_index do |dpage,i|
     end
 
     collection_action :sort, :method => :post do
-      params[d_page.intern].each_with_index do |p,i|
-        dpage.update_all( {position: i+1, parent_id: p.second.to_i != 0 ? p.second.to_i : nil},
-        {id: p.first})
-      end
+      neworder = JSON.parse(params[:neworder])
+      dpage.sort_new_position(neworder)
+      #params[d_page.intern].each_with_index do |p,i|
+        #dpage.update_all( {position: i+1, parent_id: p.second.to_i != 0 ? p.second.to_i : nil},
+        #{id: p.first})
+      #end
       # in order to trigger before_save callbacks
-      raise "#{dpage} can't not be rebuilt!" unless dpage.rebuild!
+      #raise "#{dpage} can't not be rebuilt!" unless dpage.rebuild!
       render :nothing => true
     end
 
