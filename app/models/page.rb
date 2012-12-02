@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   #
 
   acts_as_paranoid
-  acts_as_nested_set dependent: :destroy
+  acts_as_nested_set dependent: :destroy, scope: :department
   MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents]
   RESERVED_PATH = MODEL_INDEX_PAGES + %w[url page admin]
 
@@ -24,6 +24,7 @@ class Page < ActiveRecord::Base
   translates :menu_title, :title, :content, :fallbacks_for_empty_translations => true
   class Translation
     attr_accessible :locale, :title, :content, :menu_title
+    acts_as_paranoid
     #validates :menu_title, :presence => true
   end
   accepts_nested_attributes_for :translations, :reject_if => proc {|t| t[:menu_title].empty?}
@@ -31,7 +32,7 @@ class Page < ActiveRecord::Base
   #validates :title, :presence => true, :unless => :delegated?
   validates :position, :presence => true
   validates :department_id, :presence => true
-  validates :url_name, :presence => true, :uniqueness => true
+  validates :url_name, :presence => true
   validate :examine_url_name
 
   before_validation :check_department
@@ -98,16 +99,17 @@ class Page < ActiveRecord::Base
   #
 
   def examine_url_name
-    if RESERVED_PATH.include? self.url_name
-      self.errors.add(:url_name,"#{url_name} 是個保留字，請使用別的字")
-    #elsif self.id.nil?
-      #if self.type.constantize.pluck("url_name").include? self.url_name
-        #self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
-      #end
-    #else
-      #if self.type.constantize.pluck("url_name").select{|name| name == self.url_name}.size > 1
-        #self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
-      #end
+    if self.id.nil?
+      if RESERVED_PATH.include? self.url_name
+        self.errors.add(:url_name,"#{url_name} 是個保留字，請使用別的字")
+      end
+      if self.type.constantize.pluck("url_name").include? self.url_name
+        self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+      end
+    else
+      unless self.type.constantize.find_by_url_name(self.url_name).id == self.id
+        self.errors.add(:url_name,"#{url_name} 已經被其他頁面使用過了")
+      end
     end
   end
 

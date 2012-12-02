@@ -29,7 +29,7 @@ Page.descendants.each_with_index do |dpage,i|
         {id: p.first})
       end
       # in order to trigger before_save callbacks
-      dpage.rebuild!
+      raise "#{dpage} can't not be rebuilt!" unless dpage.rebuild!
       render :nothing => true
     end
 
