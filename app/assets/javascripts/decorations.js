@@ -1,8 +1,8 @@
 $(document).ready(function() {
   //active class decorate
   target = decodeURI(document.location.href.split("/").pop());
-  selector = "ul.page-nav a[href$='" + target + "']";
-  selector2 = "ul.page-nav a[href$='" + target + "#']";
+  selector = "ul.page-nav a[href$='/" + target + "']";
+  selector2 = "ul.page-nav a[href$='/" + target + "#']";
   $(selector).parent().addClass('active');
   $(selector2).parent().addClass('active');
 
