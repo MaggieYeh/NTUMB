@@ -3,9 +3,7 @@
     <% has_child = !(path_and_children[:children].empty?) %>
     <% unless has_child %>
     <li>
-      <span>
-        <%= link_to menu_name.to_s, path_and_children[:path] %>
-      </span>
+      <%= link_to menu_name.to_s, path_and_children[:path] %>
     </li>
     <% else %>
       <li class="dropdown-submenu">
