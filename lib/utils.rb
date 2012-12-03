@@ -40,7 +40,7 @@ module MyUtils
 
   def build_nav_list(page)
     nav_root = page
-    until nav_root.level == 0
+    until nav_root.parent.nil?
       nav_root = nav_root.parent
     end
     nav_list = []
