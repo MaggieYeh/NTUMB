@@ -30,7 +30,7 @@ module MyUtils
     else
       unless page.translation_for(I18n.locale).menu_title.to_s.empty?
         ret.push([page.translation_for(I18n.locale).menu_title,"#",level])
-        page.children.sort_by{|c| c.position}.each do |pc|
+        page.children.sort_by{|c| c.lft}.each do |pc|
           sub_nav(pc,level+1,ret)
         end
       end
