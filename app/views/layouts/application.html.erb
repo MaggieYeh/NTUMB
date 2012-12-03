@@ -6,6 +6,9 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    controller_name, :media => "all" %>
   <%= javascript_include_tag "application", controller_name %>
+  <!--[if IE]>
+    <%= stylesheet_link_tag "ie_hack", :media => "all" %>
+  <[endif]-->
   <%= csrf_meta_tags %>
 </head>
 <body>
