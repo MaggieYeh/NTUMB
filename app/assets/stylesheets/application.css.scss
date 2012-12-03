@@ -73,8 +73,13 @@ html,body{
   }
 }
 
-.user-input-content *{
-  overflow: auto;
+.user-input-content{
+  * {
+    overflow: auto;
+  }
+  td>img{
+    max-width: none;
+  }
 }
 
 #header,#menu-wrapper,#footer,#department-links{
