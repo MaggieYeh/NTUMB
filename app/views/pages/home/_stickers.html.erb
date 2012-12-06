@@ -2,12 +2,12 @@
   <% @news.each_with_index do |news,i| %>
     <div class="span4">
       <div class="sticker well sticker<%=news.preview_color%>">
-        <h4><%= news.title %></h4>
+        <h4 class="<%= "en" if I18n.locale == :en %>"><%= news.title %></h4>
         <% unless news.text_up %>
           <%= image_tag(news.preview.url(:thumb)) %>
         <% end %>
         <div>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...more", news_report_path(news) %></p>
+          <p class="<%= "en" if I18n.locale == :en %>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= news.preview_text %><%= link_to "...more", news_report_path(news) %></p>
         </div>
         <% if news.text_up %>
           <%= image_tag(news.preview.url(:thumb)) %>
