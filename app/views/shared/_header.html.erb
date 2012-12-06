@@ -28,6 +28,8 @@
                 link_to "中文", 
                   ("/" + (@current_department_name == "management" ? "" : "#{@current_department_name}")) 
               %>
+            <% else %>
+              <%= link_to "中文", '/' %>
             <% end %>
           <% else %>
             <%= 
@@ -36,7 +38,7 @@
             %>
           <% end %>
           <%= link_to I18n.t("front_end.contact"), "mailto:manager@management.ntu.edu.tw" %>
-          <%= link_to I18n.t("front_end.sitemap"), "http://exp.management.ntu.edu.tw" %>
+          <%= link_to I18n.t("front_end.sitemap"), @management_link %>
           <%= link_to I18n.t("front_end.ntu_site"), "http://www.ntu.edu.tw" %>
         </div>
         <%= image_tag("aacsb.png",width: "180", class: "aacsb") %>
