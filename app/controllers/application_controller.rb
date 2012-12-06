@@ -35,7 +35,8 @@ private
 
   def build_header
     @header_text = I18n.t("front_end.#{@current_department_name}")
-    @header_text.prepend(I18n.t('front_end.ntu') + " ")
+    #@header_text.prepend(I18n.t('front_end.ntu') + " ") unless I18n.locale == :en
+    @header_school_prefix = I18n.t("front_end.ntu")
     @header_link = @current_department_name.match(/management/i) ? @management_link : @current_department_link
   end
 

@@ -4,8 +4,15 @@
       <div class="span6">
           <a href="<%= @header_link %>">
             <%= image_tag("logo.png", class: "header-logo") %>
-            <h1 class="kai"><%= @header_text %></h1>
-            <span>National Taiwan University College of Management</span>
+            <h1 class="kai <%= "en" if I18n.locale == :en %>">
+              <span class="invisible-768-979">
+                <%= @header_school_prefix unless I18n.locale == :en%>
+              </span>
+              <%= @header_text %>
+            </h1>
+            <span class="<%= "en" if I18n.locale == :en %>">
+              National Taiwan University <br class="visible-768-979"/>  College of Management
+            </span>
          </a>
       </div>
       <div class="span6">

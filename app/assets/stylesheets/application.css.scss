@@ -67,6 +67,10 @@ html,body{
   @include hidden;
 }
 
+.visible-768-979{
+  @include hidden;
+}
+
 @media (min-width: 980px) and (max-width: 1199px){
   .visible-980-1200{
     @include visible;
@@ -76,6 +80,9 @@ html,body{
 @media (min-width: 768px) and (max-width: 979px){
   .invisible-768-979{
     @include hidden;
+  }
+  .visible-768-979{
+    @include visible;
   }
 }
 
@@ -123,7 +130,10 @@ html,body{
       padding: 0px;
       margin: 5px;
       margin-left: 0px;
-      font-size: 2.3em;
+      font-size: 2.1em;
+      span {
+        color: white;
+      }
     }
     .header-info{
       display: inline-block; 
@@ -135,6 +145,57 @@ html,body{
     form{
       margin-top: 10px;
       margin-bottom: 9px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px){
+  #header-wrapper{
+    #header{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      position: relative;
+      img{
+        margin-right: 5px;
+        display: inline-block;
+        float: left;
+      }
+      img.aacsb{
+        display: inline-block;
+        height:63px;
+        width:63px;
+        position: absolute;
+        right: 15px;
+      }
+      img.header-logo{
+        height: 75px;
+        width: 60px;
+      }
+      .kai{
+        font-family: 文鼎粗行楷, 華康郭泰碑, 書法家顏楷體, dfkai-sb, stkaiti, 標楷體, 华文楷体;
+      }
+      h1{
+        padding: 0px;
+        margin: 3px;
+        margin-left: 0px;
+        margin-bottom: 0px;
+        font-size: 1.8em;
+        line-height: 1.2em;
+        span {
+          color: white;
+        }
+      }
+      .header-info{
+        display: inline-block; 
+        span{
+          color: $grayLighter;
+          margin-left: 5px;
+        }
+        form{
+          margin-top: 10px;
+          margin-bottom: 9px;
+        }
+      }
     }
   }
 }
