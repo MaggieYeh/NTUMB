@@ -41,6 +41,7 @@ class Page < ActiveRecord::Base
   before_validation :check_delegated_path
 
   before_save :update_path
+  after_save :update_all_children
 
 
   scope :delegated, where("delegated_to <> ''")
@@ -166,6 +167,12 @@ class Page < ActiveRecord::Base
   def update_path
     result = concat_ancestor_names
     self.path = result
+  end
+
+  def update_all_children
+    self.children.each do |c|
+      c.save
+    end
   end
 
 end
