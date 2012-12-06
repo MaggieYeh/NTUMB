@@ -16,3 +16,11 @@
 .teacher-data-name, .teacher-data-room{
   font-size: 1.2em;
 }
+
+table.fixed{
+  table-layout: fixed;
+  td{
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+}
