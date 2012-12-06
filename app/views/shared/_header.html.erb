@@ -23,10 +23,12 @@
             <button type="submit"><i class="icon-search"></i></button>
           </form>
           <% if I18n.locale == :en %>
-            <%= 
-              link_to "中文", 
-                ("/" + (@current_department_name == "management" ? "" : "#{@current_department_name}")) 
-            %>
+            <% unless @current_department_name == "GMBA" %>
+              <%= 
+                link_to "中文", 
+                  ("/" + (@current_department_name == "management" ? "" : "#{@current_department_name}")) 
+              %>
+            <% end %>
           <% else %>
             <%= 
               link_to "English", 
