@@ -156,7 +156,13 @@ ul#youtube-channel{
 .sticker{
   padding: 15px;
   padding-top: 10px;
-  height: 310px;
+  height: 320px;
+  h4.en{
+    font-size: 0.9em;
+  }
+  p.en{
+    font-size: 0.8em;
+  }
   a.more{
     margin-right: 10px;
   }
