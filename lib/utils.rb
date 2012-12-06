@@ -23,7 +23,7 @@ module MyUtils
 
   def sub_nav(page,level,ret)
     if page.children.empty?
-      unless page.translation_for(I18n.locale).menu_title.to_s.empty?
+      unless page.translation_for(I18n.locale).menu_title.to_s.empty? || page.url_name == "documents"
         ret.push([page.translation_for(I18n.locale).menu_title,
         ((page.delegated? and !page.delegated_as_controller_index?) ? page.delegated_to : ::MyUtils.page_path_to(page)),level])
       end

@@ -90,6 +90,9 @@ html,body{
   * {
     overflow: auto;
   }
+  img{
+    max-width: none;
+  }
   td>img{
     max-width: none;
   }

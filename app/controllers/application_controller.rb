@@ -78,7 +78,7 @@ private
     menu = {}
     #d_const.roots.sort_by{|p| p.position}.each do |p|
     d_const.roots.sort_by{|p| p.lft}.each do |p|
-      unless p.translation_for(I18n.locale).menu_title.to_s.empty?
+      unless p.translation_for(I18n.locale).menu_title.to_s.empty? || p.url_name == "documents"
         menu[p.menu_title.intern] = { 
           path: (p.delegated? and !p.delegated_as_controller_index?) ? p.delegated_to : ::MyUtils.page_path_to(p),
           children: p.children && create_child_menu(p.children) }
@@ -94,7 +94,7 @@ private
     child_menu = {}
     #pages.sort_by{|p| p.position}.each do |p|
     pages.sort_by{|p| p.lft}.each do |p|
-      unless p.translation_for(I18n.locale).menu_title.to_s.empty?
+      unless p.translation_for(I18n.locale).menu_title.to_s.empty? || p.url_name == "documents"
         child_menu[p.menu_title.intern] = { 
           path: (p.delegated? and !p.delegated_as_controller_index?) ? p.delegated_to : ::MyUtils.page_path_to(p), 
           children: p.children && create_child_menu(p.children) }
