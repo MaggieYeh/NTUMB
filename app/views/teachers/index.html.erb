@@ -12,10 +12,14 @@
               <%= tc.title_name %>
             </a>
           </div>
-          <div class="accordion-body collapse <%= "in" if i == 0%>" 
+          <div class="accordion-body collapse in" 
                id="tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>">
             <div class="accordion-inner">
               <table border="0">
+                <col width="170px" />
+                <col width="170px" />
+                <col width="170px" />
+                <col width="170px" />
                 <tr>
                   <td class="teacher-data-name"><%= I18n.t "front_end.teacher.name" %></td>
                   <td class="teacher-data-name">E-mail</td>
