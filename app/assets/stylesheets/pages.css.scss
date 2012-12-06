@@ -21,22 +21,38 @@ $nav-active-color: white;
   font-size: 120%;
 }
 
-ul.tab-pane{
-  >li{
+table tr td a {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+table{
+  td{
     font-size: 110%;
-    min-height: 40px;
-    margin-bottom: 10px;
-    span.tab-item-published-time{
-      float: left;
-      height: 50px;
-      margin-right: 9px;
-      clear: both;
-    }
-    span.tab-item-title{
-      height: 50px;
-    }
+  }
+  td.announce_date{
+    width: 90px !important;
+    vertical-align: top;
   }
 }
+
+/*ul.tab-pane{*/
+  /*>li{*/
+    /*font-size: 110%;*/
+    /*min-height: 40px;*/
+    /*margin-bottom: 10px;*/
+    /*span.tab-item-published-time{*/
+      /*float: left;*/
+      /*height: auto;*/
+      /*margin-right: 9px;*/
+      /*clear: both;*/
+    /*}*/
+    /*span.tab-item-title{*/
+      /*height: auto;*/
+    /*}*/
+  /*}*/
+/*}*/
 
 ul#youtube-channel{
   >li {

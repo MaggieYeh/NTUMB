@@ -73,6 +73,12 @@ html,body{
   }
 }
 
+@media (min-width: 768px) and (max-width: 979px){
+  .invisible-768-979{
+    @include hidden;
+  }
+}
+
 .user-input-content{
   * {
     overflow: auto;

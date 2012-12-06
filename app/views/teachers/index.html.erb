@@ -17,10 +17,10 @@
             <div class="accordion-inner">
               <table border="0">
                 <tr>
-                  <td class="teacher-data-name">職員姓名</td>
-                  <td class="teacher-data-name">電子郵件</td>
-                  <td class="teacher-data-name">研究室</td>
-                  <td class="teacher-data-name">個人網頁</td>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.name" %></td>
+                  <td class="teacher-data-name">E-mail</td>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.room" %></td>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.homepage" %></td>
                 </tr>
                 <% tc.teachers.each do |teacher| %>
                   <% if @teachers.include?(teacher) %>

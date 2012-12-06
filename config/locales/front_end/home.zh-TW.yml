@@ -6,3 +6,5 @@
     adress: "地址：106 臺北市羅斯福路四段一號 管理學院"
     phone: "電話"
     tax: "傳真"
+    home:
+      view_count: "觀看次數"

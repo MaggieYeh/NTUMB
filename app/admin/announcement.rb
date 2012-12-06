@@ -42,7 +42,8 @@ ActiveAdmin.register Announcement do
     f.inputs do
       f.input :announce_category, label: "公告類別", as: :radio,
               collection: Hash[AnnounceCategory.all.map do |c|
-                                [" "+I18n.t("#{c.name}.name")+" "+I18n.t("#{c.name}.hint"),c.id]
+                                [" "+I18n.t("ann_category.#{c.name}.name") + " " + \
+                                 I18n.t("ann_category.#{c.name}.hint"),c.id]
                               end]
     end
     f.inputs do

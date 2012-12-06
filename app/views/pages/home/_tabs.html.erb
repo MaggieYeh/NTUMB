@@ -18,16 +18,18 @@
     <li><a href="#students" data-toggle="tab"><%= tab_contents[3].html_safe %></a></li>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
-  <ul id="announcements" class="tab-pane unstyled active">
+  <div id="announcements" class="tab-pane unstyled active">
+    <table border="0">
     <% @announcements.each do |a| %>
-      <li>
-        <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.announce_date.to_s %></span>
-          <span class="tab-item-title"><%= a.name %></span>
-        </a>
-      </li>
+      <tr>
+        <td class="announce_date">
+          <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_s %></a>
+        </td>
+        <td><a href="<%= announcement_path(a) %>"><%= a.name %></a></td>
+      </tr>
     <% end %>
-  </ul>
+    </table>
+  </div>
   <ul id="youtube-channel" class="tab-pane unstyled">
     <% @videos.each do |v| %>
       <li>
@@ -40,33 +42,40 @@
               <span class="duration"><%= v['duration'] %></span>
             </span>
           </span>
-          <div class="video-info">
+          <div class="video-info invisible-768-979">
             <span class="video-title"><%= v['title'] %></span><br />
-            <span class="video-stats">觀看次數: <%= "#{v['view_count']}" %><br />
-              發佈日期: <%= "#{v['published_at']}" %></span>
+            <span class="video-stats">
+              <%= I18n.t "front_end.announce_date" %>: <%= "#{v['published_at']}" %>
+            </span>
           </div>
         </a>
       </li>
     <% end %>
   </ul>
-  <ul id="recruiting" class="tab-pane unstyled">
+  <div id="recruiting" class="tab-pane unstyled">
+    <table border="0">
     <% @jobs_announcements.each do |a| %>
-      <li>
-        <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.announce_date.to_date.to_s %></span>
-          <span class="tab-item-title"><%= a.name %></span>
-        </a>
-      </li>
+       <tr>
+         <td class="announce_date">
+           <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_date.to_s %></a>
+         </td>
+         <td>
+           <a href="<%= announcement_path(a) %>"><%= a.name %></a>
+         </td>
+       </tr>
     <% end %>
-  </ul>
-  <ul id="students" class="tab-pane unstyled">
+    </table>
+  </div>
+  <div id="students" class="tab-pane unstyled">
+    <table border="0">
     <% @student_announcements.each do |a| %>
-      <li>
-        <a href="<%= announcement_path(a) %>">
-          <span class="tab-item-published-time"><%= a.announce_date.to_date.to_s %></span>
-          <span class="tab-item-title"><%= a.name %></span>
-        </a>
-      </li>
+      <tr>
+        <td class="announce_date">
+          <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_date.to_s %></a>
+      </td>
+        <td><a href="<%= announcement_path(a) %>"><%= a.name %></a></td>
+      </tr>
     <% end %>
-  </ul>
+    </table>
+  </div>
 </div>

@@ -7,7 +7,7 @@
       <ul class="nav nav-tabs">
         <% AnnounceCategory::CATEGORIES.each_with_index do |c,i| %>
           <li <%= "class='active'" if i == 0 %>>
-            <a href="#ann_<%= c %>" data-toggle="tab"><%= I18n.t "#{c}.name" %></a>
+            <a href="#ann_<%= c %>" data-toggle="tab"><%= I18n.t "ann_category.#{c}.name" %></a>
           </li>
         <% end %>
       </ul>
@@ -20,7 +20,7 @@
                   <h4><%= a.name %></h4>
                 </a>
                 <span class="date-duration">
-                  發佈日期：<%= a.announce_date.strftime("%Y/%m/%d") %>
+                  <%= I18n.t "front_end.announce_date" %>：<%= a.announce_date.strftime("%Y/%m/%d") %>
                 </span>
               <% end %>
             <% end %>

@@ -1,6 +1,7 @@
 en:
   front_end:
     download_link: "downloads"
+    announce_date: "Published At"
     teachers: "Faculty"
     announcements: "Announcements"
     news_reports: "Newsletters"

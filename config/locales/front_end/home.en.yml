@@ -6,3 +6,5 @@ en:
     adress: "Address：No.1,Sec. 4, Roosevelt Rd., Taipei City 106, Taiwan(R.O.C) "
     phone: "Tel"
     tax: "Fax"
+    home:
+      view_count: "Views"

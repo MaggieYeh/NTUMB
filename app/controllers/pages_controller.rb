@@ -10,20 +10,20 @@ class PagesController < ApplicationController
   end
 
   def home
-    @announcements = Announcement.send(@current_department_name).recent(20).select do |a|
-      !a.translation_for(I18n.locale).name.empty?
+    @announcements = Announcement.send(@current_department_name).recent(50).select do |a|
+      !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
     end.take(10)
-    @jobs_announcements = Announcement.send(@current_department_name).recent(20).jobs.select do |a|
-      !a.translation_for(I18n.locale).name.empty?
+    @jobs_announcements = Announcement.send(@current_department_name).recent(50).jobs.select do |a|
+      !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
     end.take(10)
-    @student_announcements = Announcement.send(@current_department_name).recent(20).student.select do |a|
-      !a.translation_for(I18n.locale).name.empty?
+    @student_announcements =Announcement.send(@current_department_name).recent(50).student.select do |a|
+      !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
     end.take(10)
     @carousels = Carousel.send(@current_department_name).recent(20).select do |c|
       !c.translation_for(I18n.locale).title.empty?
     end.take(6)
     @news_all = NewsReport.send(@current_department_name).recent(20).select do |n|
-      !n.translation_for(I18n.locale).title.empty?
+      !(n.translation_for(I18n.locale).title.empty? || n.translation_for(I18n.locale).content.empty?)
     end.take(6)
     @news = @news_all[0..2] || []
     @news2 = @news_all[3..5] || []
