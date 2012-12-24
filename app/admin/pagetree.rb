@@ -52,7 +52,7 @@ Page.descendants.each_with_index do |dpage,i|
                 :input_html => { :value => f.object.parent_id || params[:parent_id] }
       end
       f.globalize_inputs :translations do |gf|
-        gf.inputs do
+        gf.inputs "段落一"do
           gf.input :menu_title, label: "選單名稱",
                    hint: "若將該語言的選單名稱留空白，則此頁面就不會在該語言出現"
           gf.input :title, label: "頁面標題"
@@ -60,15 +60,26 @@ Page.descendants.each_with_index do |dpage,i|
           gf.input :locale, as: :hidden
         end
       end
+      f.inputs "新增頁面段落" do
+        f.has_many :page_parts, {as: "頁面段落"} do |part|
+          part.globalize_inputs :translations do |t|
+            t.inputs "新段落" do
+              t.input :title
+              t.input :content, as: :ckeditor
+              t.input :locale, as: :hidden
+            end
+          end
+        end
+      end
       f.inputs "新增延伸子頁面（將會以條列的形式列在頁面內容之後）" do
-        f.has_many :sub_page_sections do |sub_sec|
+        f.has_many :sub_page_sections, {as: "子頁面群"}do |sub_sec|
           sub_sec.globalize_inputs :translations do |t|
             t.inputs "子頁面分組" do
               t.input :section_title, label: "組名"
               t.input :locale, as: :hidden
             end
           end
-          sub_sec.has_many :sub_pages do |sub_p|
+          sub_sec.has_many :sub_pages, {as: "子頁面"} do |sub_p|
             sub_p.globalize_inputs :translations do |t|
               t.inputs "子頁面內容" do
                 t.input :title, label: "標題"

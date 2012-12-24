@@ -25,6 +25,10 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :documents, :reject_if => proc { |d| d[:document_file].blank?},
                                 :allow_destroy => true
 
+  attr_accessible :page_parts_attributes
+  has_many :page_parts
+  accepts_nested_attributes_for :page_parts, :allow_destroy => true
+
   attr_accessible :sub_page_sections_attributes
   has_many :sub_page_sections
   accepts_nested_attributes_for :sub_page_sections, :allow_destroy => true
