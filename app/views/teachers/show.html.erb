@@ -50,14 +50,18 @@
         <li><%= ra.name %></li>
       <% end %>
     </ul>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.honor" %></h4>
-      <%= @teacher.honor && @teacher.honor.to_html %>
-    </ul>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.history" %></h4>
-      <%= @teacher.history && @teacher.history.to_html %>
-    </ul>
+    <% unless @teacher.honor.to_s.empty? %>
+      <ul>
+        <h4><%= I18n.t "front_end.teacher.honor" %></h4>
+        <%= raw sanitize(simple_format(@teacher.honor), :tags => %w(br p) ) %>
+      </ul>
+    <% end %>
+    <% unless @teacher.history.to_s.empty? %>
+      <ul>
+        <h4><%= I18n.t "front_end.teacher.history" %></h4>
+        <%= raw sanitize(simple_format(@teacher.history), :tags => %w(br p) ) %>
+      </ul>
+    <% end %>
     <ul>
       <h4><%= I18n.t "front_end.teacher.courses"%></h4>
       <% @teacher.courses.each do |course| %>
