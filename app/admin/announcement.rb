@@ -4,6 +4,7 @@ ActiveAdmin.register Announcement do
   controller.authorize_resource
   config.sort_order = "announce_date_desc"
 
+  filter :department
   filter :announce_category, collection: Hash[AnnounceCategory.all.map do |c|
                                       [I18n.t("#{c.name}.name"),c.id]
                                     end]
@@ -12,18 +13,21 @@ ActiveAdmin.register Announcement do
   filter :created_at, label: "發布日期"
 
   form do |f|                         
-    f.globalize_inputs :translations do |gf|
-      gf.inputs "新公告"do
-        if gf.object.locale == :"zh-TW"
-          gf.input :name, label: "公告名稱"
-          gf.input :content, label: "公告內容", as: :ckeditor,
-                   input_html: { rows: 10 }
-        else
-          gf.input :name, label: "Name"
-          gf.input :content, label: "Content", as: :ckeditor,
-                   input_html: { rows: 10 }
+    f.inputs "新公告" do
+      f.input :sticky, label: "置頂"
+      f.globalize_inputs :translations do |gf|
+        gf.inputs "新公告"do
+          if gf.object.locale == :"zh-TW"
+            gf.input :name, label: "公告名稱"
+            gf.input :content, label: "公告內容", as: :ckeditor,
+                     input_html: { rows: 10 }
+          else
+            gf.input :name, label: "Name"
+            gf.input :content, label: "Content", as: :ckeditor,
+                     input_html: { rows: 10 }
+          end
+          gf.input :locale, as: :hidden
         end
-        gf.input :locale, as: :hidden
       end
     end
     f.inputs "新增附件（非必要）" do

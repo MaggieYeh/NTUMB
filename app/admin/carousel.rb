@@ -9,6 +9,7 @@ ActiveAdmin.register Carousel do
       #f.input :caption, input_html: { rows: 5 }
       f.input :department, label: "所屬系所", include_blank: false,
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
+      f.input :ordering, label: "順序", hint: "順序越小越前面，但最多只會顯示六個"
     end
     f.globalize_inputs :translations do |gf|
       gf.inputs "標題與說明" do
@@ -19,7 +20,14 @@ ActiveAdmin.register Carousel do
     end
     f.actions
   end
+  index do
+    column :title
+    column :caption
+    column :order
+    default_actions
+  end
 
+  filter :department
   filter :title
   filter :caption
 end

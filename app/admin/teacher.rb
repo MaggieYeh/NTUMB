@@ -11,7 +11,6 @@ ActiveAdmin.register Teacher do
       end
     end
     f.inputs "基本資料" do
-      #f.input :name
       f.input :department, label: "系所"
       f.input :phone, label: "電話"
       f.input :cellphone, label: '手機'
@@ -21,6 +20,15 @@ ActiveAdmin.register Teacher do
       f.input :joint_with, label: "合聘系所", hint: "若非合聘教師，此欄留空"
       f.input :email
       f.input :homepage, label: "個人網頁"
+    end
+    f.inputs "獲獎與經歷" do
+      f.globalize_inputs :translations do |t|
+        t.inputs do
+          t.input :honor, label: "獲獎", input_html: { rows: 8 }
+          t.input :history, label: "經歷", input_html: { rows: 8 }
+          t.input :locale, as: :hidden
+        end
+      end
     end
     f.inputs "研究領域" do
       f.has_many :research_areas do |r|

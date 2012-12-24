@@ -13,4 +13,5 @@ ActiveAdmin.register Document do
     end
     f.actions
   end
+  filter :department
 end

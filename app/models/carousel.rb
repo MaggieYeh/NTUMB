@@ -1,5 +1,5 @@
 class Carousel < ActiveRecord::Base
-  attr_accessible :caption, :link_url, :title, :picture, :department_id
+  attr_accessible :caption, :link_url, :title, :picture, :department_id, :ordering
   has_attached_file :picture, styles: { medium: "670x400#" }
   attr_accessible :translations_attributes
   translates :caption, :title, :fallbacks_for_empty_translations => true

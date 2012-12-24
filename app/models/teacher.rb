@@ -16,9 +16,9 @@ class Teacher < ActiveRecord::Base
   belongs_to :teacher_title
 
   attr_accessible :translations_attributes
-  translates :name, :room, :fallbacks_for_empty_translations => true
+  translates :honor, :history, :name, :room, :fallbacks_for_empty_translations => true
   class Translation
-    attr_accessible :locale, :name, :room
+    attr_accessible :locale, :name, :room, :honor, :history
   end
   accepts_nested_attributes_for :translations
 

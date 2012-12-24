@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121224101244) do
+ActiveRecord::Schema.define(:version => 20121224155847) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121224101244) do
     t.date     "announce_date"
     t.integer  "department_id"
     t.datetime "deleted_at"
+    t.boolean  "sticky"
   end
 
   create_table "carousel_translations", :force => true do |t|
@@ -101,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20121224101244) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "department_id"
+    t.integer  "ordering"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -383,6 +385,8 @@ ActiveRecord::Schema.define(:version => 20121224101244) do
     t.string   "room"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "honor"
+    t.text     "history"
   end
 
   add_index "teacher_translations", ["locale"], :name => "index_teacher_translations_on_locale"

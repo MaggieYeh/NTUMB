@@ -2,7 +2,7 @@ class Announcement < ActiveRecord::Base
   #before_validation :check_empty_departments
 
   acts_as_paranoid
-  attr_accessible :due_date, :announce_date
+  attr_accessible :due_date, :announce_date, :sticky
   attr_accessible :department_id
   attr_accessible :announce_category_id
   attr_accessible :documents_attributes
@@ -44,6 +44,8 @@ class Announcement < ActiveRecord::Base
   scope :jobs, lambda{ categories(AnnounceCategory.find_by_name("intern_opportunities"),AnnounceCategory.find_by_name("enrollments")) }
   scope :recent, lambda{|n| order("announce_date DESC").limit(n)}
   #scope :not_announced_yet, lambda { where("announce_date > ?", Date.today) }
+  scope :sticky, where(sticky: true)
+  scope :not_sticky, where(sticky: [false,nil])
   
 private
 

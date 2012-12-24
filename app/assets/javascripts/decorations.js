@@ -48,4 +48,15 @@ $(document).ready(function() {
       }
     }
   });
+
+  //setting submenu direction
+  $("li.dropdown-submenu").hover(function(){
+    var target = $(this).find("ol.dropdown-menu");
+    var position = target.offset();
+    if ($(window).width() < (position.left + 160) ){
+      target.addClass("face-left");
+    }
+  },function(){
+    $(".face-left").removeClass("face-left");
+  });
 });
