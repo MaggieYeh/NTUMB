@@ -16,6 +16,11 @@ Page.descendants.each_with_index do |dpage,i|
     controller.authorize_resource
 
     controller do
+      def update
+        update! do |format|
+          format.html { redirect_to "/admin/#{controller_name}" }
+        end
+      end
       def create
         create! do |format|
           format.html { redirect_to "/admin/#{controller_name}" }
@@ -53,6 +58,25 @@ Page.descendants.each_with_index do |dpage,i|
           gf.input :title, label: "頁面標題"
           gf.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 }
           gf.input :locale, as: :hidden
+        end
+      end
+      f.inputs "新增延伸子頁面（將會以條列的形式列在頁面內容之後）" do
+        f.has_many :sub_page_sections do |sub_sec|
+          sub_sec.globalize_inputs :translations do |t|
+            t.inputs "子頁面分組" do
+              t.input :section_title, label: "組名"
+              t.input :locale, as: :hidden
+            end
+          end
+          sub_sec.has_many :sub_pages do |sub_p|
+            sub_p.globalize_inputs :translations do |t|
+              t.inputs "子頁面內容" do
+                t.input :title, label: "標題"
+                t.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 }
+                t.input :locale, as: :hidden
+              end
+            end
+          end
         end
       end
       f.inputs "新增附件（非必要）" do

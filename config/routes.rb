@@ -1,5 +1,8 @@
 NTUMB::Application.routes.draw do
 
+  get "sub_pages/show"
+
+  resources :sub_pages, :only => [:show]
   resources :teachers, :only => [:index, :show, :edit, :update]
   resources :news_reports, :only => [:index, :show]
   resources :documents, :only => [:index, :show]

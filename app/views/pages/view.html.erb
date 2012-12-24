@@ -4,12 +4,11 @@
   </div>
   <div class="span9">
     <h3><%= @page.title %></h3>
-    <% 
-        @output = Nokogiri::HTML::DocumentFragment.parse(@page.content)
-    %>
+    <% @output = Nokogiri::HTML::DocumentFragment.parse(@page.content) %>
   <div class="user-input-content">
     <%= raw @output.to_html %>
   </div>
     <%= render "shared/attachments", documents: @page.documents %>
+    <%= render partial: "shared/sub_pages" unless @page.sub_page_sections.empty? %>
   </div>
 </div>

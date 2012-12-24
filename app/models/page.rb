@@ -8,18 +8,31 @@ class Page < ActiveRecord::Base
 
   acts_as_paranoid
   acts_as_nested_set dependent: :destroy, scope: :department #, order_column: :position
-  MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents]
+  MODEL_INDEX_PAGES = %w[teachers announcements news_reports documents sub_pages]
   RESERVED_PATH = MODEL_INDEX_PAGES + %w[url page admin]
 
   attr_accessible :menu_title, :title, :content, :delegated_to
-  attr_accessible :page_part_ids, :url_name, :translations_attributes
+  attr_accessible :url_name, :translations_attributes
   attr_accessible :parent_id
   belongs_to :department
+
+  attr_accessible :page_part_ids
+  has_many :page_parts
+  accepts_nested_attributes_for :page_parts, :allow_destroy => true
 
   attr_accessible :documents_attributes
   has_many :documents
   accepts_nested_attributes_for :documents, :reject_if => proc { |d| d[:document_file].blank?},
                                 :allow_destroy => true
+
+  attr_accessible :sub_page_sections_attributes
+  has_many :sub_page_sections
+  accepts_nested_attributes_for :sub_page_sections, :allow_destroy => true
+
+  attr_accessible :sub_pages_attributes
+  has_many :sub_pages
+  accepts_nested_attributes_for :sub_pages, :allow_destroy => true
+
 
   translates :menu_title, :title, :content, :fallbacks_for_empty_translations => true
   class Translation
