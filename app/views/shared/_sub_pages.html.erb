@@ -1,6 +1,6 @@
-<ul class="unstyled sub_pages">
+<ul class="unstyled sub-pages">
   <% @page.sub_page_sections.each_with_index do |section,i| %>
-    <h3><%= section.section_title %></h3>
+    <h4><%= section.section_title %></h3>
     <% section.sub_pages.each_with_index do |sub_page,i| %>
       <li>
         <%= link_to sub_page.title, sub_page_path(sub_page) %>

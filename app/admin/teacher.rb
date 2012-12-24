@@ -79,5 +79,22 @@ ActiveAdmin.register Teacher do
       end
     end
     f.actions
+  end # form
+
+  index do
+    column :name
+    column :phone
+    column :cellphone
+    column :email
+    column :room
+    column :department
+    default_actions
   end
+
+  filter :department
+  filter :name
+  filter :email
+  filter :room
+  filter :cellphone
+  filter :phone
 end

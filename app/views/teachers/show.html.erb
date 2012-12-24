@@ -51,6 +51,14 @@
       <% end %>
     </ul>
     <ul>
+      <h4><%= I18n.t "front_end.teacher.honor" %></h4>
+      <%= @teacher.honor && @teacher.honor.to_html %>
+    </ul>
+    <ul>
+      <h4><%= I18n.t "front_end.teacher.history" %></h4>
+      <%= @teacher.history && @teacher.history.to_html %>
+    </ul>
+    <ul>
       <h4><%= I18n.t "front_end.teacher.courses"%></h4>
       <% @teacher.courses.each do |course| %>
         <li><%= course.name %></li>

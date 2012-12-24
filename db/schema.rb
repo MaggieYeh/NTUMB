@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121224155847) do
+ActiveRecord::Schema.define(:version => 20121224192908) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20121224155847) do
     t.string   "title"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "link_url"
+    t.datetime "deleted_at"
   end
 
   add_index "carousel_translations", ["carousel_id"], :name => "index_carousel_translations_on_carousel_id"
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20121224155847) do
     t.datetime "picture_updated_at"
     t.integer  "department_id"
     t.integer  "ordering"
+    t.datetime "deleted_at"
   end
 
   create_table "ckeditor_assets", :force => true do |t|

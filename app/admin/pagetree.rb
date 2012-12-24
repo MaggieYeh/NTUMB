@@ -78,7 +78,7 @@ Page.descendants.each_with_index do |dpage,i|
               t.input :section_title, label: "組名"
               t.input :locale, as: :hidden
             end
-          end
+          end # sub_sec.globalize_inputs
           sub_sec.has_many :sub_pages, {as: "子頁面"} do |sub_p|
             sub_p.globalize_inputs :translations do |t|
               t.inputs "子頁面內容" do
@@ -87,8 +87,16 @@ Page.descendants.each_with_index do |dpage,i|
                 t.input :locale, as: :hidden
               end
             end
+            if sub_p.object.id
+              sub_p.input :_destroy, :as => :boolean, :label => "delete"
+            end
+            sub_p.form_buffers.last # to avoid bug with nil possibly being returned from the above
+          end # sub_sec.has_many :sub_pages
+          if sub_sec.object.id
+            sub_sec.input :_destroy, :as => :boolean, :label => "delete"
           end
-        end
+          sub_sec.form_buffers.last # to avoid bug with nil possibly being returned from the above
+        end # f.has_many section
       end
       f.inputs "新增附件（非必要）" do
         f.has_many :documents do |d|

@@ -8,7 +8,8 @@
       <% @output = Nokogiri::HTML::DocumentFragment.parse(@page.content) %>
       <%= raw @output.to_html %>
     </div>
-    <% @page.part_parts.each do |part| %>
+    <% @page.page_parts.each do |part| %>
+      <h3><%= part.title %></h3>
       <div class="user-input-content">
         <% output = Nokogiri::HTML::DocumentFragment.parse(part.content) %>
         <%= raw output.to_html %>

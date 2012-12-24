@@ -4,7 +4,7 @@
   </div>
   <div class="span9">
     <%= link_to(I18n.t("front_end.sub_page.back"), ::MyUtils.page_path_to(@parent_page)) %>
-    <h1><%= @sub_page.title %></h1>
+    <h3><%= @sub_page.title %></h1>
     <div class="user-input-content">
       <% @output = Nokogiri::HTML::DocumentFragment.parse(@sub_page.content) %>
       <%= raw @output.to_html %>

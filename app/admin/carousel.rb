@@ -5,7 +5,6 @@ ActiveAdmin.register Carousel do
     f.inputs do
       f.input :picture
       #f.input :title
-      f.input :link_url
       #f.input :caption, input_html: { rows: 5 }
       f.input :department, label: "所屬系所", include_blank: false,
               member_label: Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
@@ -15,6 +14,7 @@ ActiveAdmin.register Carousel do
       gf.inputs "標題與說明" do
         gf.input :title
         gf.input :caption, input_html: { rows: 5 }
+        gf.input :link_url, label: "連結"
         gf.input :locale, as: :hidden
       end
     end
@@ -23,7 +23,7 @@ ActiveAdmin.register Carousel do
   index do
     column :title
     column :caption
-    column :order
+    column :ordering
     default_actions
   end
 
