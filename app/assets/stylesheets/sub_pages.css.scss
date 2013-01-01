@@ -1,3 +1,12 @@
 // Place all the styles related to the sub_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.back{
+  position: relative;
+  a {
+    position: absolute;
+    right: 35px;
+    top: 20px;
+  }
+}

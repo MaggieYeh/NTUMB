@@ -71,33 +71,6 @@ Page.descendants.each_with_index do |dpage,i|
           end
         end
       end
-      f.inputs "新增延伸子頁面（將會以條列的形式列在頁面內容之後）" do
-        f.has_many :sub_page_sections, {as: "子頁面群"}do |sub_sec|
-          sub_sec.globalize_inputs :translations do |t|
-            t.inputs "子頁面分組" do
-              t.input :section_title, label: "組名"
-              t.input :locale, as: :hidden
-            end
-          end # sub_sec.globalize_inputs
-          sub_sec.has_many :sub_pages, {as: "子頁面"} do |sub_p|
-            sub_p.globalize_inputs :translations do |t|
-              t.inputs "子頁面內容" do
-                t.input :title, label: "標題"
-                t.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 }
-                t.input :locale, as: :hidden
-              end
-            end
-            if sub_p.object.id
-              sub_p.input :_destroy, :as => :boolean, :label => "delete"
-            end
-            sub_p.form_buffers.last # to avoid bug with nil possibly being returned from the above
-          end # sub_sec.has_many :sub_pages
-          if sub_sec.object.id
-            sub_sec.input :_destroy, :as => :boolean, :label => "delete"
-          end
-          sub_sec.form_buffers.last # to avoid bug with nil possibly being returned from the above
-        end # f.has_many section
-      end
       f.inputs "新增附件（非必要）" do
         f.has_many :documents do |d|
           d.input :discription, input_html: { rows: 5 }
@@ -106,7 +79,7 @@ Page.descendants.each_with_index do |dpage,i|
           d.input :department,
                   :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")}
           if d.object.id
-            d.input :_destroy, :as => :boolean, :label => "delete"
+            d.input :_destroy, :as => :boolean, :label => "想刪除此附件請勾選此方框"
           end
           d.form_buffers.last # to avoid bug with nil possibly being returned from the above
         end

@@ -99,6 +99,7 @@ CKEDITOR.editorConfig = function( config )
 	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'], ['Image', 'Embed', 'Attachment'],
-        ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
+        ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],['subpage']
     ];
+  config.extraPlugins = "subpage";
 };

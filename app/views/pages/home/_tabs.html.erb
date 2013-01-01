@@ -4,7 +4,7 @@
     if I18n.locale == :"zh-TW"
       tab_contents << %Q{即時<br class="visible-980-1200"/>訊息}  \
                    << %Q{管院<br class="visible-980-1200"/>頻道}  \
-                   << %Q{管院<br class="visible-980-1200"/>徵才}  \
+                   << %Q{院系<br class="visible-980-1200"/>徵才}  \
                    << %Q{學生<br class="visible-980-1200"/>專區}
     else
       tab_contents << "News" << "Channel" << "Recruit" << "Students"
@@ -20,14 +20,7 @@
 <div class="tab-content well" id="home-tabs-content">
   <div id="announcements" class="tab-pane unstyled active">
     <table border="0">
-    <% @announcements.each do |a| %>
-      <tr>
-        <td class="announce_date">
-          <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_s %></a>
-        </td>
-        <td><a href="<%= announcement_path(a) %>"><%= a.name %></a></td>
-      </tr>
-    <% end %>
+    <%= render partial: "pages/home/tab_contents", locals: { items: @announcements } %>
     </table>
   </div>
   <ul id="youtube-channel" class="tab-pane unstyled">
@@ -54,28 +47,12 @@
   </ul>
   <div id="recruiting" class="tab-pane unstyled">
     <table border="0">
-    <% @jobs_announcements.each do |a| %>
-       <tr>
-         <td class="announce_date">
-           <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_date.to_s %></a>
-         </td>
-         <td>
-           <a href="<%= announcement_path(a) %>"><%= a.name %></a>
-         </td>
-       </tr>
-    <% end %>
+    <%= render partial: "pages/home/tab_contents", locals: { items: @jobs_announcements } %>
     </table>
   </div>
   <div id="students" class="tab-pane unstyled">
     <table border="0">
-    <% @student_announcements.each do |a| %>
-      <tr>
-        <td class="announce_date">
-          <a href="<%= announcement_path(a) %>"><%= a.announce_date.to_date.to_s %></a>
-      </td>
-        <td><a href="<%= announcement_path(a) %>"><%= a.name %></a></td>
-      </tr>
-    <% end %>
+    <%= render partial: "pages/home/tab_contents", locals: { items: @student_announcements } %>
     </table>
   </div>
 </div>

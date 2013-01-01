@@ -1,0 +1,13 @@
+$(document).ready(function(){
+  //<%= @sub_page.title %>
+  //<%= sub_page_path @sub_page %>
+  //alert("<%= escape_javascript @sub_page.title %>");
+  //alert("<%= escape_javascript "sub_pages/#{@sub_page.id}"%>")
+  window.parent.closedialog();
+  window.parent.setLink("<%= @sub_page.title %>",
+    "<%= "#{@sub_page.locale}/sub_pages/#{@sub_page.id}" %>",
+    "<%= @sub_page.locale %>");
+  console.log("<%= @sub_page.title %>");
+  console.log("<%= @sub_page.locale %>");
+  console.log("<%= @sub_page.id %>");
+});
