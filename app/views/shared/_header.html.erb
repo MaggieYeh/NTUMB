@@ -37,7 +37,7 @@
               ("/en" + (@current_department_name == "management" ? "" : "/#{@current_department_name}"))
             %>
           <% end %>
-          <%= link_to I18n.t("front_end.contact"), "mailto:manager@management.ntu.edu.tw" %>
+          <%= link_to I18n.t("front_end.contact"), "mailto:#{@contact_info}" %>
           <%= link_to I18n.t("front_end.sitemap"), @management_link %>
           <%= link_to I18n.t("front_end.ntu_site"), "http://www.ntu.edu.tw" %>
         </div>

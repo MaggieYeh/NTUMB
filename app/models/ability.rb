@@ -24,6 +24,7 @@ class Ability
         can :manage, Document, :department_id => Department.find_by_name(dname).id
         can :manage, Carousel, :department_id => Department.find_by_name(dname).id
         can :manage, Teacher, :department_id => Department.find_by_name(dname).id
+        can :manage, HomePageConfig, :department_id => Department.find_by_name(dname).id
       end
     end
     if user.role? :teacher

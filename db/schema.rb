@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101073427) do
+ActiveRecord::Schema.define(:version => 20130123032425) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20130101073427) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "announcement_id"
+  end
+
+  create_table "announce_fieldings", :force => true do |t|
+    t.integer  "announce_category_id"
+    t.integer  "home_page_tab_field_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "announcement_translations", :force => true do |t|
@@ -199,6 +206,36 @@ ActiveRecord::Schema.define(:version => 20130101073427) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "teacher_id"
+  end
+
+  create_table "home_page_configs", :force => true do |t|
+    t.integer  "department_id"
+    t.string   "contact_info"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "home_page_tab_field_translations", :force => true do |t|
+    t.integer  "home_page_tab_field_id"
+    t.string   "locale"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "home_page_tab_field_translations", ["home_page_tab_field_id"], :name => "index_61cc278ba2b93759881a0331a8b082a0d4bb6a23"
+  add_index "home_page_tab_field_translations", ["locale"], :name => "index_home_page_tab_field_translations_on_locale"
+
+  create_table "home_page_tab_fields", :force => true do |t|
+    t.integer  "home_page_config_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.boolean  "visible"
+    t.datetime "deleted_at"
+    t.string   "youtube_channel_account"
   end
 
   create_table "news_report_translations", :force => true do |t|

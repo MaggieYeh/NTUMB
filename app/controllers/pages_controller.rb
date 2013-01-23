@@ -10,54 +10,78 @@ class PagesController < ApplicationController
   end
 
   def home
-    @announcements = Announcement.send(@current_department_name).sticky + \
-      Announcement.send(@current_department_name).recent(50).reject(&:sticky).select do |a|
-        !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-      end.take(10)
-    @jobs_announcements = Announcement.send(@current_department_name).sticky.jobs + \
-      Announcement.send(@current_department_name).recent(50).jobs.reject(&:sticky).select do |a|
-        !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-      end.take(10)
-    @student_announcements = Announcement.send(@current_department_name).sticky.student + 
-      Announcement.send(@current_department_name).recent(50).student.reject(&:sticky).select do |a|
-        !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-      end.take(10)
+    load_home_page_config
+    prepare_tabs
+    prepare_carousels
+    prepare_news
+  end
+
+private
+
+  def load_home_page_config
+    @home_config = HomePageConfig.send(@current_department_name)
+  end
+
+  def prepare_carousels
     translated_carousels = Carousel.send(@current_department_name).all.select do |c|
       !c.translation_for(I18n.locale).title.empty?
     end
     @carousels = translated_carousels.select(&:ordering).sort_by(&:ordering) + \
                  translated_carousels.reject(&:ordering)
     @carousels = @carousels.take(6)
-    #@carousels = Carousel.send(@current_department_name).by_order(20).select do |c|
-      #!c.translation_for(I18n.locale).title.empty?
-    #end.take(6)
+  end
+
+  def prepare_tabs
+    @tabs = @home_config.home_page_tab_fields
+    @tab_contents = []
+    @tabs.each do |tab|
+      unless tab.is_youtube?
+        content = []
+        temp = []
+        tab.announce_categories.each do |ann_c|
+          temp += ann_c.announcements.select do |ann| 
+                    ann.department == @current_department
+                  end
+        end # tab.announce_categories
+          sticky = temp.select(&:sticky).select do |a|
+            !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
+          end.sort_by{|a| a.announce_date}.reverse
+          non_sticky = temp.reject(&:sticky).select do |a|
+            !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
+          end.take(10).sort_by{|a| a.announce_date}.reverse
+        content = sticky + non_sticky
+        @tab_contents << content
+      else
+        videos = fetch_youtube_channel_list(tab.youtube_channel_account)
+        @tab_contents << videos
+      end # unless tab.is_youtube
+    end # @tabs.each
+  end
+
+  def prepare_news
     @news_all = NewsReport.send(@current_department_name).recent(20).select do |n|
       !(n.translation_for(I18n.locale).title.empty? || n.translation_for(I18n.locale).content.empty?)
     end.take(6)
     @news = @news_all[0..2] || []
     @news2 = @news_all[3..5] || []
-    if Rails.cache.exist?('videos')
-      @videos = Rails.cache.read('videos')
-    else
-      @videos = fetch_youtube_channel_list
-      Rails.cache.write('videos', @videos, expires_in: 10.minutes)
-    end
-    #render 'pages/home/index'
   end
-
-private
 
   def build_page_nav
     @nav_list = ::MyUtils.build_nav_list(@page)
   end
 
-  def fetch_youtube_channel_list
-    doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/NTUManagement/uploads?v=2").read)
-    ret = []
-    doc.css("entry").each do |e|
-      ret << parse_video(e)
+  def fetch_youtube_channel_list(account)
+    videos = []
+    if Rails.cache.exist?("#{account}_videos")
+      videos = Rails.cache.read("#{account}_videos")
+    else
+      doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/#{account}/uploads?v=2").read)
+      doc.css("entry").each do |e|
+        videos << parse_video(e)
+      end
+      Rails.cache.write("#{account}_videos", videos, expires_in: 10.minutes)
     end
-    ret
+    videos
   end
 
   def parse_video(video_entry)

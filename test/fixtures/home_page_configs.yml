@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  department_id: 1
+  contact_info: MyString
+
+two:
+  department_id: 1
+  contact_info: MyString

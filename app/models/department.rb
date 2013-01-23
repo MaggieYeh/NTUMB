@@ -4,6 +4,7 @@ class Department < ActiveRecord::Base
   has_many :pages
   has_many :news_reports
   has_many :documents
+  has_one :home_page_config
 
   #has_many :announcings
   #has_many :announcements, :through => :announcings

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  announce_category_id: 1
+  home_page_tab_field_id: 1
+
+two:
+  announce_category_id: 1
+  home_page_tab_field_id: 1

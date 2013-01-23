@@ -55,6 +55,9 @@ private
   def find_department_name
     @current_department_name = Department.current_department_name
     @department_names = Department::DEPARTMENTS
+    @current_department = Department.find_by_name(Department::DEPARTMENTS.select{|d| 
+                                              d.casecmp(@current_department_name) == 0}[0])
+    @contact_info = @current_department.home_page_config.contact_info
   end
 
   def build_links

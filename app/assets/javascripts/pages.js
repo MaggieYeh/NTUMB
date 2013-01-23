@@ -1,6 +1,6 @@
 $(function(){
     $('#carousel').carousel({
-      interval: 3300,
+      interval: 5300,
       pause: "hover"
     });
 });

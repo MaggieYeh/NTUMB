@@ -160,4 +160,5 @@ ActiveAdmin.setup do |config|
     config.register_javascript 'admin/page_tree.js'
     config.register_javascript 'admin/tabbed_index.js'
     config.register_javascript 'links.js'
+    config.register_javascript 'admin/home_config.js'
 end

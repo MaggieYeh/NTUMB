@@ -70,19 +70,33 @@ module MyUtils
   end
   module_function :prepend_prefix_params_to_path
 
-  def add_department_scopes(model_constant)
+  def add_department_scopes(model_constant, plural = true)
     (Department::DEPARTMENTS + [Department::INTERNATIONAL_AFFAIRS]).each do |department_name|
-      model_constant.instance_eval %Q{
-        def #{department_name}
-          Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
-        end
-        def #{department_name.downcase}
-          Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
-        end
-        def #{department_name.upcase}
-          Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
-        end
-      }
+      if plural
+        model_constant.instance_eval %Q{
+          def #{department_name}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
+          end
+          def #{department_name.downcase}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
+          end
+          def #{department_name.upcase}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}s
+          end
+        }
+      else
+        model_constant.instance_eval %Q{
+          def #{department_name}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}
+          end
+          def #{department_name.downcase}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}
+          end
+          def #{department_name.upcase}
+            Department.find_by_name("#{department_name}").#{model_constant.to_s.underscore}
+          end
+        }
+      end
     end
   end
   module_function :add_department_scopes

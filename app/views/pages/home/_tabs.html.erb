@@ -1,58 +1,33 @@
 <ul class="nav nav-tabs" id="home-tabs">
-  <% 
-    tab_contents = []
-    if I18n.locale == :"zh-TW"
-      tab_contents << %Q{即時<br class="visible-980-1200"/>訊息}  \
-                   << %Q{管院<br class="visible-980-1200"/>頻道}  \
-                   << %Q{院系<br class="visible-980-1200"/>徵才}  \
-                   << %Q{學生<br class="visible-980-1200"/>專區}
-    else
-      tab_contents << "News" << "Channel" << "Recruit" << "Students"
-    end
-  %>
-    <li class="active">
-      <a href="#announcements" data-toggle="tab"><%= tab_contents[0].html_safe %></a>
-    </li>
-    <li><a href="#youtube-channel" data-toggle="tab"><%= tab_contents[1].html_safe %></a></li>
-    <li><a href="#recruiting" data-toggle="tab"><%= tab_contents[2].html_safe %></a></li>
-    <li><a href="#students" data-toggle="tab"><%= tab_contents[3].html_safe %></a></li>
+    <% first_appear = true %>
+    <% appear_flag = -1 %>
+    <% @tabs.each_with_index do |tab,i| %>
+      <% if tab.visible %>
+        <li class="<%= "active" if first_appear %>">
+          <a data-toggle="tab" href="#home-tab-<%= i %>">
+            <%= tab.first_name %><br class="visible-980-1200"/><%= tab.last_name %>
+          </a>
+        </li>
+        <% appear_flag = i if first_appear == true%>
+        <% first_appear = false %>
+      <% end %>
+    <% end %>
 </ul>
 <div class="tab-content well" id="home-tabs-content">
-  <div id="announcements" class="tab-pane unstyled active">
-    <table border="0">
-    <%= render partial: "pages/home/tab_contents", locals: { items: @announcements } %>
-    </table>
-  </div>
-  <ul id="youtube-channel" class="tab-pane unstyled">
-    <% @videos.each do |v| %>
-      <li>
-        <a href="<%= html_escape v['video_url'] %>">
-          <span class="video-thumb-wrapper">
-            <span class="video-thumb">
-              <span class="video-thumb-inner">
-                <%= image_tag(v['thumb_url']) %>
-              </span>
-              <span class="duration"><%= v['duration'] %></span>
-            </span>
-          </span>
-          <div class="video-info invisible-768-979">
-            <span class="video-title"><%= v['title'] %></span><br />
-            <span class="video-stats">
-              <%= I18n.t "front_end.announce_date" %>: <%= "#{v['published_at']}" %>
-            </span>
-          </div>
-        </a>
-      </li>
+  <% @tabs.each_with_index do |tab,i| %>
+    <% if tab.visible %>
+      <% unless tab.is_youtube? %>
+        <div id="home-tab-<%= i %>" class="tab-pane unstyled <%= "active" if appear_flag == i %>">
+          <table border="0">
+            <%= render partial: "pages/home/tab_contents", locals: { items: @tab_contents[i] } %>
+          </table>
+        </div>
+      <% else %>
+        <ul class="youtube-channel tab-pane unstyled <%= "active" if appear_flag == i %>" 
+            id="home-tab-<%= i %>">
+          <%= render partial: "pages/home/youtube_tab", locals: { videos: @tab_contents[i] } %>
+        </ul>
+      <% end %>
     <% end %>
-  </ul>
-  <div id="recruiting" class="tab-pane unstyled">
-    <table border="0">
-    <%= render partial: "pages/home/tab_contents", locals: { items: @jobs_announcements } %>
-    </table>
-  </div>
-  <div id="students" class="tab-pane unstyled">
-    <table border="0">
-    <%= render partial: "pages/home/tab_contents", locals: { items: @student_announcements } %>
-    </table>
-  </div>
+  <% end %>
 </div>
