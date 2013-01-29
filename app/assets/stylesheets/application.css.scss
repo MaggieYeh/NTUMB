@@ -87,6 +87,9 @@ html,body{
 }
 
 .user-input-content{
+  ul, ol {
+    list-style-position: inside;
+  }
   * {
     overflow: auto;
   }

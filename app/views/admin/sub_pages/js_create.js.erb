@@ -1,0 +1,6 @@
+$(document).ready(function(){
+  window.parent.closedialog();
+  window.parent.setLink("<%= @sub_page.title %>",
+    "<%= "#{@sub_page.locale}/sub_pages/#{@sub_page.id}" %>",
+    "<%= @sub_page.locale %>");
+});

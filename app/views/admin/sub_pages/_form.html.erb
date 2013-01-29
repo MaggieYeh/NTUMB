@@ -1,0 +1,37 @@
+<% 
+    options = {}
+    options[:remote] = @remote if @remote
+    options[:url] = @url if @url
+    options[:html] = { method: @method } if @method
+%>
+<%= semantic_form_for [:admin, @sub_page], options do |f| %>
+  <% 
+    locale = f.object.locale || params[:sub_page_locale]
+    department = f.object.department || Department.find_by_name(params[:department])
+  %>
+    <%= f.inputs "新頁面" do %>
+      <%= f.input :title, label: "標題" %>
+      <%= f.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 } %>
+      <% if locale %>
+        <%= f.input :locale, as: :hidden,
+          input_html: { :value => locale } %>
+      <% else %>
+        <%= f.input :locale, label: "語言", as: :radio, 
+          collection: { :en => "en", :"zh-TW" => "zh-TW" } %>
+      <% end %>
+      <% if department %>
+        <%= f.input :department_id, as: :hidden, value: department.id %>
+      <% else %>
+        <%= f.input :department, as: :radio, label: "系所",
+          :member_label => Proc.new {|d| " "+I18n.t("scopes.#{d.name}")} %>
+      <% end %>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, label: "新增內容子頁面" %>
+      <% if @remote %>
+        <%= f.action :cancel, label: "取消", as: :link, url: "javascript:window.parent.closedialog();" %>
+      <% else %>
+        <%= f.action :cancel, label: "取消" %>
+      <% end %>
+    <% end %>
+<% end %>

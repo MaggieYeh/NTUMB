@@ -15,10 +15,10 @@ CKEDITOR.plugins.add('subpage',
 	icon: this.path + 'images/subpage.png'
     });
     CKEDITOR.dialog.addIframe('subpage_zh-TW', '新增內容子頁面', 
-      'http://' + document.location.host + '/admin/sub_pages/new?sub_page_locale=zh-TW' ,
+      'http://' + document.location.host + '/admin/sub_pages/js_new?sub_page_locale=zh-TW' ,
       650, 450, undefined, {buttons: {disabled: true}});
     CKEDITOR.dialog.addIframe('subpage_en', '新增內容子頁面', 
-      'http://' + document.location.host + '/admin/sub_pages/new?sub_page_locale=en' ,
+      'http://' + document.location.host + '/admin/sub_pages/js_new?sub_page_locale=en' ,
       650, 450, undefined, {buttons: {disabled: true}});
   },
 });
@@ -35,7 +35,6 @@ function setLink(title,path,locale){
       break;
     }
   }
-  console.log(editor);
   editor.insertHtml("<a href='" + path + "'>" + title + "</a>");
 }
 

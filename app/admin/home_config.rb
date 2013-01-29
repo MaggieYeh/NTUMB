@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register HomePageConfig do     
-  menu if: proc{ can?(:manage,HomePageConfig) }
+  menu if: proc{ can?(:manage,HomePageConfig) }, label: "首頁設定"
   controller.authorize_resource
   config.filters = false
   config.clear_action_items!
@@ -24,7 +24,7 @@ ActiveAdmin.register HomePageConfig do
     f.inputs "首頁設定" do
       f.input :contact_info, label: "聯絡信箱"
       counter = 0
-      f.has_many :home_page_tab_fields do |tab|
+      f.has_many :home_page_tab_fields, label: "首頁公告分頁" do |tab|
         counter += 1
         tab.inputs "標籤#{counter}" do
           tab.input :visible, label: "顯示此標籤"
