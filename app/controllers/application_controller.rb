@@ -55,7 +55,9 @@ private
   def find_department_name
     @current_department_name = Department.current_department_name
     @department_names = Department::DEPARTMENTS
-    @current_department = Department.find_by_name(Department::DEPARTMENTS.select{|d| 
+    all_departments = Department::DEPARTMENTS.clone
+    all_departments << Department::INTERNATIONAL_AFFAIRS
+    @current_department = Department.find_by_name(all_departments.select{|d| 
                                               d.casecmp(@current_department_name) == 0}[0])
     @contact_info = @current_department.home_page_config.contact_info
   end
