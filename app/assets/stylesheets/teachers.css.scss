@@ -1,16 +1,112 @@
 // Place all the styles related to the teachers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.teacher-data-name{
-  font-size: 1em;
-  /*float: left;*/
-  width: 170px;
-  margin: 5px 15px;
+
+.stuffing {
+  display: inline-block;
 }
-.teacher-data{
-  /*float: left;*/
-  width: 170px;
-  margin: 5px 15px;
+
+.inner-stuffing {
+  display: inline-block;
+  border-right: 0.2em solid white;
+}
+
+.department-stuffing {
+  width: 6em;
+}
+
+.department-inner-stuffing {
+  width: 5.5em;
+}
+
+.title-wrapper, .tab-wrapper{
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  margin-bottom: 0.7em;
+  margin-top: 0.7em;
+}
+
+ul.info-tabs {
+  display: inline-block;
+  list-style: none;
+  margin: 0px 0px;
+  margin-left: 0.5em;
+  li {
+    display: inline-block;
+    margin-right: 0.8em;
+  }
+}
+
+.teacher-stuffing{
+  width: 14.5em;
+  margin-right: 0.5em;
+}
+
+.teacher-inner-stuffing {
+  width: 13.9em;
+}
+
+.tab-stuffing {
+  width: 13em;
+}
+
+.tab-inner-stuffing{
+  width: 12.5em;
+}
+
+.stuffing-green{
+  background-color: rgb(52,191,19);
+}
+
+.stuffing-orange{
+  background-color: rgb(253,100,31);
+}
+
+.stuffing-blue{
+  background-color: rgb(76,142,238);
+}
+
+a.teacher-department {
+  display: inline-block !important;
+  padding-left: 0.4em !important;
+  margin-left: 0px !important;
+  color: black;
+  text-decoration: underline;
+}
+
+ul.teachers {
+  list-style: none;
+  border-top: solid 2px;
+  border-bottom: solid 2px;
+  margin-left: 0px;
+  li{
+    margin: 5px 10px;
+    display: inline-block;
+  }
+}
+
+.green-pixel-pattern {
+  background: url(teachers/green.png) repeat;
+}
+
+.blue-pixel-pattern {
+  background: url(teachers/blue.png) repeat;
+}
+
+.oragne-pixel-pattern {
+  background: url(teachers/orange.png) repeat;
+}
+
+.green-border {
+  border-color: rgb(52,191,19) !important;
+}
+
+.blue-border {
+  border-color: rgb(76,142,238) !important;
+}
+
+.orange-border {
+  border-color: rgb(253,100,31) !important;
 }
 
 .teacher-data-name, .teacher-data-room{
@@ -22,5 +118,92 @@ table.fixed{
   td{
     overflow: hidden;
     word-wrap: break-word;
+  }
+}
+
+.teacher-pic-wrapper{
+  /*display: inline-block;*/
+  float: left;
+  img.teacher-avatar {
+    width: 14em;
+    height: 16.7em;
+  }
+  margin-right: 10px;
+}
+
+div.teacher-data{
+  display: inline-block;
+  table{
+    border-collapse: collapse;
+    border: 1px solid white;
+    td, th{
+      border: 1px solid white;
+    }
+    td {
+      width: 20em;
+      background-color: #DDFFBB;
+      padding-left: 0.4em;
+    }
+    tr>td:first-child {
+      text-align: center;
+      width: 13em;
+      padding: 2px 0px;
+      background-color: #FFF7DF;
+    }
+    tr:last-child{
+      td:first-child {
+        padding: 9px 0px;   
+      }
+    }
+  }
+}
+
+.list-padding{
+  display: inline-block;
+  border-right: white 0.3em solid;
+  background-color: #838100;
+  width: 1.8em;
+}
+
+div.left-title{
+  float:left;
+}
+
+div.float-buffer{
+  clear: both;
+}
+
+div.items{
+  padding: 0.6em 0.3em;
+}
+
+.list-padding-inner{
+  display: inline-block;
+  border-right: white 3px solid;
+  background-color: #716400;
+  width: 1em;
+}
+
+div.list-title{
+  width: 100%;
+  div.filler{
+    background-color: #C8D6BA;
+    margin-left: 12em;
+  }
+}
+
+div.filler.two-words{
+}
+
+div.title-content {
+  display: inline-block;
+  border-left: 0.4em solid #C8D6BA;
+  border-right: 9em solid #C8D6BA;
+  margin-left: -0.2em;
+  span {
+    padding: 0px 0.4em;
+    font-size: 1em;
+    background-color: transparent;
+    color: #838100;
   }
 }

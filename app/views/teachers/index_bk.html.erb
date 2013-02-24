@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="span3">
+    <%= render partial: "shared/pagenav" %>
+  </div>
+  <div class="span9">
+    <div id="expanding" class="accordion">
+      <% @title_categories.each_with_index do |tc,i| %>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a data-parent="expanding" href="#tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>"
+               class="accordion-toggle" data-toggle="collapse">
+              <%= tc.title_name %>
+            </a>
+          </div>
+          <div class="accordion-body collapse in" 
+               id="tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>">
+            <div class="accordion-inner">
+              <table border="0" class="fixed">
+                <col width="170px" />
+                <col width="170px" />
+                <col width="170px" />
+                <col width="170px" />
+                <tr>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.name" %></td>
+                  <td class="teacher-data-name">E-mail</td>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.room" %></td>
+                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.homepage" %></td>
+                </tr>
+                <% tc.teachers.each do |teacher| %>
+                  <% if @teachers.include?(teacher) %>
+                    <tr>
+                      <td class="teacher-data teacher-name">
+                        <%= link_to teacher.name, teacher_path(teacher) %>
+                      </td>
+                      <td class="teacher-data">
+                        <%= teacher.email %>
+                      </td>
+                      <td class="teacher-data teahcer-room">
+                        <%= teacher.room %>
+                      </td>
+                      <td class="teacher-data">
+                        <%= link_to teacher.homepage, teacher.homepage %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div><!-- accordion-group -->
+      <% end %> <!-- each title_categories -->
+    </div><!-- #expanding -->
+  </div>
+</div>

@@ -4,51 +4,62 @@
   </div>
   <div class="span9">
     <div id="expanding" class="accordion">
-      <% @title_categories.each_with_index do |tc,i| %>
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a data-parent="expanding" href="#tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>"
-               class="accordion-toggle" data-toggle="collapse">
-              <%= tc.title_name %>
-            </a>
-          </div>
-          <div class="accordion-body collapse in" 
-               id="tt_<%= tc.translation_for(:en).title_name.gsub(/ /,'_') %>">
-            <div class="accordion-inner">
-              <table border="0" class="fixed">
-                <col width="170px" />
-                <col width="170px" />
-                <col width="170px" />
-                <col width="170px" />
-                <tr>
-                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.name" %></td>
-                  <td class="teacher-data-name">E-mail</td>
-                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.room" %></td>
-                  <td class="teacher-data-name"><%= I18n.t "front_end.teacher.homepage" %></td>
-                </tr>
-                <% tc.teachers.each do |teacher| %>
-                  <% if @teachers.include?(teacher) %>
-                    <tr>
-                      <td class="teacher-data teacher-name">
-                        <%= link_to teacher.name, teacher_path(teacher) %>
-                      </td>
-                      <td class="teacher-data">
-                        <%= teacher.email %>
-                      </td>
-                      <td class="teacher-data teahcer-room">
-                        <%= teacher.room %>
-                      </td>
-                      <td class="teacher-data">
-                        <%= link_to teacher.homepage, teacher.homepage %>
-                      </td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              </table>
+        <% @departments.each_with_index do |d,i| %>
+          <% 
+            stuff_color = ""
+            border_color = ""
+            background = ""
+            if i%3 == 0
+              stuff_color = "stuffing-green"
+              border_color = "green-border"
+              background = "green-pixel-pattern"
+            elsif i%3 == 1
+              stuff_color = "stuffing-blue"
+              border_color = "blue-border"
+              background = "blue-pixel-pattern"
+            else
+              stuff_color = "stuffing-orange"
+              border_color = "orange-border"
+              background = "orange-pixel-pattern"
+            end
+          %>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <div class="department-stuffing stuffing <%= stuff_color %>">
+                <span class="department-inner-stuffing inner-stuffing <%= stuff_color %>">&nbsp;</span>
+              </div>
+              <a data-parent="expanding" href="#ttc_<%= d %>"
+                 class="accordion-toggle teacher-department" data-toggle="collapse">
+                 <%= I18n.t "front_end.teacher.department.#{d}" %>
+              </a>
             </div>
-          </div>
-        </div><!-- accordion-group -->
-      <% end %> <!-- each title_categories -->
-    </div><!-- #expanding -->
-  </div>
-</div>
+            <div class="accordion-body collapse
+              <%= "in" if @current_department_name.downcase != "management"%>" id="ttc_<%= d %>">
+              <div class="accordion-inner">
+                <% @title_categories.each_with_index do |tc,i| %>
+                  <span class="teacher_title">
+                    <%= tc.title_name %>
+                  </span>
+                  <ul class="teachers <%= border_color %> <%= background %>">
+                    <% ts =  @teachers.select{|ts| ts.teacher_title == tc 
+                                      }.select{|ts| ts.department == Department.find_by_name(d) } %>
+                    <% unless ts.empty? %>
+                      <% ts.each do |teacher| %>   
+                        <li class="teacher-item">
+                          <%= link_to teacher.name, teacher_path(teacher) %>
+                        </li>
+                      <% end %>
+                    <% else %>
+                      <li>
+                        <%= I18n.t "front_end.teacher.none" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div> <!-- .accordion-inner -->
+            </div> <!-- .accordion-body -->
+          </div> <!-- .accordion-group -->
+        <% end %>
+    </div> <!-- #expanding -->
+  </div> <!-- end of span 9 -->
+</div> <!-- end of row -->

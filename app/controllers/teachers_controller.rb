@@ -6,8 +6,11 @@ class TeachersController < ApplicationController
     #@teachers = Teacher.page(params[:page])
     if @current_department_name == "management"
       @teachers = Teacher.all
+      @departments = Department::DEPARTMENTS.clone # + [Department::INTERNATIONAL_AFFAIRS])
+      @departments.shift
     else
       @teachers = Teacher.send(@current_department_name)
+      @departments = [@current_department.name]
     end
     @title_categories = TeacherTitle.all
   end

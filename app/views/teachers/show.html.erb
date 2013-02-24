@@ -3,73 +3,172 @@
     <%= render partial: "shared/pagenav" %>
   </div>
   <div class="span9">
-    <img src="<%= @teacher.avatar.url %>" alt="" />
-    <table>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.title" %></td>
-        <td><%= @teacher.teacher_title.title_name %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.name" %></td>
-        <td><%= @teacher.name %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.room" %></td>
-        <td><%= @teacher.room %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.phone" %></td>
-        <td><%= @teacher.phone %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.cellphone" %></td>
-        <td><%= @teacher.cellphone %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.tax" %></td>
-        <td><%= @teacher.tax_number %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.homepage" %></td>
-        <td><%= @teacher.homepage %></td>
-      </tr>
-      <tr>
-        <td><%= I18n.t "front_end.teacher.email" %></td>
-        <td><%= @teacher.email %></td>
-      </tr>
-    </table>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.educational_backgrounds"%></h4>
-      <% @teacher.educational_backgrounds.each do |eb| %>
-        <li><%= eb.name %></li>
-      <% end %>
-    </ul>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.research_areas"%></h4>
-      <% @teacher.research_areas.each do |ra| %>
-        <li><%= ra.name %></li>
-      <% end %>
-    </ul>
-    <% unless @teacher.honor.to_s.empty? %>
-      <ul>
-        <h4><%= I18n.t "front_end.teacher.honor" %></h4>
-        <%= raw sanitize(simple_format(@teacher.honor), :tags => %w(br p) ) %>
+    <div class="title-wrapper green-border">
+      <div class="teacher-stuffing stuffing stuffing-green">
+        <span class="teacher-inner-stuffing inner-stuffing stuffing-green">&nbsp;</span>
+      </div>
+      <span><%= @teacher.teacher_title.title_name %></span>
+    </div>
+    <div class="teacher-data-container">
+      <div class="teacher-pic-wrapper">
+        <img src="<%= @teacher.avatar.url %>" 
+             alt="<%= @teacher.teacher_title.title_name + " " + @teacher.name %>" 
+             class="teacher-avatar"/>
+      </div>
+      <div class="teacher-data">
+        <table class="">
+          <tr>
+            <td><%= I18n.t "front_end.teacher.title" %></td>
+            <td><%= @teacher.teacher_title.title_name %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.name" %></td>
+            <td><%= @teacher.name %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.room" %></td>
+            <td><%= @teacher.room %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.phone" %></td>
+            <td><%= @teacher.phone %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.cellphone" %></td>
+            <td><%= @teacher.cellphone %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.tax" %></td>
+            <td><%= @teacher.tax_number %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.homepage" %></td>
+            <td><%= @teacher.homepage %></td>
+          </tr>
+          <tr>
+            <td><%= I18n.t "front_end.teacher.email" %></td>
+            <td><%= @teacher.email %></td>
+          </tr>
+          <tr>
+            <td valign="center"><%= I18n.t "front_end.teacher.research_areas" %></td>
+            <td>
+              <% @teacher.research_areas.each do |ra| %>
+                <li><%= ra.name %></li>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="title-wrapper green-border">
+      <div class="tab-stuffing stuffing stuffing-green">
+        <span class="tab-inner-stuffing inner-stuffing stuffing-green">&nbsp;</span>
+      </div>
+      <ul class="info-tabs">
+        <li class="active">
+          <a href="#teacher-course" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.educational_backgrounds" %> & 
+            <%= I18n.t "front_end.teacher.courses" %>
+          </a>
+        </li>
+        <li>
+          <a href="#teacher-history" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.honor" %> &
+            <%= I18n.t "front_end.teacher.history" %>
+          </a>
+        </li>
+        <li>
+          <a href="#teacher-paper" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.publication.paper" %>
+          </a>
+        </li>
+        <li>
+          <a href="#teacher-conference" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.publication.conference" %>
+          </a>
+        </li>
+        <li>
+          <a href="#teacher-book" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.publication.book" %>
+          </a>
+        </li>
+        <li>
+          <a href="#teacher-other" data-toggle="tab">
+            <%= I18n.t "front_end.teacher.publication.other" %>
+          </a>
+        </li>
       </ul>
-    <% end %>
-    <% unless @teacher.history.to_s.empty? %>
-      <ul>
-        <h4><%= I18n.t "front_end.teacher.history" %></h4>
-        <%= raw sanitize(simple_format(@teacher.history), :tags => %w(br p) ) %>
-      </ul>
-    <% end %>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.courses"%></h4>
-      <% @teacher.courses.each do |course| %>
-        <li><%= course.name %></li>
-      <% end %>
-    </ul>
-    <ul>
-      <h4><%= I18n.t "front_end.teacher.publications" %></h4>
-    </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="teacher-course">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.educational_backgrounds") } %>
+        <div class="items">
+          <% unless @teacher.educational_backgrounds.empty? %>
+            <ul>
+              <% @teacher.educational_backgrounds.each do |eb| %>
+                <li><%= eb.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.courses") } %>
+        <div class="items">
+          <% unless @teacher.courses.empty? %>
+          <ul>
+            <% @teacher.courses.each do |course| %>
+              <li><%= course.name %></li>
+            <% end %>
+          </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="teacher-history">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.honor") } %>
+        <div class="items">
+          <% unless @teacher.honor.to_s.empty? %>
+            <ul>
+              <%= raw sanitize(simple_format(@teacher.honor), :tags => %w(br p) ) %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.history") } %>
+        <div class="items">
+          <% unless @teacher.history.to_s.empty? %>
+            <ul>
+              <h4><%= I18n.t "front_end.teacher.history" %></h4>
+              <%= raw sanitize(simple_format(@teacher.history), :tags => %w(br p) ) %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="teacher-paper">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.publication.paper") } %>
+      </div>
+      <div class="tab-pane" id="teacher-conference">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.publication.conference") } %>
+      </div>
+      <div class="tab-pane" id="teacher-book">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.publication.book") } %>
+      </div>
+      <div class="tab-pane" id="teacher-other">
+        <%= render partial: "teacher_title_bar",
+                   locals: { title_name: I18n.t("front_end.teacher.publication.other") } %>
+      </div>
+    </div>
   </div>
 </div>
