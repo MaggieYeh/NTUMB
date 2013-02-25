@@ -26,6 +26,7 @@ ActiveAdmin.register HomePageConfig do
       f.input :phone_one, label: "聯絡電話1"
       f.input :phone_two, label: "聯絡電話2"
       f.input :tax_num, label: "傳真號碼"
+      f.input :address, label: "聯絡地址"
       counter = 0
       f.has_many :home_page_tab_fields, label: "首頁公告分頁" do |tab|
         counter += 1

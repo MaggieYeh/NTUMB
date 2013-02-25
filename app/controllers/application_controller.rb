@@ -66,6 +66,8 @@ private
     @phone_two = "+886-2-33661008" if @phone_two.to_s.empty?
     @tax_num = @current_department.home_page_config.tax_num
     @tax_num = "+886-2-23632082" if @tax_num.to_s.empty?
+    @address = @current_department.home_page_config.address
+    @address = I18n.t("front_end.address") if @address.to_s.empty?
   end
 
   def build_links

@@ -48,7 +48,7 @@ private
           end.sort_by{|a| a.announce_date}.reverse
           non_sticky = temp.reject(&:sticky).select do |a|
             !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-          end.take(10).sort_by{|a| a.announce_date}.reverse
+          end.sort_by{|a| a.announce_date}.reverse.take(10)
         content = sticky + non_sticky
         @tab_contents << content
       else

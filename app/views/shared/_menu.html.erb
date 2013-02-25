@@ -1,6 +1,6 @@
-<div id="menu-wrapper">
+<div id="<%= "emba-" if emba %>menu-wrapper">
   <div class="container">
-    <ol id="main-menu" class="menu nav nav-pills">
+    <ol id="<%= "emba-" if emba %>main-menu" class="menu nav nav-pills">
       <% @menu.each do |menu_name,path_and_children| %>
         <% has_child = !path_and_children[:children].empty? %>
         <li <%= has_child ? "class='dropdown'" : "" %>>

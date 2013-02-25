@@ -1,0 +1,23 @@
+<div id="emba-header-wrapper">
+  <div id="emba-header" class="container">
+    <div class="row">
+      <div class="span6">
+        <div id="emba-left-header-wrapper">
+          <a href="<%= @header_link %>">
+            <%= image_tag("emba/emba_logo.png") %>
+          </a>
+        </div>
+      </div>
+      <div class="span6">
+        <div id="emba-right-header-wrapper">
+          <form class="form-search" action="http://www.google.com/search">
+            <input type="text" placeholder="search" name="q" class="input-medium search-query">
+            <input type="hidden" name="sitesearch" value="<%= request.host %>" />
+            <button type="submit"><%= I18n.t "front_end.search" %></button>
+          </form>
+          <%= image_tag("emba/emba_background.png", { class: "visible-768" }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

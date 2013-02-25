@@ -1,0 +1,17 @@
+<div id="<%= "emba-" if emba %>department-links-wrapper">
+  <div class="container">
+    <ol id="<%= "emba-" if emba %>department-links" class="nav nav-pills">
+      <% @department_names.each_with_index do |dname,i|  %>
+        <% if i == 0 %>
+          <li><%= link_to I18n.t("front_end.Management"), @management_link %></li>
+        <% else %>
+          <% unless dname == "GMBA" %>
+            <li><%= link_to I18n.t("front_end.#{dname}"), @all_departments_links.at(i) %></li>
+          <% else %>
+            <li><%= link_to "GMBA", "/en/GMBA" %></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ol>
+  </div>
+</div><!-- end of department-links-wrapper -->

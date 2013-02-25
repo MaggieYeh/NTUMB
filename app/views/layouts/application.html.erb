@@ -13,8 +13,13 @@
 </head>
 <body>
   <div id="non-footer">
-    <%= render :partial => "shared/header" %>
-    <%= render :partial => "shared/menu" %>
+    <% unless @current_department_name.downcase == "emba" %>
+      <%= render :partial => "shared/header" %>
+    <% else %>
+      <%= render partial: "emba/header" %>
+    <% end %>
+    <%= render :partial => "shared/menu",
+                locals: { emba: @current_department_name.downcase == "emba" ? true : false }%>
     <div id="main-wrapper">
       <div id="main" class="container">
         <%= yield %>
@@ -22,6 +27,10 @@
     </div><!-- end of main-wrapper -->
     <div id="push"></div>
   </div>
-  <%= render partial: "shared/footer" %>
+  <% unless @current_department_name.downcase == "emba" %>
+    <%= render partial: "shared/footer" %>
+  <% else %>
+    <%= render partial: "emba/footer" %>
+  <% end %>
 </body>
 </html>

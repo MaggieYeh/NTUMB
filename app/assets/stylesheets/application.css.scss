@@ -23,6 +23,10 @@ $linkColorHover: #999;
   @include gradient-vertical(rgb(146,13,15),rgb(127,11,13));
 }
 
+@mixin emba-grey-gradient-background(){
+  background-color: rgb(91,91,91);
+}
+
 @mixin grey-gradient-background(){
   /*width: 100%;*/
   /*background-image: url(office.png);*/
@@ -71,6 +75,26 @@ html,body{
   @include hidden;
 }
 
+.visible-1201{
+  @include hidden;
+}
+
+.visible-768{
+  @include hidden;
+}
+
+@media (min-width: 1200px){
+  .visible-1201{
+    @include visible; 
+  }
+}
+
+@media (min-width: 768px){
+  .visible-768{
+    @include visible; 
+  }
+}
+
 @media (min-width: 980px) and (max-width: 1199px){
   .visible-980-1200{
     @include visible;
@@ -101,7 +125,7 @@ html,body{
   }
 }
 
-#header,#menu-wrapper,#footer,#department-links{
+#emba-menu-wrapper,#header,#menu-wrapper,#footer,#emba-department-links,#department-links{
   p,span,a,h1,h2,h3,h4{
     color: white;
   }
@@ -278,7 +302,7 @@ ol.dropdown-menu{
   }
 }
 
-#push,#footer{
+#push,#footer,#emba-footer{
   height: 80px;
 }
 
@@ -335,3 +359,80 @@ ol.dropdown-menu{
 .stickera2a012{
   @include sticker-bar(#a2a012) 
 }
+
+#emba-header-wrapper{
+  background-color: white;
+  #emba-header{
+    #emba-left-header-wrapper{
+      a>img{
+        padding: 7px 0em;
+        float: left;
+        width: 490px;
+        height: 151px;
+      }
+    }
+    #emba-right-header-wrapper{
+      height: 151px;
+      position: relative;
+      form{
+        display: block;
+        z-index: 10;
+        position: absolute;
+        right: 6em;
+        top: 1em;
+      }
+      img{
+        position: absolute;
+        height: 175px;
+        bottom: -36px;
+        right: 0px;
+      }
+    }
+  }
+}
+
+#emba-menu-wrapper{
+  @include emba-grey-gradient-background();
+  ol#emba-main-menu{
+    position: relative;
+    z-index: 3;
+    margin: 0px;
+    .caret {
+      border-top-color: #ddd !important;
+      border-bottom-color: #ddd !important;
+    }
+    >li>a:hover {
+      background-color: $linkColorHover;
+    }
+  }
+}
+
+#emba-department-links-wrapper{
+  @include emba-grey-gradient-background();
+  /*border-bottom: 1px solid $red-grey-border;*/
+  ol#emba-department-links{
+    >li>a:hover {
+      background-color: $linkColorHover;
+    }
+    @include center-aligned-menu-item();
+    margin: 0px;
+  }
+}
+
+#emba-info-wrapper{
+  background-color: white;
+  color: #eee;
+  padding-top: 20px;
+  #emba-info{
+    img{
+      float: left;
+      margin: 0 30px;
+    }
+    #emba-info-right{
+      float: right;
+      text-align: right;
+    }
+    color: rgb(91,91,91);
+  }
+}
+

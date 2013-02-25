@@ -1,28 +1,12 @@
 <div id="footer">
-  <div id="department-links-wrapper">
-    <div class="container">
-      <ol id="department-links" class="nav nav-pills">
-        <% @department_names.each_with_index do |dname,i|  %>
-          <% if i == 0 %>
-            <li><%= link_to I18n.t("front_end.Management"), @management_link %></li>
-          <% else %>
-            <% unless dname == "GMBA" %>
-              <li><%= link_to I18n.t("front_end.#{dname}"), @all_departments_links.at(i) %></li>
-            <% else %>
-              <li><%= link_to "GMBA", "/en/GMBA" %></li>
-            <% end %>
-          <% end %>
-        <% end %>
-      </ol>
-    </div>
-  </div><!-- end of department-links-wrapper -->
+  <%= render partial: "shared/department_links", locals: { emba: false }%>
   <div id="info-wrapper">
     <div id="info" class="container">
       <span id="copyright">
         <small> &copy; National Taiwan University All Rights Reserved</small>
       </span>
       <address>
-        <span><small><%= I18n.t("front_end.adress") %></small></span>
+        <span><small><%= @address %></small></span>
         <br/>
         <span>
           <small><%= I18n.t("front_end.phone") %>：<%= @phone_one %>; <%= @phone_two %> 
