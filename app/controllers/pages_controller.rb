@@ -76,7 +76,7 @@ private
       videos = Rails.cache.read("#{account}_videos")
     else
       begin
-        timeout(3) do
+        Timeout::timeout(3) do
          doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/#{account}/uploads?v=2").read)
          doc.css("entry").each do |e|
            videos << parse_video(e)
@@ -84,6 +84,7 @@ private
          Rails.cache.write("#{account}_videos", videos, expires_in: 10.minutes)
         end
       rescue Timeout::Error => e
+        @youtube_timeout = true
         videos = []
       end
     end

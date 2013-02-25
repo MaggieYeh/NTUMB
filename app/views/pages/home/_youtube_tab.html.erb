@@ -1,20 +1,24 @@
-<% videos.each do |v| %>
-  <li>
-    <a href="<%= html_escape v['video_url'] %>">
-      <span class="video-thumb-wrapper">
-        <span class="video-thumb">
-          <span class="video-thumb-inner">
-            <%= image_tag(v['thumb_url']) %>
+<% if @youtube_timeout %>
+  <div class="youtube-error">Can't connect to google</div>
+<% else %>
+  <% videos.each do |v| %>
+    <li>
+      <a href="<%= html_escape v['video_url'] %>">
+        <span class="video-thumb-wrapper">
+          <span class="video-thumb">
+            <span class="video-thumb-inner">
+              <%= image_tag(v['thumb_url']) %>
+            </span>
+            <span class="duration"><%= v['duration'] %></span>
           </span>
-          <span class="duration"><%= v['duration'] %></span>
         </span>
-      </span>
-      <div class="video-info invisible-768-979">
-        <span class="video-title"><%= v['title'] %></span><br />
-        <span class="video-stats">
-          <%= I18n.t "front_end.announce_date" %>: <%= "#{v['published_at']}" %>
-        </span>
-      </div>
-    </a>
-  </li>
+        <div class="video-info invisible-768-979">
+          <span class="video-title"><%= v['title'] %></span><br />
+          <span class="video-stats">
+            <%= I18n.t "front_end.announce_date" %>: <%= "#{v['published_at']}" %>
+          </span>
+        </div>
+      </a>
+    </li>
+  <% end %>
 <% end %>
