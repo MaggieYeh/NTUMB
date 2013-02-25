@@ -157,7 +157,7 @@
                    locals: { title_name: I18n.t("front_end.teacher.publication.paper") } %>
         <div class="items">
           <% if @seqFound && !@paper.empty? %>
-            <ul>
+            <ul class="publications" >
               <% @paper.each do |paper| %>
                 <li>
                   <%="#{paper[:author]}" %>
@@ -181,7 +181,7 @@
                    locals: { title_name: I18n.t("front_end.teacher.publication.conference") } %>
         <div class="items">
           <% if @seqFound && !@conference_paper.empty? %>
-            <ul>
+            <ul class="publications" >
               <% @conference_paper.each do |paper| %>
                 <li>
                   <%="#{paper[:author]}" %>
@@ -206,7 +206,7 @@
                    locals: { title_name: I18n.t("front_end.teacher.publication.book") } %>
         <div class="items">
           <% if @seqFound && !@books.empty?%>
-            <ul>
+            <ul class="publications">
               <% @books.each do |book| %>
                 <li>
                   <%="#{book[:author]}" %>
@@ -229,7 +229,9 @@
       <div class="tab-pane" id="teacher-other">
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.other") } %>
-        <div><%= I18n.t "front_end.teacher.no_data" %></div>
+        <div class="items">
+          <div><%= I18n.t "front_end.teacher.no_data" %></div>
+        </div>
       </div>
     </div>
   </div>

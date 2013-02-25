@@ -25,7 +25,8 @@
         <span><small><%= I18n.t("front_end.adress") %></small></span>
         <br/>
         <span>
-          <small><%= I18n.t("front_end.phone") %>：+886-2-33661000; +886-2-33661008 <%= I18n.t("front_end.tax") %>：+886-2-23632082</small>
+          <small><%= I18n.t("front_end.phone") %>：<%= @phone_one %>; <%= @phone_two %> 
+          <%= I18n.t("front_end.tax") %>：<%= @tax_num %></small>
         </span>
       </address>
     </div><!-- end of info -->

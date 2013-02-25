@@ -175,6 +175,12 @@ div.float-buffer{
 
 div.items{
   padding: 0.6em 0.3em;
+  ul.publications{
+    list-style: decimal;
+    li{
+      margin: 0.3em 0em;
+    }
+  }
 }
 
 .list-padding-inner{

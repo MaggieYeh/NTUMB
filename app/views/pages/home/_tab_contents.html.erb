@@ -1,7 +1,7 @@
 <% items.each do |a| %>
   <tr>
     <td class="announce_date">
-      <a class="<%= "sticky" if a.sticky %>" href="<%= announcement_path(a) %>">
+      <a href="<%= announcement_path(a) %>">
         <span><%= a.announce_date.to_s %></span>
       </a>
     </td>

@@ -37,10 +37,11 @@ table{
     width: 90px !important;
     vertical-align: top;
   }
-  a.sticky{
-    span{
-      background-color: #f2eb63;
-    }
+  a.sticky:after {
+    content: url("stickyPin.png")
+    /*span{*/
+      /*background-color: #f2eb63;*/
+    /*}*/
   }
 }
 
