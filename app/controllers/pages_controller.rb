@@ -75,11 +75,17 @@ private
     if Rails.cache.exist?("#{account}_videos")
       videos = Rails.cache.read("#{account}_videos")
     else
-      doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/#{account}/uploads?v=2").read)
-      doc.css("entry").each do |e|
-        videos << parse_video(e)
+      begin
+        timeout(3) do
+         doc = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/users/#{account}/uploads?v=2").read)
+         doc.css("entry").each do |e|
+           videos << parse_video(e)
+         end
+         Rails.cache.write("#{account}_videos", videos, expires_in: 10.minutes)
+        end
+      rescue Timeout::Error => e
+        videos = []
       end
-      Rails.cache.write("#{account}_videos", videos, expires_in: 10.minutes)
     end
     videos
   end
@@ -107,7 +113,7 @@ private
     end
     ret["description"] = video_entry.css("media|group media|description").text[0..20]
     ret["published_at"] = Time.strptime(video_entry.css("published").text,'%Y-%m-%d').to_date.to_s
-    #ret["view_count"] = video_entry.css("yt|statistics").attr('viewCount').value
+    ret["view_count"] = video_entry.css("yt|statistics").attr('viewCount').try("value")
     ret
   end
 
