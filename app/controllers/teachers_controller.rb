@@ -17,6 +17,51 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find(params[:id])
+    @seqFound = false
+    all_xml = Nokogiri::XML(open("http://versatile.management.ntu.edu.tw/publication/all.xml").read)
+    teacher_node = all_xml.xpath("//TeacherName").detect do |node| 
+                                node.text == @teacher.translation_for("zh-TW").name 
+                              end
+    unless teacher_node.nil?
+      ntuseq = (teacher_node.parent>"NTUseq").text
+      @seqFound = true
+      paper_xml = Nokogiri::XML( \
+        open("http://versatile.management.ntu.edu.tw/publication/journal/#{ntuseq}.xml"))
+      @paper = paper_xml.xpath("//Paper").map do |paper_node|
+                  {
+                    author: (paper_node>"Authors").text,
+                    year: (paper_node>"PublishYear").text,
+                    title: (paper_node>"PaperTitle").text,
+                    journal: (paper_node>"PublishOn").text,
+                    remarks: (paper_node>"Remarks").text,
+                    cate: ((paper_node>"subgroup")>"group").text
+                  }
+                end
+      conference_xml = Nokogiri::XML( \
+        open("http://versatile.management.ntu.edu.tw/publication/conference/#{ntuseq}.xml"))
+      @conference_paper = conference_xml.xpath("//Paper").map do |cp_node|
+                            {
+                              author: (cp_node>"Authors").text,
+                              year: (cp_node>"PublishYear").text,
+                              title: (cp_node>"PaperTitle").text,
+                              conference: (cp_node>"PublishOn").text,
+                              date: Date::MONTHNAMES[(cp_node>"PublishMonth").text.to_i],
+                              location: (cp_node>"Location").text
+                            }
+                          end
+      books_xml = Nokogiri::XML( \
+        open("http://ann.cc.ntu.edu.tw/Achv/xmlBook.asp?Seq=#{ntuseq}"))
+      @books = books_xml.xpath("//Book").map do |book_node|
+          {
+            author: (book_node>"Authors").text,
+            year: (book_node>"PublishYear").text,
+            title: (book_node>"DocTitle").text,
+            remarks: (book_node>"Remarks").text,
+            publisher: (book_node>"Publisher").text,
+            book_title: (book_node>"BookTitle").text
+          }
+      end
+    end
   end
 
   def edit

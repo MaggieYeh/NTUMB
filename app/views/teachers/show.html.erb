@@ -145,7 +145,6 @@
         <div class="items">
           <% unless @teacher.history.to_s.empty? %>
             <ul>
-              <h4><%= I18n.t "front_end.teacher.history" %></h4>
               <%= raw sanitize(simple_format(@teacher.history), :tags => %w(br p) ) %>
             </ul>
           <% else %>
@@ -156,18 +155,81 @@
       <div class="tab-pane" id="teacher-paper">
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.paper") } %>
+        <div class="items">
+          <% if @seqFound && !@paper.empty? %>
+            <ul>
+              <% @paper.each do |paper| %>
+                <li>
+                  <%="#{paper[:author]}" %>
+                  <%=", #{paper[:year]}" unless paper[:year].to_s.empty? || paper[:year] == "N/A" %>
+                  <%=", #{paper[:title]}" unless paper[:title].to_s.empty? || paper[:title] == "N/A" %>
+                  <%=", #{paper[:journal]}" unless paper[:journal].to_s.empty? || \
+                                                 paper[:journal] == "N/A"%>
+                  <%=", #{paper[:remarks]}" unless paper[:remarks].to_s.empty? || \
+                                                 paper[:remarks] == "N/A"%>
+                  <%=" (#{paper[:cate]})" unless paper[:cate].to_s.empty? || paper[:cate] == "N/A" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
       </div>
       <div class="tab-pane" id="teacher-conference">
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.conference") } %>
+        <div class="items">
+          <% if @seqFound && !@conference_paper.empty? %>
+            <ul>
+              <% @conference_paper.each do |paper| %>
+                <li>
+                  <%="#{paper[:author]}" %>
+                  <%=", #{paper[:year]}" unless paper[:year].to_s.empty? || paper[:year] == "N/A" %>
+                  <%=", #{paper[:title]}" unless paper[:title].to_s.empty? || paper[:title] == "N/A" %>
+                  <%=", #{paper[:conference]}" unless paper[:conference].to_s.empty? || \
+                                                  paper[:conference] == "N/A"%>
+                  <%=", #{paper[:date]}" unless paper[:date].to_s.empty? || \
+                                                  paper[:date] == "N/A"%>
+                  <%=" (#{paper[:location]})" unless paper[:location].to_s.empty? || \
+                                                  paper[:location] == "N/A" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
       </div>
       <div class="tab-pane" id="teacher-book">
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.book") } %>
+        <div class="items">
+          <% if @seqFound && !@books.empty?%>
+            <ul>
+              <% @books.each do |book| %>
+                <li>
+                  <%="#{book[:author]}" %>
+                  <%=", #{book[:year]}" unless book[:year].to_s.empty? || book[:year] == "N/A" %>
+                  <%=", #{book[:title]}" unless book[:title].to_s.empty? || book[:title] == "N/A" %>
+                  <%=", #{book[:remarks]}" unless book[:remarks].to_s.empty? || \
+                                                  book[:remarks] == "N/A"%>
+                  <%=", #{book[:publisher]}" unless book[:publisher].to_s.empty? || \
+                                                  book[:publisher] == "N/A"%>
+                  <%=" (#{book[:book_title]})" unless book[:book_title].to_s.empty? || \
+                                                  book[:book_title] == "N/A" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div><%= I18n.t "front_end.teacher.no_data" %></div>
+          <% end %>
+        </div>
       </div>
       <div class="tab-pane" id="teacher-other">
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.other") } %>
+        <div><%= I18n.t "front_end.teacher.no_data" %></div>
       </div>
     </div>
   </div>
