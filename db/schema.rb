@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225061933) do
+ActiveRecord::Schema.define(:version => 20130228220821) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20130225061933) do
     t.string   "phone_two"
     t.string   "tax_num"
     t.string   "address"
+    t.string   "eng_address"
   end
 
   create_table "home_page_tab_field_translations", :force => true do |t|

@@ -14,6 +14,26 @@
             <input type="text" placeholder="search" name="q" class="input-medium search-query">
             <input type="hidden" name="sitesearch" value="<%= request.host %>" />
             <button type="submit"><%= I18n.t "front_end.search" %></button>
+            <div id="info-links">
+              <% if I18n.locale == :en %>
+                <% unless @current_department_name == "GMBA" %>
+                  <%= 
+                    link_to "中文", 
+                      ("/" + (@current_department_name == "management" ? "" : "#{@current_department_name}")) 
+                  %>
+                <% else %>
+                  <%= link_to "中文", '/' %>
+                <% end %>
+              <% else %>
+                <%= 
+                  link_to "English", 
+                  ("/en" + (@current_department_name == "management" ? "" : "/#{@current_department_name}"))
+                %>
+              <% end %>
+              <%= link_to I18n.t("front_end.contact"), "mailto:#{@contact_info}" %>
+              <%= link_to I18n.t("front_end.sitemap"), @management_link %>
+              <%= link_to I18n.t("front_end.ntu_site"), "http://www.ntu.edu.tw" %>
+              </div>
           </form>
           <%= image_tag("emba/emba_background.png", { class: "visible-768" }) %>
         </div>

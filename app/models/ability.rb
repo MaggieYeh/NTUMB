@@ -30,6 +30,7 @@ class Ability
     end
     if user.role? :teacher
       can :update, Teacher, :id => user.teacher_id
+      can :view, Teacher, :id => user.teacher_id
     end
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are
