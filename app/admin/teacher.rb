@@ -1,7 +1,22 @@
 # encoding: utf-8
 ActiveAdmin.register Teacher do
-  menu priority: 8, if: proc{ can?(:manage,Teacher)}
+  menu priority: 8, if: proc{ can?(:manage,Teacher)}, label: "教師資料管理"
+
   controller.authorize_resource
+
+  action_item { link_to "教師排序", teacher_ordering_admin_teachers_path  }
+
+  collection_action :teacher_ordering, :method => :get do
+    @teacher_titles = TeacherTitle.all
+    #@teachers = Teacher.all 
+  end
+
+  member_action :set_order, :method => :post do
+    @teacher.front_end_order = params[:teacher][:front_end_order]
+    @teacher.save
+    render :nothing => true
+  end
+
   form do |f|
     f.globalize_inputs :translations do |gf|
       gf.inputs "姓名與研究室" do

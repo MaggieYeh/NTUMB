@@ -5,11 +5,11 @@ class TeachersController < ApplicationController
   def index
     #@teachers = Teacher.page(params[:page])
     if @current_department_name == "management"
-      @teachers = Teacher.all
+      @teachers = Teacher.order("front_end_order DESC")
       @departments = Department::DEPARTMENTS.clone # + [Department::INTERNATIONAL_AFFAIRS])
       @departments.shift
     else
-      @teachers = Teacher.send(@current_department_name)
+      @teachers = Teacher.send(@current_department_name).order("front_end_order DESC")
       @departments = [@current_department.name]
     end
     @title_categories = TeacherTitle.all

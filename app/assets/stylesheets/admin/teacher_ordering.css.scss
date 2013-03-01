@@ -1,0 +1,10 @@
+ul.teacher_order{
+  list-style-type: none !important;
+  span{
+    display: inline-block;
+    width: 7em;
+  }
+  span.teacher_order_value input{
+    width: 3em;
+  }
+}

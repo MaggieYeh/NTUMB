@@ -1,0 +1,26 @@
+<p> 教師的排序大小越大，前台就會優先顯示該教師。 </p>
+  <% @teacher_titles.each do |title| %>
+    <h4><%= title.title_name %></h3>
+    <ul class="teacher_order">
+      <li>
+        <span class="teacher_order_name">教師姓名</span>
+        <span class="teacher_order_dep">系所</span>
+        <span class="teacher_order_value">排序大小</span>
+        <span class="teacher_order_submit">&nbsp;</span>
+      </li>
+      <% @teachers.select{|teacher| teacher.teacher_title == title} \
+                  .each do |teacher| %>
+        <li>
+        <%= form_for(teacher,url: "#{teacher.id}/set_order", remote: true, html: {method: :post}) do |f| %>
+            <span class="teacher_order_name"><%= teacher.name %></span>
+            <span class="teacher_order_dep"><%= teacher.department.name %></span>
+            <span class="teacher_order_value">
+              <%= f.text_field :front_end_order, html: {size: 5, value: teacher.front_end_order} %>
+            </span>
+            <span class="teacher_order_submit"> <%= f.submit "更新順序" %>
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>

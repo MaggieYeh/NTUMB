@@ -1,7 +1,7 @@
 class Teacher < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :cellphone, :department_id, :email, :homepage, :name, :phone,
-                  :tax_number, :avatar, :teacher_title_id, :room, :joint_with
+                  :tax_number, :avatar, :teacher_title_id, :room, :joint_with, :front_end_order
   attr_accessible :educational_backgrounds_attributes
   attr_accessible :courses_attributes
   attr_accessible :research_areas_attributes
