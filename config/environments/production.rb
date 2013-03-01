@@ -53,6 +53,7 @@ NTUMB::Application.configure do
         ckeditor/*.css
         admin/page_tree.css
         admin/tabbed_index.css
+        admin/teacher_ordering.css
         jquery-ui/jquery-ui-1.8.16.custom.css
         active_admin.css
         announcements.css
