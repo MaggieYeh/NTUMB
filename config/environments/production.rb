@@ -61,6 +61,7 @@ NTUMB::Application.configure do
         application_original.css
         documents.css
         ie_hack.css
+        ie8_hack.css
         news_reports.css
         pages.css
         sub_pages.css
