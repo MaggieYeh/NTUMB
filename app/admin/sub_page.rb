@@ -1,7 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 ActiveAdmin.register SubPage do     
-  menu label: "零散頁面管理", if: proc{ can?(:manage, SubPage) }
+  menu label: "零散頁面管理", if: proc{ can?(:manage, SubPage) }, parent: "內容頁面"
   controller.authorize_resource
 
   collection_action :js_new, method: :get do

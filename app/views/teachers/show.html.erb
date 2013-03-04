@@ -120,7 +120,13 @@
           <% unless @teacher.courses.empty? %>
           <ul>
             <% @teacher.courses.each do |course| %>
-              <li><%= course.name %></li>
+              <li>
+              <% if course.course_url.to_s.empty? %>
+                <%= course.name %>
+              <% else %>
+                <%= link_to course.name, course.course_url %>
+              <% end %>
+              </li>
             <% end %>
           </ul>
           <% else %>

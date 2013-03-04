@@ -8,6 +8,16 @@ class TeachersController < ApplicationController
       @teachers = Teacher.order("front_end_order DESC")
       @departments = Department::DEPARTMENTS.clone # + [Department::INTERNATIONAL_AFFAIRS])
       @departments.shift
+    elsif @current_department_name.downcase == "emba" 
+      @teachers = Teacher.picked_by_emba.order("front_end_order DESC") + \
+                  Teacher.send(@current_department_name).order("front_end_order DESC")
+      @departments = Department::DEPARTMENTS.clone # + [Department::INTERNATIONAL_AFFAIRS])
+      @departments.shift
+    elsif @current_department_name.downcase == "gmba"
+      @teachers = Teacher.picked_by_gmba.order("front_end_order DESC") + \
+                  Teacher.send(@current_department_name).order("front_end_order DESC")
+      @departments = Department::DEPARTMENTS.clone # + [Department::INTERNATIONAL_AFFAIRS])
+      @departments.shift
     else
       @teachers = Teacher.send(@current_department_name).order("front_end_order DESC")
       @departments = [@current_department.name]

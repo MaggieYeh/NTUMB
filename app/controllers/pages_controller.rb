@@ -40,15 +40,19 @@ private
         temp = []
         tab.announce_categories.each do |ann_c|
           temp += ann_c.announcements.select do |ann| 
-                    ann.department == @current_department
+                    if @current_department_name.downcase == "management"
+                      ann.department == @current_department || ann.picked_by_management
+                    else
+                      ann.department == @current_department
+                    end
                   end
         end # tab.announce_categories
-          sticky = temp.select(&:sticky).select do |a|
-            !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-          end.sort_by{|a| a.announce_date}.reverse
-          non_sticky = temp.reject(&:sticky).select do |a|
-            !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
-          end.sort_by{|a| a.announce_date}.reverse.take(10)
+        sticky = temp.select(&:sticky).select do |a|
+          !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
+        end.sort_by{|a| a.announce_date}.reverse
+        non_sticky = temp.reject(&:sticky).select do |a|
+          !(a.translation_for(I18n.locale).name.empty? || a.translation_for(I18n.locale).content.empty?)
+        end.sort_by{|a| a.announce_date}.reverse.take(10)
         content = sticky + non_sticky
         @tab_contents << content
       else

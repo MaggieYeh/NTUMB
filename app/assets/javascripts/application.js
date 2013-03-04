@@ -15,3 +15,4 @@
 //= require links
 //= require decorations
 //= require bootstrap
+//= require css3-mediaqueries

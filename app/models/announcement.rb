@@ -2,7 +2,7 @@ class Announcement < ActiveRecord::Base
   #before_validation :check_empty_departments
 
   acts_as_paranoid
-  attr_accessible :due_date, :announce_date, :sticky
+  attr_accessible :due_date, :announce_date, :sticky, :picked_by_management
   attr_accessible :department_id
   attr_accessible :announce_category_id
   attr_accessible :documents_attributes
@@ -19,9 +19,9 @@ class Announcement < ActiveRecord::Base
                                 :allow_destroy => true
 
   attr_accessible :translations_attributes
-  translates :content, :name, :fallbacks_for_empty_translations => true
+  translates :content, :name, :title_url, :fallbacks_for_empty_translations => true
   class Translation
-    attr_accessible :locale, :content, :name
+    attr_accessible :locale, :content, :name, :title_url
     #validates :content, presence: true
     #validates :name, presence: true
   end

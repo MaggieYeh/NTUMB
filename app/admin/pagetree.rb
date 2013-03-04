@@ -56,6 +56,7 @@ Page.descendants.each_with_index do |dpage,i|
           gf.input :menu_title, label: "選單名稱",
                    hint: "若將該語言的選單名稱留空白，則此頁面就不會在該語言出現"
           gf.input :title, label: "頁面標題"
+          gf.input :title_url, label: "標題連結(非必要)"
           gf.input :content, label: "內容", as: :ckeditor, input_html: { height: 500 }
           gf.input :locale, as: :hidden
         end

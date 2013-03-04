@@ -3,7 +3,13 @@
     <%= render partial: "shared/pagenav" %>
   </div>
   <div class="span9">
-    <h3><%= @announcement.name %></h3>
+    <h3>
+      <% if @announcement.title_url.to_s.empty? %>
+        <%= @announcement.name %>
+      <% else %>
+        <%= link_to @announcement.name, @announcement.title_url %>
+      <% end %>
+    </h3>
     <% 
         @output = Nokogiri::HTML::DocumentFragment.parse(@announcement.content)
     %>

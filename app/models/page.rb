@@ -38,9 +38,9 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :sub_pages, :allow_destroy => true
 
 
-  translates :menu_title, :title, :content, :fallbacks_for_empty_translations => true
+  translates :menu_title, :title, :content, :title_url, :fallbacks_for_empty_translations => true
   class Translation
-    attr_accessible :locale, :title, :content, :menu_title
+    attr_accessible :locale, :title, :content, :menu_title, :title_url
     acts_as_paranoid
     #validates :menu_title, :presence => true
   end

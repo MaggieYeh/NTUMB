@@ -1,7 +1,8 @@
 class Teacher < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :cellphone, :department_id, :email, :homepage, :name, :phone,
-                  :tax_number, :avatar, :teacher_title_id, :room, :joint_with, :front_end_order
+                  :tax_number, :avatar, :teacher_title_id, :room, :joint_with, :front_end_order,
+                  :picked_by_emba, :picked_by_gmba
   attr_accessible :educational_backgrounds_attributes
   attr_accessible :courses_attributes
   attr_accessible :research_areas_attributes
@@ -10,6 +11,9 @@ class Teacher < ActiveRecord::Base
   has_many :researchings
   has_many :courses
   has_many :educational_backgrounds
+
+  scope :picked_by_emba, lambda { where(picked_by_emba: true) }
+  scope :picked_by_gmba, lambda { where(picked_by_gmba: true) }
 
   belongs_to :admin_user
   belongs_to :department

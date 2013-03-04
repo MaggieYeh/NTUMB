@@ -1,0 +1,36 @@
+<% if department_name == "EMBA"  %>
+  <% action_url = "emba_pick_teacher" %>
+  <% show_check_box = :picked_by_emba %>
+  <% hidden_box = :picked_by_gmba %>
+<% else %>
+  <% action_url = "gmba_pick_teacher" %>
+  <% show_check_box = :picked_by_gmba %>
+  <% hidden_box = :picked_by_emba %>
+<% end %>
+<p> 教師的排序大小越大，前台就會優先顯示該教師。 </p>
+  <% TeacherTitle.all.each do |title| %>
+    <h4><%= title.title_name %></h3>
+    <ul class="teacher_order">
+      <li>
+        <span class="teacher_order_name">教師姓名</span>
+        <span class="teacher_order_dep">系所</span>
+        <span class="teacher_order_value">選擇此教師</span>
+        <span class="teacher_order_submit">&nbsp;</span>
+      </li>
+      <% Teacher.all.select{|teacher| teacher.teacher_title == title} \
+                  .each do |teacher| %>
+        <li>
+        <%= form_for(teacher,url: "teachers/#{teacher.id}/#{action_url}", remote: true, html: {method: :post}) do |f| %>
+            <span class="teacher_order_name"><%= teacher.name %></span>
+            <span class="teacher_order_dep"><%= teacher.department.name %></span>
+            <span class="teacher_order_value">
+              <%= f.check_box show_check_box, html: {value: teacher.send(show_check_box)} %>
+              <%= f.hidden_field hidden_box, html: {value: teacher.send(hidden_box)} %>
+            </span>
+            <span class="teacher_order_submit"> <%= f.submit "儲存" %>
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>

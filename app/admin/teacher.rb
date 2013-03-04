@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register Teacher do
-  menu priority: 8, if: proc{ can?(:manage,Teacher)}, label: "教師資料管理"
+  menu priority: 8, if: proc{ can?(:manage,Teacher)}, label: "教師資料", parent: "教師管理"
 
   controller.authorize_resource
 
@@ -9,6 +9,17 @@ ActiveAdmin.register Teacher do
   collection_action :teacher_ordering, :method => :get do
     @teacher_titles = TeacherTitle.all
     #@teachers = Teacher.all 
+  end
+
+  member_action :gmba_pick_teacher, method: :post do
+    @teacher.picked_by_gmba = params[:teacher][:picked_by_gmba]
+    @teacher.save
+    render :nothing => true
+  end
+  member_action :emba_pick_teacher, method: :post do
+    @teacher.picked_by_emba = params[:teacher][:picked_by_emba]
+    @teacher.save
+    render :nothing => true
   end
 
   member_action :set_order, :method => :post do

@@ -1,0 +1,6 @@
+<div>
+  <%= form_for(ann,url: "announcements/#{ann.id}/pick_by_man", remote: true, html: {method: :post}) do |f| %>
+    <%= f.check_box :picked_by_management, html: {value: ann.picked_by_management} %>
+    <%= f.submit "儲存" %>
+  <% end %>
+</div>

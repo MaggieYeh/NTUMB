@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228232701) do
+ActiveRecord::Schema.define(:version => 20130304042910) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.text     "content"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title_url"
   end
 
   add_index "announcement_translations", ["announcement_id"], :name => "index_5ab9a4f290f5831e288ca0088d32c79311c8d7ad"
@@ -84,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.integer  "department_id"
     t.datetime "deleted_at"
     t.boolean  "sticky"
+    t.string   "title_url"
+    t.boolean  "picked_by_management"
   end
 
   create_table "carousel_translations", :force => true do |t|
@@ -137,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "course_url"
   end
 
   add_index "course_translations", ["course_id"], :name => "index_course_translations_on_course_id"
@@ -302,6 +306,7 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.datetime "deleted_at"
+    t.string   "title_url"
   end
 
   add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
@@ -325,6 +330,7 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.string   "url_name"
     t.string   "delegated_to"
     t.datetime "deleted_at"
+    t.string   "title_url"
   end
 
   create_table "research_area_translations", :force => true do |t|
@@ -459,6 +465,8 @@ ActiveRecord::Schema.define(:version => 20130228232701) do
     t.datetime "deleted_at"
     t.string   "joint_with"
     t.integer  "front_end_order"
+    t.boolean  "picked_by_emba"
+    t.boolean  "picked_by_gmba"
   end
 
 end

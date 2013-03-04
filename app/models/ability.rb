@@ -7,9 +7,11 @@ class Ability
     user ||= AdminUser.new # guest user (not logged in)
     if user.role? :super_admin
       can :manage, :all
+      can :pick_announcement, AdminUser
     end
     if user.role? :mc_admin
       can :manage, :all
+      can :pick_announcement, AdminUser
       cannot :manage, AdminUser
     end
     Page.descendants.each do |dpage|
@@ -31,6 +33,12 @@ class Ability
     if user.role? :teacher
       can :update, Teacher, :id => user.teacher_id
       can :view, Teacher, :id => user.teacher_id
+    end
+    if user.role? :gmba_admin
+      can :pick_teacher, AdminUser
+    end
+    if user.role? :emba_admin
+      can :pick_teacher, AdminUser
     end
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

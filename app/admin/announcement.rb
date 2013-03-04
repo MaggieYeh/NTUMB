@@ -12,20 +12,21 @@ ActiveAdmin.register Announcement do
   filter :translations_content, label: "公告內容", as: :string
   filter :created_at, label: "發布日期"
 
+  member_action :pick_by_man, method: :post do
+    @announcement.picked_by_management = params[:announcement][:picked_by_management]
+    @announcement.save
+    render nothing: true
+  end
+
   form do |f|                         
     f.inputs "新公告" do
       f.input :sticky, label: "置頂"
       f.globalize_inputs :translations do |gf|
         gf.inputs "新公告"do
-          if gf.object.locale == :"zh-TW"
-            gf.input :name, label: "公告名稱"
-            gf.input :content, label: "公告內容", as: :ckeditor,
-                     input_html: { rows: 10 }
-          else
-            gf.input :name, label: "Name"
-            gf.input :content, label: "Content", as: :ckeditor,
-                     input_html: { rows: 10 }
-          end
+          gf.input :name, label: "公告名稱"
+          gf.input :title_url, label: "標題連結(非必要)"
+          gf.input :content, label: "公告內容", as: :ckeditor,
+                   input_html: { rows: 10 }
           gf.input :locale, as: :hidden
         end
       end
@@ -97,6 +98,13 @@ ActiveAdmin.register Announcement do
     end
     column :announce_date
     default_actions                   
+    if can? :pick_announcement, AdminUser
+      column "作為管院公告" do |ann|
+        div do
+          render partial: "pick_ann", locals: { ann: ann }
+        end
+      end
+    end
   end
 
   #index as: :block do |announcement| 
