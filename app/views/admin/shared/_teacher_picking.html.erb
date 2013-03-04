@@ -7,7 +7,6 @@
   <% show_check_box = :picked_by_gmba %>
   <% hidden_box = :picked_by_emba %>
 <% end %>
-<p> 教師的排序大小越大，前台就會優先顯示該教師。 </p>
   <% TeacherTitle.all.each do |title| %>
     <h4><%= title.title_name %></h3>
     <ul class="teacher_order">
