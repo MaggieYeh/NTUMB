@@ -95,6 +95,7 @@ ActiveAdmin.register Teacher do
         c.globalize_inputs :translations do |ct|
           ct.inputs do
             ct.input :name, label: "課程名稱"
+            ct.input :course_url, label: "課程連結(非必要)"
             ct.input :locale, as: :hidden
           end
         end
