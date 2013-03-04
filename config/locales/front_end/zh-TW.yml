@@ -1,5 +1,6 @@
 "zh-TW":
   front_end:
+    old_version: "舊版網頁"
     download_link: "檔案連結"
     announce_date: "發佈日期"
     teachers: "師資陣容"

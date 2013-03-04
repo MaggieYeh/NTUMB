@@ -1,5 +1,6 @@
 en:
   front_end:
+    old_version: "Old Website"
     download_link: "downloads"
     announce_date: "Published At"
     teachers: "Faculty"
