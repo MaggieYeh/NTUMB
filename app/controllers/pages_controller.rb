@@ -20,6 +20,8 @@ private
 
   def load_home_page_config
     @home_config = HomePageConfig.send(@current_department_name)
+    @old_link = @home_config.old_link 
+    @old_link = "http://newweb.management.ntu.edu.tw" if @old_link.to_s.empty?
   end
 
   def prepare_carousels

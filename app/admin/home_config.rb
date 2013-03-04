@@ -28,6 +28,7 @@ ActiveAdmin.register HomePageConfig do
       f.input :tax_num, label: "傳真號碼"
       f.input :address, label: "聯絡地址(中文)"
       f.input :eng_address, label: "聯絡地址(英文)"
+      f.input :old_link, label: "舊版網頁連結"
       counter = 0
       f.has_many :home_page_tab_fields, label: "首頁公告分頁" do |tab|
         counter += 1

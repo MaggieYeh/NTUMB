@@ -1,5 +1,5 @@
 class HomePageConfig < ActiveRecord::Base
-  attr_accessible :contact_info, :phone_one, :phone_two, :tax_num, :address, :eng_address
+  attr_accessible :contact_info, :phone_one, :phone_two, :tax_num, :address, :eng_address, :old_link
 
   has_many :home_page_tab_fields, dependent: :destroy
   attr_accessible :home_page_tab_fields_attributes
