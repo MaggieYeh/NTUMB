@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304064745) do
+ActiveRecord::Schema.define(:version => 20130313000552) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -278,6 +278,20 @@ ActiveRecord::Schema.define(:version => 20130304064745) do
     t.datetime "deleted_at"
   end
 
+  create_table "newweb_teacher_publications", :force => true do |t|
+    t.integer  "teacher_id"
+    t.string   "author"
+    t.string   "year"
+    t.string   "title"
+    t.string   "journal_or_conference_orpublisher"
+    t.integer  "publication_type_id"
+    t.string   "date"
+    t.string   "location"
+    t.text     "other"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
   create_table "page_part_translations", :force => true do |t|
     t.integer  "page_part_id"
     t.string   "locale"
@@ -332,6 +346,12 @@ ActiveRecord::Schema.define(:version => 20130304064745) do
     t.string   "delegated_to"
     t.datetime "deleted_at"
     t.string   "title_url"
+  end
+
+  create_table "publication_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "research_area_translations", :force => true do |t|
@@ -468,6 +488,7 @@ ActiveRecord::Schema.define(:version => 20130304064745) do
     t.integer  "front_end_order"
     t.boolean  "picked_by_emba"
     t.boolean  "picked_by_gmba"
+    t.boolean  "use_newweb_data"
   end
 
 end

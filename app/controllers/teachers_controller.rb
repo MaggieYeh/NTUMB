@@ -28,6 +28,69 @@ class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find(params[:id])
     @seqFound = false
+    @use_newweb_data = false
+    if @teacher.use_newweb_data
+      @use_newweb_data = true
+      fetch_newweb_data
+    else
+      parse_ntu_teacher_publication
+    end
+  end
+
+  def edit
+    @teacher = Teacher.find(params[:id])
+  end
+
+  def update
+    @teacher = Teacher.find(params[:id])
+  end
+
+private
+
+  def fetch_newweb_data
+    @paper = @teacher.newweb_teacher_publications.paper.map do |paper_node|
+                {
+                  author: paper_node.author,
+                  year: paper_node.year,
+                  title: paper_node.title,
+                  journal: paper_node.journal_or_conference_orpublisher,
+                  remarks: paper_node.other,
+                  cate: ""
+                }
+             end
+    @conference_paper = @teacher.newweb_teacher_publications.conference.map do |paper_node|
+                          {
+                            author: paper_node.author,
+                            year: paper_node.year,
+                            title: paper_node.title,
+                            conference: paper_node.journal_or_conference_orpublisher,
+                            date: "",
+                            location: paper_node.other
+                          }
+                        end
+    @books = @teacher.newweb_teacher_publications.book.map do |paper_node|
+            {
+              author: paper_node.author,
+              year: paper_node.year,
+              title: paper_node.title,
+              remarks: "",
+              publisher: paper_node.journal_or_conference_orpublisher,
+              book_title: paper_node.other
+            }
+            end
+    @other_publications = @teacher.newweb_teacher_publications.other.map do |paper_node|
+        {
+          author: paper_node.author,
+          year: paper_node.year,
+          title: paper_node.title,
+          remarks: "",
+          publisher: paper_node.journal_or_conference_orpublisher,
+          book_title: paper_node.other
+        }
+    end
+  end
+
+  def parse_ntu_teacher_publication
     all_xml = Nokogiri::XML(open("http://versatile.management.ntu.edu.tw/publication/all.xml").read)
     teacher_node = all_xml.xpath("//TeacherName").detect do |node| 
                                 node.text == @teacher.translation_for("zh-TW").name 
@@ -73,16 +136,6 @@ class TeachersController < ApplicationController
       end
     end
   end
-
-  def edit
-    @teacher = Teacher.find(params[:id])
-  end
-
-  def update
-    @teacher = Teacher.find(params[:id])
-  end
-
-private
 
   def build_nav_list
     @nav_list = department_page_variable.nav_list_for("teachers")

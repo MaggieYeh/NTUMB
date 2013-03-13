@@ -162,7 +162,7 @@
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.paper") } %>
         <div class="items">
-          <% if @seqFound && !@paper.empty? %>
+          <% if (@seqFound || @use_newweb_data)&& !@paper.empty? %>
             <ul class="publications" >
               <% @paper.each do |paper| %>
                 <li>
@@ -186,7 +186,7 @@
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.conference") } %>
         <div class="items">
-          <% if @seqFound && !@conference_paper.empty? %>
+          <% if( @seqFound || @use_newweb_data) && !@conference_paper.empty? %>
             <ul class="publications" >
               <% @conference_paper.each do |paper| %>
                 <li>
@@ -211,7 +211,7 @@
         <%= render partial: "teacher_title_bar",
                    locals: { title_name: I18n.t("front_end.teacher.publication.book") } %>
         <div class="items">
-          <% if @seqFound && !@books.empty?%>
+          <% if (@seqFound || @use_newweb_data) && !@books.empty?%>
             <ul class="publications">
               <% @books.each do |book| %>
                 <li>
@@ -233,11 +233,29 @@
         </div>
       </div>
       <div class="tab-pane" id="teacher-other">
-        <%= render partial: "teacher_title_bar",
-                   locals: { title_name: I18n.t("front_end.teacher.publication.other") } %>
-        <div class="items">
-          <div><%= I18n.t "front_end.teacher.no_data" %></div>
-        </div>
+          <%= render partial: "teacher_title_bar",
+                     locals: { title_name: I18n.t("front_end.teacher.publication.other") } %>
+          <div class="items">
+            <% if !@use_newweb_data %>
+              <div><%= I18n.t "front_end.teacher.no_data" %></div>
+            <% elsif !@other_publications.empty? %>
+              <ul class="publications">
+                <% @other_publications.each do |book| %>
+                  <li>
+                    <%="#{book[:author]}" %>
+                    <%=", #{book[:year]}" unless book[:year].to_s.empty? || book[:year] == "N/A" %>
+                    <%=", #{book[:title]}" unless book[:title].to_s.empty? || book[:title] == "N/A" %>
+                    <%=", #{book[:remarks]}" unless book[:remarks].to_s.empty? || \
+                                                    book[:remarks] == "N/A"%>
+                    <%=", #{book[:publisher]}" unless book[:publisher].to_s.empty? || \
+                                                    book[:publisher] == "N/A"%>
+                    <%=" (#{book[:book_title]})" unless book[:book_title].to_s.empty? || \
+                                                    book[:book_title] == "N/A" %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
       </div>
     </div>
   </div>

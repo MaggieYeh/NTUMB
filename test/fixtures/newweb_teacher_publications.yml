@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  teacher_id: 1
+  author: MyString
+  year: MyString
+  title: MyString
+  journal_or_conference_orpublisher: MyString
+  type_id: 1
+  date: MyString
+  location: MyString
+  other: MyText
+
+two:
+  teacher_id: 1
+  author: MyString
+  year: MyString
+  title: MyString
+  journal_or_conference_orpublisher: MyString
+  type_id: 1
+  date: MyString
+  location: MyString
+  other: MyText
