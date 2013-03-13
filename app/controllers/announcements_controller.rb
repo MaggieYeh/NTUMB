@@ -21,6 +21,7 @@ class AnnouncementsController < ApplicationController
         !a.translation_for(I18n.locale).name.empty?
       end
     end
+    @announcements = @announcements.sort_by{|a| a.announce_date}.reverse
   end
 
   def show

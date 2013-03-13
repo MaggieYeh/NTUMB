@@ -6,6 +6,7 @@ class NewsReportsController < ApplicationController
     @news_reports = NewsReport.send(@current_department_name).select do |n|
       !n.translation_for(I18n.locale).title.empty?
     end
+    @news_reports = @news_reports.sort_by{|n| n.announce_date}
   end
 
   def show

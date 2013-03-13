@@ -48,7 +48,7 @@ class TeachersController < ApplicationController
 private
 
   def fetch_newweb_data
-    @paper = @teacher.newweb_teacher_publications.paper.map do |paper_node|
+    @paper = @teacher.newweb_teacher_publications.paper.sort_by{|p| p.year}.reverse.map do |paper_node|
                 {
                   author: paper_node.author,
                   year: paper_node.year,
@@ -58,7 +58,7 @@ private
                   cate: ""
                 }
              end
-    @conference_paper = @teacher.newweb_teacher_publications.conference.map do |paper_node|
+    @conference_paper = @teacher.newweb_teacher_publications.conference.sort_by{|p| p.year}.reverse.map do |paper_node|
                           {
                             author: paper_node.author,
                             year: paper_node.year,
@@ -68,7 +68,7 @@ private
                             location: paper_node.other
                           }
                         end
-    @books = @teacher.newweb_teacher_publications.book.map do |paper_node|
+    @books = @teacher.newweb_teacher_publications.book.sort_by{|p| p.year}.reverse.map do |paper_node|
             {
               author: paper_node.author,
               year: paper_node.year,
@@ -78,7 +78,7 @@ private
               book_title: paper_node.other
             }
             end
-    @other_publications = @teacher.newweb_teacher_publications.other.map do |paper_node|
+    @other_publications = @teacher.newweb_teacher_publications.other.sort_by{|p| p.year}.reverse.map do |paper_node|
         {
           author: paper_node.author,
           year: paper_node.year,
