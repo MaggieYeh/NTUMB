@@ -22,12 +22,14 @@ class TeachersController < ApplicationController
       @teachers = Teacher.send(@current_department_name).order("front_end_order DESC")
       @departments = [@current_department.name]
     end
+    @colors = @departments.map{|d| Department::DCOLORS[d]}
     @title_categories = TeacherTitle.all
   end
 
   def show
     @teacher = Teacher.find(params[:id])
     @seqFound = false
+    @color = Department::DCOLORS[@teacher.department.name]
     @use_newweb_data = false
     if @teacher.use_newweb_data
       @use_newweb_data = true

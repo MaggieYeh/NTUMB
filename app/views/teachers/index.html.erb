@@ -5,28 +5,10 @@
   <div class="span9">
     <div id="expanding" class="accordion">
         <% @departments.each_with_index do |d,i| %>
-          <% 
-            stuff_color = ""
-            border_color = ""
-            background = ""
-            if i%3 == 0
-              stuff_color = "stuffing-green"
-              border_color = "green-border"
-              background = "green-pixel-pattern"
-            elsif i%3 == 1
-              stuff_color = "stuffing-blue"
-              border_color = "blue-border"
-              background = "blue-pixel-pattern"
-            else
-              stuff_color = "stuffing-orange"
-              border_color = "orange-border"
-              background = "orange-pixel-pattern"
-            end
-          %>
           <div class="accordion-group">
             <div class="accordion-heading">
-              <div class="department-stuffing stuffing <%= stuff_color %>">
-                <span class="department-inner-stuffing inner-stuffing <%= stuff_color %>">&nbsp;</span>
+              <div class="department-stuffing stuffing stuffing-<%= @colors[i] %>">
+                <span class="department-inner-stuffing inner-stuffing stuffing-<%= @colors[i] %>">&nbsp;</span>
               </div>
               <a data-parent="expanding" href="#ttc_<%= d %>"
                  class="accordion-toggle teacher-department" data-toggle="collapse">
@@ -36,11 +18,11 @@
             <div class="accordion-body collapse
               <%= "in" if @current_department_name.downcase != "management"%>" id="ttc_<%= d %>">
               <div class="accordion-inner">
-                <% @title_categories.each_with_index do |tc,i| %>
+                <% @title_categories.each_with_index do |tc,j| %>
                   <span class="teacher_title">
                     <%= tc.title_name %>
                   </span>
-                  <ul class="teachers <%= border_color %> <%= background %>">
+                  <ul class="teachers border-<%= @colors[i] %> pixel-pattern-<%= @colors[i] %> ">
                     <% ts =  @teachers.select{|ts| ts.teacher_title == tc 
                                       }.select{|ts| ts.department == Department.find_by_name(d) } %>
                     <% unless ts.empty? %>

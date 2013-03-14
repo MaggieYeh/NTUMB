@@ -5,56 +5,6 @@ ActiveAdmin.register NewsReport do
   menu priority: 6, if: proc{ can?(:manage,NewsReport) }
   controller.authorize_resource
 
-  #index :as => :block do |report|
-    #missing_title_translation_zh = report.translation_for(:"zh-TW").title.to_s.empty?
-    #missing_title_translation_en = report.translation_for(:en).title.to_s.empty?
-    #missing_content_translation_zh = report.translation_for(:"zh-TW").content.to_s.empty?
-    #missing_content_translation_en = report.translation_for(:en).content.to_s.empty?
-    #missing_translation_zh = missing_content_translation_zh || missing_title_translation_zh
-    #missing_translation_en = missing_content_translation_en || missing_title_translation_en
-    #div class: "admin_tabbed_item", for: report do
-      #ul do
-        #li do
-          #if missing_translation_zh
-            #a "中文", href: "#zh-TW_report_#{report.id}", class: "missing_translation"
-          #else
-            #a "中文", href: "#zh-TW_report_#{report.id}"
-          #end
-        #end
-        #li do
-          #if missing_translation_en
-            #a "英文", href: "#en_report_#{report.id}", class: "missing_translation"
-          #else
-            #a "英文", href: "#en_report_#{report.id}"
-          #end
-        #end
-        #div class: "item_actions" do
-          #span do
-            #link_to "詳細資訊", admin_news_report_url(report)
-          #end
-          #span do
-            #link_to "編輯", edit_admin_news_report_url(report)
-          #end
-          #span do
-            #link_to "刪除", admin_news_report_url(report), method: :delete, data: {confirm: I18n.t("active_admin.delete_confirmation") }
-          #end
-        #end
-      #end
-      #div id: "zh-TW_report_#{report.id}", class: "tabbed_item_content" do
-        #h3 report.translation_for(:"zh-TW").title
-        #span "發布日期：#{report.created_at.to_date.strftime("%Y/%m/%d")}"
-        #hr
-        #div raw(HTML_Truncator.truncate(report.translation_for(:"zh-TW").content,50))
-      #end
-      #div id: "en_report_#{report.id}", class: "tabbed_item_content" do
-        #h3 report.translation_for(:en).title
-        #span "發布日期：#{report.created_at.to_date.strftime("%Y/%m/%d")}"
-        #hr
-        #div raw(HTML_Truncator.truncate(report.translation_for(:en).content,50))
-      #end
-    #end #div for report
-  #end #index
-  #
   index do
     column "新聞標題" do |report|
       link_to report.title, admin_news_report_path(report)

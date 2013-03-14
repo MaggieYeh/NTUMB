@@ -3,9 +3,9 @@
     <%= render partial: "shared/pagenav" %>
   </div>
   <div class="span9">
-    <div class="title-wrapper green-border">
-      <div class="teacher-stuffing stuffing stuffing-green">
-        <span class="teacher-inner-stuffing inner-stuffing stuffing-green">&nbsp;</span>
+    <div class="title-wrapper border-<%= @color %>">
+      <div class="teacher-stuffing stuffing stuffing-<%= @color %>">
+        <span class="teacher-inner-stuffing inner-stuffing stuffing-<%= @color %>">&nbsp;</span>
       </div>
       <span><%= @teacher.teacher_title.title_name %></span>
     </div>
@@ -60,9 +60,9 @@
         </table>
       </div>
     </div>
-    <div class="title-wrapper green-border">
-      <div class="tab-stuffing stuffing stuffing-green">
-        <span class="tab-inner-stuffing inner-stuffing stuffing-green">&nbsp;</span>
+    <div class="title-wrapper border-<%= @color %>">
+      <div class="tab-stuffing stuffing stuffing-<%= @color %>">
+        <span class="tab-inner-stuffing inner-stuffing stuffing-<%= @color %>">&nbsp;</span>
       </div>
       <ul class="info-tabs">
         <li class="active">
