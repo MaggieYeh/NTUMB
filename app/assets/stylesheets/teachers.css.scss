@@ -107,6 +107,13 @@ ul.teachers {
   li{
     margin: 5px 10px;
     display: inline-block;
+    a{
+      color: black !important; 
+    }
+    a:hover{
+      color: #999 !important;
+      text-decoration: underline !important;
+    }
   }
 }
 
