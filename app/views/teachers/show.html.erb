@@ -43,11 +43,11 @@
           </tr>
           <tr>
             <td><%= I18n.t "front_end.teacher.homepage" %></td>
-            <td><%= @teacher.homepage %></td>
+            <td><%= link_to @homepage, @homepage %></td>
           </tr>
           <tr>
             <td><%= I18n.t "front_end.teacher.email" %></td>
-            <td><%= @teacher.email %></td>
+            <td><%= mail_to @teacher.email, @teacher.email %></td>
           </tr>
           <tr>
             <td valign="center"><%= I18n.t "front_end.teacher.research_areas" %></td>

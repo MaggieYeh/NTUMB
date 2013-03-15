@@ -120,4 +120,12 @@ private
     child_menu
   end
 
+  def url_with_protocol(url)
+    if url.to_s.empty? || url.to_s.blank?
+      ""
+    else
+      /^http/.match(url) ? url : "http://#{url}"
+    end
+  end
+
 end

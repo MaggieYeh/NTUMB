@@ -37,6 +37,7 @@ class TeachersController < ApplicationController
     else
       parse_ntu_teacher_publication
     end
+    @homepage = url_with_protocol(@teacher.homepage)
   end
 
   def edit
