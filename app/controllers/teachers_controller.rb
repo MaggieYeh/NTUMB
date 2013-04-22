@@ -23,7 +23,7 @@ class TeachersController < ApplicationController
       @departments = [@current_department.name]
     end
     @colors = @departments.map{|d| Department::DCOLORS[d]}
-    @title_categories = TeacherTitle.all
+    @title_categories = TeacherTitle.order("teacher_order DESC") 
   end
 
   def show
