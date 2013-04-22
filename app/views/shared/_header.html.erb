@@ -1,7 +1,7 @@
 <div id="header-wrapper">
   <div class="container" id="header">
     <div class="row">
-      <div class="span6">
+      <div class="span7">
           <a href="<%= @header_link %>">
             <%= image_tag("logo.png", class: "header-logo") %>
             <h1 class="kai <%= "en" if I18n.locale == :en %>">
@@ -15,7 +15,7 @@
             </span>
          </a>
       </div>
-      <div class="span6">
+      <div class="span5">
         <div class="header-info">
           <form class="form-search" action="http://www.google.com/search">
             <input type="text" placeholder="search" name="q" class="input-medium search-query">

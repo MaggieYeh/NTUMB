@@ -1,0 +1,18 @@
+<div id="footer">
+  <%= render partial: "shared/department_links", locals: { emba: false }%>
+  <div id="info-wrapper">
+    <div id="info" class="container">
+      <span id="copyright">
+        <small> &copy; National Taiwan University All Rights Reserved</small>
+      </span>
+      <address>
+        <span><small><%= @address %></small></span>
+        <br/>
+        <span>
+          <small><%= I18n.t("front_end.phone") %>：<%= @phone_one %>; <%= @phone_two %> 
+          <%= I18n.t("front_end.tax") %>：<%= @tax_num %></small>
+        </span>
+      </address>
+    </div><!-- end of info -->
+  </div>
+</div><!-- end of footer -->
