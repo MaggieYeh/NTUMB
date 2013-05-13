@@ -2,7 +2,7 @@ class Teacher < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :cellphone, :department_id, :email, :homepage, :name, :phone,
                   :tax_number, :avatar, :teacher_title_id, :room, :joint_with, :front_end_order,
-                  :picked_by_emba, :picked_by_gmba, :use_newweb_data
+                  :picked_by_emba, :picked_by_gmba, :use_newweb_data, :ntu_seq
   attr_accessible :educational_backgrounds_attributes
   attr_accessible :courses_attributes
   attr_accessible :research_areas_attributes
