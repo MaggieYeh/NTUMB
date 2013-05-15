@@ -173,11 +173,11 @@
                                                  paper[:journal] == "N/A" || paper[:journal] == "0"%>
 	              <%=", Vol.#{paper[:volume]}" unless paper[:volume].to_s.empty? || \
 							                       paper[:volume] == "N/A" || paper[:volume] == "0"%>
-				  <%=", No.#{paper[:volumeNo]}" unless paper[:volumeNo].to_s.empty? || \
-								 				  paper[:volumeNo] == "N/A" || paper[:volumeNo] == "0"%>
-			      <%=", Pages #{paper[:beginPage]}" unless paper[:beginPage].to_s.empty? || paper[:beginPage] == "N/A" || paper[:beginPage] == "0"%>
-				  <%="- #{paper[:endPage]}" unless paper[:endPage].to_s.empty? || \
-			       paper[:endPage] =="N/A" || paper[:endPage] =="0"%>											  
+				  <%=", No.#{paper[:volumeno]}" unless paper[:volumeno].to_s.empty? || \
+								 				  paper[:volumeno] == "N/A" || paper[:volumeno] == "0"%>
+			      <%=", Pages #{paper[:beginpage]}" unless paper[:beginpage].to_s.empty? || paper[:beginpage] == "N/A" || paper[:beginpage] == "0"%>
+				  <%="- #{paper[:endpage]}" unless paper[:endpage].to_s.empty? || \
+			       paper[:endpage] =="N/A" || paper[:endpage] =="0"%>											  
                   <%=", #{paper[:remarks]}" unless paper[:remarks].to_s.empty? || \
                                                  paper[:remarks] == "N/A" || paper[:remarks] == "0"%>
                   <%=" (#{paper[:cate]})" unless paper[:cate].to_s.empty? || paper[:cate] == "N/A" || paper[:cate] == "0" %>
